@@ -1,8 +1,8 @@
-package com.mycompany.proyectofinal.Controllers;
+package com.mycompany.proyectofinal;
 
 import com.mycompany.proyectofinal.App;
 import com.mycompany.proyectofinal.Obra;
-import com.mycompany.proyectofinal.Modelos.ObraModelo;
+import com.mycompany.proyectofinal.ObraModelo;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+
 public class CatalogoController  {
     @FXML private ListView<Obra> listObras;
     @FXML private ImageView imgPreview;
@@ -20,6 +21,7 @@ public class CatalogoController  {
     
     private final ObraModelo obraModelo = new ObraModelo();
 
+    
     public void initialize() {
         cargarObras();
         

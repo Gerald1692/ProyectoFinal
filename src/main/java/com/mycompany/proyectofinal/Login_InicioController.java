@@ -1,9 +1,9 @@
-package com.mycompany.proyectofinal.Controllers;
+package com.mycompany.proyectofinal;
 
 
 import com.mycompany.proyectofinal.App;
 import com.mycompany.proyectofinal.Usuario;
-import com.mycompany.proyectofinal.Modelos.UsuarioModelo;
+import com.mycompany.proyectofinal.UsuarioModelo;
 
 import java.net.URL;
 import java.util.ResourceBundle;

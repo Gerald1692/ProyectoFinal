@@ -1,7 +1,7 @@
-package com.mycompany.proyectofinal.Controllers;
+package com.mycompany.proyectofinal;
 
 import com.mycompany.proyectofinal.Obra;
-import com.mycompany.proyectofinal.Modelos.ObraModelo;
+import com.mycompany.proyectofinal.ObraModelo;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;

@@ -1,4 +1,4 @@
-package com.mycompany.proyectofinal.Modelos;
+package com.mycompany.proyectofinal;
 import com.mycompany.proyectofinal.ConexionBD;
 import com.mycompany.proyectofinal.Usuario;
 import java.sql.Connection;

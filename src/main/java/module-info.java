@@ -9,4 +9,6 @@ module com.mycompany.proyectofinal {
     opens com.mycompany.proyectofinal to javafx.fxml;
     opens com.mycompany.proyectofinal.Modelos to javafx.base;
     exports com.mycompany.proyectofinal;
+    opens com.mycompany.proyectofinal.Controllers to javafx.fxml; // ¡Nuevo!
+    
 }

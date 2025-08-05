@@ -1,8 +1,8 @@
-package com.mycompany.proyectofinal.Controllers;
+package com.mycompany.proyectofinal;
 
 import com.mycompany.proyectofinal.App;
 import com.mycompany.proyectofinal.Usuario;
-import com.mycompany.proyectofinal.Modelos.UsuarioModelo; // Elimina import de Encriptacion
+import com.mycompany.proyectofinal.UsuarioModelo; // Elimina import de Encriptacion
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;

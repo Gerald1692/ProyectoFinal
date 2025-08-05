@@ -1,4 +1,4 @@
-package com.mycompany.proyectofinal.Controllers;
+package com.mycompany.proyectofinal;
 
 import com.mycompany.proyectofinal.App;
 import com.mycompany.proyectofinal.App;
