@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.Login_InicioController">
+
+    <!-- Fondo difuminado -->
+    <ImageView fitHeight="600" fitWidth="800" preserveRatio="false">
+        <image>
+            <Image url="@../Recourse/fondologin.png" />
+        </image>
+        <effect>
+            <GaussianBlur radius="8" />
+        </effect>
+    </ImageView>
+
+    <!-- Panel central con contenido -->
+    <StackPane alignment="CENTER" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <VBox alignment="CENTER" spacing="20" style="-fx-background-color: rgba(255, 255, 255, 0.8); -fx-background-radius: 15; -fx-padding: 30;">
+            <!-- Logo -->
+            <ImageView fitHeight="139.0" fitWidth="176.0" preserveRatio="true">
+                <image>
+                    <Image url="@../Recourse/dinomuseo.PNG" />
+                </image>
+            </ImageView>
+            
+            <!-- Título -->
+            <Label styleClass="titulo" text="Bienvenido al Museo">
+                <font>
+                    <Font name="Bodoni MT Black" size="36" />
+                </font>
+            </Label>
+            
+            <!-- Formulario -->
+            <GridPane alignment="CENTER" hgap="10" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER" />
+                    <ColumnConstraints hgrow="ALWAYS" minWidth="50.0" prefWidth="50.0" />
+                </columnConstraints>
+                
+                <!-- Correo -->
+                <Label text="Correo:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <font>
+                        <Font name="Bodoni MT Black" size="18" />
+                    </font>
+                </Label>
+                <TextField fx:id="txtCorreo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="621.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                
+                <!-- Contraseña -->
+                <Label text="Contraseña:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="Bodoni MT Black" size="18" />
+                    </font>
+                </Label>
+                <PasswordField fx:id="txtContrasena" prefHeight="36.0" prefWidth="568.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+            
+            <!-- Botones -->
+            <VBox alignment="CENTER" spacing="10">
+                <Button fx:id="btnLogin" onAction="#iniciarSesion" prefHeight="40" prefWidth="180" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Iniciar Sesión" />
+                
+                <HBox alignment="CENTER" spacing="20">
+                    <Button fx:id="btnRecuperar" onAction="#recuperarContrasena" style="-fx-background-color: transparent; -fx-text-fill: #2a5c9c; -fx-font-weight: bold;" text="Recuperar Contraseña" />
+                    
+                    <Button fx:id="btnRegistro" onAction="#abrirRegistro" style="-fx-background-color: transparent; -fx-text-fill: #2a5c9c; -fx-font-weight: bold;" text="Registrarse" />
+                </HBox>
+            </VBox>
+        </VBox>
+    </StackPane>
+</AnchorPane>

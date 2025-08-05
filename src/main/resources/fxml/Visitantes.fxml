@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.VisitantesController">
+    
+    <!-- Fondo difuminado -->
+    <ImageView fitHeight="600.0" fitWidth="800.0" preserveRatio="false">
+        <image>
+            <Image url="@../Recourse/fondologin.png" />
+        </image>
+        <effect>
+            <GaussianBlur radius="8.0" />
+        </effect>
+    </ImageView>
+    
+    <!-- Panel central -->
+    <StackPane alignment="CENTER" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="750.0" spacing="20" style="-fx-background-color: rgba(255, 255, 255, 0.85); -fx-background-radius: 15; -fx-padding: 30;">
+            
+            <!-- Logo y título -->
+            <HBox alignment="CENTER" spacing="20">
+                <ImageView fitHeight="100.0" fitWidth="100.0" preserveRatio="true">
+                    <image>
+                        <Image url="@../Recourse/dinomuseo.PNG" />
+                    </image>
+                </ImageView>
+                <VBox alignment="CENTER_LEFT">
+                    <Label style="-fx-font-weight: bold; -fx-text-fill: #2a5c9c;" text="Curiosópolis ">
+                        <font>
+                            <Font name="Bodoni MT Black" size="28.0" />
+                        </font>
+                    </Label>
+                    <Label style="-fx-font-style: italic;" text="Museo de Historia Natural">
+                        <font>
+                            <Font name="Bodoni MT" size="16.0" />
+                        </font>
+                    </Label>
+                </VBox>
+            </HBox>
+            
+            <!-- Barra de navegación (navbar) -->
+            <MenuBar style="-fx-background-color: #2a5c9c; -fx-padding: 5; -fx-border-radius: 5;">
+                <Menu style="-fx-text-fill: white; -fx-font-weight: bold;" text="Secciones">
+                    <MenuItem onAction="#cambiarASalaHistoria" text="Sala de Historia" />
+                    <MenuItem onAction="#cambiarASalaFosiles" text="Sala de Fósiles" />
+                    <MenuItem onAction="#cambiarASalaMinerales" text="Sala de Minerales" />
+                    <MenuItem onAction="#cambiarASalaBiologia" text="Sala de Biología" />
+                </Menu>
+                <Menu style="-fx-text-fill: white; -fx-font-weight: bold;" text="Exposiciones">
+                    <MenuItem onAction="#cambiarAExposicionActual" text="Exposición Actual" />
+                    <MenuItem onAction="#cambiarAExposicionesPasadas" text="Exposiciones Pasadas" />
+                </Menu>
+                <Menu style="-fx-text-fill: white; -fx-font-weight: bold;" text="Tours">
+                    <MenuItem onAction="#cambiarATourGuiado" text="Tour Guiado" />
+                    <MenuItem onAction="#cambiarATourVirtual" text="Tour Virtual" />
+                </Menu>
+            </MenuBar>
+            
+            <!-- Secciones de búsqueda -->
+            <VBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 0 20;">
+                <Label style="-fx-font-weight: bold; -fx-font-size: 18; -fx-text-fill: #2a5c9c;" text="BUSCAR" />
+                
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <TextField fx:id="txtBusqueda" prefHeight="35.0" prefWidth="300.0" promptText="Buscar obras..." />
+                    <ComboBox fx:id="cbTipoBusqueda" prefHeight="35.0" prefWidth="150.0" promptText="Tipo de búsqueda" />
+                    <ComboBox fx:id="cbSalas" prefHeight="35.0" prefWidth="150.0" promptText="Nombre de Sala" />
+                    <Button onAction="#buscarObras" prefHeight="35.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: #2a5c9c; -fx-text-fill: white;" text="Buscar" />
+                </HBox>
+            </VBox>
+            
+            <!-- Separador -->
+            <Separator prefWidth="700.0" style="-fx-background-color: #2a5c9c;" />
+            
+            <!-- Resultados -->
+            <VBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 0 20;">
+                <Label fx:id="lblTituloSeccion" style="-fx-font-weight: bold; -fx-font-size: 18; -fx-text-fill: #2a5c9c;" text="OBRAS DISPONIBLES" />
+                
+                <!-- ListView personalizado -->
+                <ListView fx:id="listObras" prefHeight="250.0" prefWidth="700.0" style="-fx-background-color: transparent; -fx-border-color: #cccccc;">
+                    <!-- Celda personalizada se manejará en el controlador -->
+                </ListView>
+            </VBox>
+            
+            <!-- Pie de página -->
+            <VBox alignment="CENTER" spacing="5">
+                <Separator prefWidth="700.0" />
+                <Label style="-fx-font-size: 12; -fx-text-fill: #666666;" text="© 2025 EcoFósil – Museo de Historia Natural. Todos los derechos reservados." />
+            </VBox>
+        </VBox>
+    </StackPane>
+</AnchorPane>

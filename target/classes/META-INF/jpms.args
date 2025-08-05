@@ -1,0 +1,2 @@
+--add-exports
+javafx.base/com.sun.javafx.event=ALL-UNNAMED

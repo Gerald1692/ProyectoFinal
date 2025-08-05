@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" 
+            fx:controller="com.mycompany.proyectofinal.AdministracionController">
+    
+    <top>
+        <MenuBar>
+            <Menu text="Archivo">
+                <MenuItem text="Salir" onAction="#salir"/>
+            </Menu>
+        </MenuBar>
+    </top>
+    
+    <center>
+        <TabPane fx:id="tabPane">
+            <Tab text="Gestión de Usuarios" fx:id="tabUsuarios"/>
+            <Tab text="Gestión de Obras" fx:id="tabObras"/>
+            <Tab text="Reportes" fx:id="tabReportes"/>
+        </TabPane>
+    </center>
+</BorderPane>
