@@ -1,6 +1,7 @@
 com\mycompany\proyectofinal\REGISTRARSEController.class
-module-info.class
 com\mycompany\proyectofinal\LoginController.class
 com\mycompany\proyectofinal\SecondaryController.class
-com\mycompany\proyectofinal\PrimaryController.class
 com\mycompany\proyectofinal\App.class
+module-info.class
+com\mycompany\proyectofinal\util\DatabaseConnection.class
+com\mycompany\proyectofinal\PrimaryController.class
