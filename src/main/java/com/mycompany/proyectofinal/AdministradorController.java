@@ -37,7 +37,7 @@ public class AdministradorController implements Initializable {
         pantallaBienvenida.setAlignment(Pos.CENTER);
         pantallaBienvenida.setPadding(new Insets(20));
         
-        ImageView imagenAdmin = new ImageView(new Image(getClass().getResourceAsStream("/RECURSOS/67f8e6414da3cf7b2566945b061c1427.jpg")));
+        ImageView imagenAdmin = new ImageView(new Image(getClass().getResourceAsStream("/RECURSOS/afuera.png")));
         imagenAdmin.setFitWidth(300);
         imagenAdmin.setFitHeight(200);
         
