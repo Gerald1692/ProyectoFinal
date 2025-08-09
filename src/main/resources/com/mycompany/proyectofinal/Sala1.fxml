@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600" prefWidth="900" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.Sala1Controller">
+    
+    <!-- Encabezado -->
+    <top>
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
+            <Label style="-fx-padding: 15; -fx-font-weight: bold;" text="Sala 1 - Detalle de Objeto">
+                <font>
+                    <Font name="Arial" size="24.0" />
+                </font>
+            </Label>
+        </HBox>
+    </top>
+    
+    <!-- Contenido principal -->
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: transparent; -fx-background-color: transparent;">
+            <VBox alignment="TOP_CENTER" spacing="20" style="-fx-padding: 20;">
+                <!-- Panel de información del objeto -->
+                <StackPane style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                    <VBox spacing="15" style="-fx-padding: 25;">
+                        <!-- Título del objeto -->
+                        <Label style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Título del Objeto" textAlignment="CENTER">
+                            <font>
+                                <Font name="Bodoni MT" size="28.0" />
+                            </font>
+                        </Label>
+                        
+                        <!-- Imagen y detalles -->
+                        <HBox alignment="TOP_CENTER" spacing="30">
+                            <!-- Imagen del objeto -->
+                            <ImageView fitHeight="292.0" fitWidth="308.0" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 0);">
+                                <image>
+                                    <Image url="@../../../../../../../../../Users/geral/Downloads/sala1Dino.png" />
+                                </image>
+                            </ImageView>
+                            
+                            <!-- Detalles del objeto -->
+                            <VBox alignment="TOP_LEFT" prefWidth="400" spacing="15">
+                                <!-- Información básica -->
+                                <VBox spacing="8">
+                                    <Label style="-fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-font-size: 18;" text="Descripción">
+                                        <font>
+                                            <Font name="Arial" size="16.0" />
+                                        </font>
+                                    </Label>
+                                    <Label style="-fx-text-fill: #34495e; -fx-font-size: 14;" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." wrapText="true" />
+                                </VBox>
+                                
+                                <!-- Información adicional -->
+                                <VBox spacing="8">
+                                    <Label style="-fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-font-size: 18;" text="Detalles">
+                                        <font>
+                                            <Font name="Arial" size="16.0" />
+                                        </font>
+                                    </Label>
+                                    <VBox spacing="5">
+                                        <Label style="-fx-text-fill: #34495e; -fx-font-size: 14;" text="• Período histórico: Siglo V a.C." />
+                                        <Label style="-fx-text-fill: #34495e; -fx-font-size: 14;" text="• Material: Mármol" />
+                                        <Label style="-fx-text-fill: #34495e; -fx-font-size: 14;" text="• Descubierto en: Atenas, Grecia" />
+                                        <Label style="-fx-text-fill: #34495e; -fx-font-size: 14;" text="• Estado de conservación: Excelente" />
+                                    </VBox>
+                                </VBox>
+                                
+                                <!-- Estado y acciones -->
+                                <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 10 0 0 0;">
+                                    <VBox>
+                                        <Label style="-fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-font-size: 16;" text="Estado" />
+                                        <Label style="-fx-text-fill: #27ae60; -fx-font-size: 14; -fx-font-weight: bold;" text="En exhibición" />
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                </StackPane>
+                
+                <!-- Información adicional -->
+                <VBox spacing="20">
+                    <!-- Panel de ubicación -->
+                    <StackPane style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                        <VBox spacing="10" style="-fx-padding: 20;">
+                            <Label style="-fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-font-size: 20;" text="Ubicación en el Museo">
+                                <font>
+                                    <Font name="Arial" size="16.0" />
+                                </font>
+                            </Label>
+                            <HBox alignment="CENTER_LEFT" spacing="20">
+                                <VBox spacing="5">
+                                    <Label style="-fx-text-fill: #34495e; -fx-font-size: 14;" text="• Sala: Sala de Antigüedades" />
+                                    <Label style="-fx-text-fill: #34495e; -fx-font-size: 14;" text="• Pasillo: Pasillo principal" />
+                                    <Label style="-fx-text-fill: #34495e; -fx-font-size: 14;" text="• Posición: Vitrina 3, Estante 2" />
+                                </VBox>
+                                <ImageView fitHeight="120" fitWidth="180" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);">
+                                    <image>
+                                        <Image url="@../../../RECURSOS/map_location.jpg" />
+                                    </image>
+                                </ImageView>
+                            </HBox>
+                        </VBox>
+                    </StackPane>
+                    
+                    <!-- Panel de historia -->
+                    <StackPane style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                        <VBox spacing="10" style="-fx-padding: 20;">
+                            <Label style="-fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-font-size: 20;" text="Historia y Contexto">
+                                <font>
+                                    <Font name="Arial" size="16.0" />
+                                </font>
+                            </Label>
+                            <Label style="-fx-text-fill: #34495e; -fx-font-size: 14;" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&#10;&#10;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." wrapText="true" />
+                        </VBox>
+                    </StackPane>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+    
+    <!-- Pie de página con botones de navegación -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="20" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0; -fx-padding: 15;">
+            <Button onAction="#volverLogin" prefHeight="37.0" prefWidth="289.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;" text="Volver a Inicio de Sesión">
+                <effect>
+                    <DropShadow color="#00000020" radius="3" />
+                </effect>
+            </Button>
+            <Button style="-fx-background-color: #2c3e50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;" text="Volver al Panel" visible="false">
+                <effect>
+                    <DropShadow color="#00000020" radius="3" />
+                </effect>
+            </Button>
+            <Button onAction="#irSalaPrincipal" prefHeight="37.0" prefWidth="282.0" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;" text="Volver a Sala">
+                <effect>
+                    <DropShadow color="#00000020" radius="3" />
+                </effect>
+            </Button>
+        </HBox>
+    </bottom>
+</BorderPane>

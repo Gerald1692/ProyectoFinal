@@ -1,5 +1,6 @@
 package com.mycompany.proyectofinal;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -36,7 +37,7 @@ public class AdministradorController implements Initializable {
         pantallaBienvenida.setAlignment(Pos.CENTER);
         pantallaBienvenida.setPadding(new Insets(20));
         
-        ImageView imagenAdmin = new ImageView(new Image(getClass().getResourceAsStream("/RECURSOS/67f8e6414da3cf7b2566945b061c1427.jpg")));
+        ImageView imagenAdmin = new ImageView(new Image(getClass().getResourceAsStream("/RECURSOS/afuera.png")));
         imagenAdmin.setFitWidth(300);
         imagenAdmin.setFitHeight(200);
         
@@ -89,7 +90,11 @@ public class AdministradorController implements Initializable {
     private void manejarSalir() {
         System.exit(0);
     }
-    
+    @FXML
+    private void volverLogin() throws IOException {
+        // Volver a la vista de login
+        App.setRoot("Login");
+    }
     private AnchorPane crearContenidoUsuarios() {
         AnchorPane contenido = new AnchorPane();
         contenido.setPadding(new Insets(20));
