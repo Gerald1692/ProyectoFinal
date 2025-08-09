@@ -9,5 +9,29 @@ package com.mycompany.proyectofinal.ModelosPOJOs;
  * @author admar
  */
 public class TipoObra {
-    
+   private int idTipoObra;
+   private String nombreTipoObra;
+
+    public TipoObra(int idTipoObra, String nombreTipoObra) {
+        this.idTipoObra = idTipoObra;
+        this.nombreTipoObra = nombreTipoObra;
+    }
+
+    public int getIdTipoObra() {
+        return idTipoObra;
+    }
+
+    public String getNombreTipoObra() {
+        return nombreTipoObra;
+    }
+
+    public void setIdTipoObra(int idTipoObra) {
+        this.idTipoObra = idTipoObra;
+    }
+
+    public void setNombreTipoObra(String nombreTipoObra) {
+        this.nombreTipoObra = nombreTipoObra;
+    }
+   
+   
 }
