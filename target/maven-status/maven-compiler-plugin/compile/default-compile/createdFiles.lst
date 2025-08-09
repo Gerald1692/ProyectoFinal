@@ -2,6 +2,7 @@ com\mycompany\proyectofinal\REGISTRARSEController.class
 com\mycompany\proyectofinal\LoginController.class
 com\mycompany\proyectofinal\SecondaryController.class
 com\mycompany\proyectofinal\App.class
+com\mycompany\proyectofinal\ModelosPOJOs\Usuario.class
 module-info.class
 com\mycompany\proyectofinal\util\DatabaseConnection.class
 com\mycompany\proyectofinal\PrimaryController.class
