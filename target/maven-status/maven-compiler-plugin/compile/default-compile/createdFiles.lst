@@ -1,9 +1,15 @@
+com\mycompany\proyectofinal\ModelosPOJOs\Obra.class
 com\mycompany\proyectofinal\REGISTRARSEController.class
 com\mycompany\proyectofinal\LoginController.class
 com\mycompany\proyectofinal\SecondaryController.class
+com\mycompany\proyectofinal\ModelosPOJOs\Rol.class
 com\mycompany\proyectofinal\AdministradorController.class
+com\mycompany\proyectofinal\ModelosPOJOs\TipoObra.class
+com\mycompany\proyectofinal\ModelosPOJOs\ObraAutor.class
+com\mycompany\proyectofinal\ModelosPOJOs\Autor.class
 com\mycompany\proyectofinal\App.class
 com\mycompany\proyectofinal\ModelosPOJOs\Usuario.class
 module-info.class
+com\mycompany\proyectofinal\ModelosPOJOs\Sala.class
 com\mycompany\proyectofinal\util\DatabaseConnection.class
 com\mycompany\proyectofinal\PrimaryController.class
