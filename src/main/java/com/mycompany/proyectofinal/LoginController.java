@@ -42,9 +42,7 @@ public class LoginController {
 
     // AÑADE ESTE MÉTODO QUE FALTA
     @FXML
-    private void recuperarContrasena() throws IOException {
-        System.out.println("Recuperar contraseña");
-        // Aquí puedes agregar la lógica para recuperar contraseña
-        // Por ejemplo: App.setRoot("RecuperarContrasena");
+    private void RECUPERARContra() throws IOException {
+       App.setRoot("Recuperar");
     }
 }

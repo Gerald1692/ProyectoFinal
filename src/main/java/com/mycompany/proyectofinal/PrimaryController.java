@@ -45,4 +45,28 @@ public class PrimaryController {
     private void cerrarSesion() throws IOException {
         App.setRoot("Login"); // Volver a la vista de login
     }
+    
+    @FXML
+    private void manejarSalir() {
+        System.exit(0);
+    }
+    
+    
+    // Nuevos métodos para navegar a salas específicas
+    @FXML
+    private void irSala1() throws IOException {
+        App.setRoot("Sala1");
+    }
+    
+    @FXML
+    private void irSala2() throws IOException {
+        // Implementar lógica para Sala 2
+        System.out.println("Navegando a Sala 2");
+    }
+    
+    @FXML
+    private void irSala3() throws IOException {
+        // Implementar lógica para Sala 3
+        System.out.println("Navegando a Sala 3");
+    }
 }
