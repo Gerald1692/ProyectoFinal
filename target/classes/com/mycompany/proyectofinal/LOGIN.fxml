@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.GaussianBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,65 +16,66 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.LoginController">
-    <children>
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600" prefWidth="800" stylesheets="@LOGIN.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.LoginController">
+    
+    <!-- Fondo con efecto de desenfoque -->
+    <ImageView fitHeight="600" fitWidth="800" preserveRatio="false">
+        <image>
+            <Image url="@../../../RECURSOS/fondo.png" />
+        </image>
+        <effect>
+            <GaussianBlur radius="8" />
+        </effect>
+    </ImageView>
 
-        <!-- Panel central con contenido -->
-        <StackPane alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: rgba(255, 255, 255, 0.8); -fx-background-radius: 15; -fx-padding: 30;">
-                <!-- Logo - DINOSAURIO -->
-                <ImageView fitHeight="174.0" fitWidth="173.0" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../RECURSOS/dinomuseo.PNG" /> <!-- Logo del dinosaurio -->
-                    </image>
-                </ImageView>
+    <!-- Panel central con contenido -->
+    <StackPane alignment="CENTER" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <VBox id="loginContainer" alignment="CENTER" spacing="20" style="-fx-padding: 30;">
+            <!-- Logo del museo -->
+            <ImageView fitHeight="139.0" fitWidth="176.0" preserveRatio="true">
+                <image>
+                    <Image url="@../../../RECURSOS/dinomuseo.PNG" />
+                </image>
+            </ImageView>
+            
+            <!-- Título principal -->
+            <Label id="welcomeTitle" prefHeight="31.0" prefWidth="240.0" text="Bienvenido a Curiosópolis">
+            <font>
+               <Font size="20.0" />
+            </font></Label>
+            
+            <!-- Formulario de inicio de sesión -->
+            <GridPane alignment="CENTER" hgap="10" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER" minWidth="100" prefWidth="120" />
+                    <ColumnConstraints hgrow="ALWAYS" minWidth="200" prefWidth="300" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="40" prefHeight="40" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="40" prefHeight="40" vgrow="SOMETIMES" />
+                </rowConstraints>
                 
-                <!-- Título -->
-                <Label styleClass="titulo" text="Bienvenido al Museo">
-                    <font>
-                        <Font name="Bodoni MT Black" size="36.0" />
-                    </font>
-                </Label>
+                <!-- Campo de correo -->
+                <Label id="fieldLabel" text="Correo:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="txtCorreo" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                 
-                <!-- Formulario -->
-                <GridPane alignment="CENTER" hgap="10.0" vgap="15.0">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
-                        <ColumnConstraints hgrow="ALWAYS" maxWidth="625.0" minWidth="50.0" prefWidth="580.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                    
-                    <!-- Correo -->
-                    <Label text="Correo:" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                        <font>
-                            <Font name="Bodoni MT Black" size="18.0" />
-                        </font>
-                    </Label>
-                    <TextField fx:id="txtCorreo" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="600.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                    
-                    <!-- Contraseña -->
-                    <Label text="Contraseña:" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                        <font>
-                            <Font name="Bodoni MT Black" size="18.0" />
-                        </font>
-                    </Label>
-                    <PasswordField fx:id="txtContrasena" prefHeight="36.0" prefWidth="568.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                </GridPane>
+                <!-- Campo de contraseña -->
+                <Label id="fieldLabel" text="Contraseña:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+                <PasswordField fx:id="txtContrasena" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            </GridPane>
+            
+            <!-- Botones de acción -->
+            <VBox alignment="CENTER" spacing="15">
+                <Button id="loginButton" fx:id="btnLogin" onAction="#iniciarSesion" prefHeight="45" prefWidth="220" text="Iniciar Sesión" />
                 
-                <!-- Botones -->
-                <VBox alignment="CENTER" spacing="10.0">
-                    <Button fx:id="btnLogin" onAction="#iniciarSesion" prefHeight="40.0" prefWidth="180.0" style="-fx-font-weight: bold; -fx-font-size: 16;" text="Iniciar Sesión" />
-                    
-                    <HBox alignment="CENTER" spacing="20.0">
-                        <Button fx:id="btnRecuperar" onAction="#RECUPERARContra" style="-fx-background-color: transparent; -fx-text-fill: #2a5c9c; -fx-font-weight: bold;" text="Recuperar Contraseña" />
-                        
-                        <Button fx:id="btnRegistro" onAction="#REGISTRARSE" style="-fx-background-color: transparent; -fx-text-fill: #2a5c9c; -fx-font-weight: bold;" text="Registrarse" />
-                    </HBox>
-                </VBox>
+                <HBox alignment="CENTER" spacing="30">
+                    <Button id="transparentButton" fx:id="btnRecuperar" onAction="#RECUPERARContra" text="Recuperar Contraseña" />
+                    <Button id="transparentButton" fx:id="btnRegistro" onAction="#REGISTRARSE" text="Registrarse" />
+                </HBox>
             </VBox>
-        </StackPane>
-    </children>
+        </VBox>
+    </StackPane>
 </AnchorPane>

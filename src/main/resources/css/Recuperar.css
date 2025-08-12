@@ -1,0 +1,40 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 12 ago 2025, 10:29:25
+    Author     : geral
+*/
+
+
+#recoveryContainer {
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+    -fx-background-radius: 15;
+    -fx-padding: 30;
+}
+
+#recoveryTitle {
+    -fx-font-family: "Bodoni MT Black";
+    -fx-font-size: 32px;
+}
+
+#instructionLabel {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+#newPassword {
+    -fx-font-size: 16px;
+}
+
+#recoveryButton {
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+#transparentButton {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2a5c9c;
+    -fx-font-weight: bold;
+}

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- primary.fxml -->
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -12,28 +13,26 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600" prefWidth="900" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.PrimaryController">
+<BorderPane prefHeight="600" prefWidth="800.0" style="-fx-background-color: #f5f7fa;" stylesheets="@primary.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.PrimaryController">
     
-    <!-- Encabezado -->
     <top>
-        <HBox alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
-            <Label style="-fx-padding: 15; -fx-font-weight: bold;" text="Museo Curiosopolis - Selecciona tu Sala">
-                <font>
-                    <Font name="Arial" size="24.0" />
-                </font>
-            </Label>
+        <HBox id="header" alignment="CENTER_LEFT">
+            <Label id="headerTitle" prefHeight="30.0" prefWidth="848.0" text="Museo Curiosopolis - Selecciona tu Sala" textAlignment="CENTER">
+            <font>
+               <Font size="20.0" />
+            </font></Label>
         </HBox>
     </top>
     
-    <!-- Contenido principal - Carrusel de Salas -->
     <center>
-        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: transparent; -fx-background-color: transparent;">
-            <VBox alignment="CENTER" spacing="30" style="-fx-padding: 40;">
-                <Label style="-fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-font-size: 28;" text="BIENVENIDO" />
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
+            <VBox alignment="CENTER" minHeight="1.0" minWidth="1.0" prefHeight="417.0" prefWidth="781.0" spacing="30" style="-fx-padding: 40;">
+                <Label id="welcomeTitle" prefHeight="33.0" prefWidth="131.0" text="BIENVENIDO">
+               <font>
+                  <Font name="Bodoni MT" size="19.0" />
+               </font></Label>
                 
-                <!-- Contenedor del carrusel -->
                 <HBox alignment="CENTER" spacing="30">
-                    <!-- Sala 1 -->
                     <VBox alignment="CENTER" spacing="10" style="-fx-cursor: hand;">
                         <StackPane onMouseClicked="#irSala1">
                             <ImageView fitHeight="250" fitWidth="250" preserveRatio="true">
@@ -41,65 +40,48 @@
                                     <Image url="@../../../RECURSOS/sala1Dino.png" />
                                 </image>
                             </ImageView>
-                            <StackPane layoutY="200" style="-fx-background-color: rgba(0,0,0,0.7); -fx-padding: 5; -fx-alignment: center;">
-                                <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Sala de Dinosaurios" />
+                            <StackPane id="imageOverlay" layoutY="200" prefHeight="235.0" prefWidth="234.0">
+                                <Label id="imageTitle" />
                             </StackPane>
                         </StackPane>
-                        <Label style="-fx-text-fill: #7f8c8d;" text="Explora criaturas prehistóricas" />
+                        <Label id="roomDescription" text="Explora criaturas prehistóricas" />
                     </VBox>
                     
-                    <!-- Sala 2 -->
                     <VBox alignment="CENTER" spacing="10" style="-fx-cursor: hand;">
                         <StackPane>
                             <ImageView fitHeight="250" fitWidth="250" preserveRatio="true">
                                 <image>
-                                    <Image url="@imagenes/sala_arte.jpg" />
+                                    <Image url="@../../../RECURSOS/Sala2Renacimiento.png" />
                                 </image>
                             </ImageView>
-                            <StackPane layoutY="200" style="-fx-background-color: rgba(0,0,0,0.7); -fx-padding: 5; -fx-alignment: center;">
-                                <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Sala de Arte Clásico" />
+                            <StackPane id="imageOverlay" layoutY="200" maxHeight="1000.0" maxWidth="1000.0" minHeight="0.0" minWidth="0.0" prefHeight="250.0" prefWidth="235.0">
+                                <Label id="imageTitle" />
                             </StackPane>
                         </StackPane>
-                        <Label style="-fx-text-fill: #7f8c8d;" text="Obras maestras del Renacimiento" />
+                        <Label id="roomDescription" text="Obras maestras del Renacimiento" />
                     </VBox>
                     
-                    <!-- Sala 3 -->
                     <VBox alignment="CENTER" spacing="10" style="-fx-cursor: hand;">
                         <StackPane>
                             <ImageView fitHeight="250" fitWidth="250" preserveRatio="true">
                                 <image>
-                                    <Image url="@imagenes/sala_egipto.jpg" />
+                                    <Image url="@../../../RECURSOS/sala3_Egipto.png" />
                                 </image>
                             </ImageView>
-                            <StackPane layoutY="200" style="-fx-background-color: rgba(0,0,0,0.7); -fx-padding: 5; -fx-alignment: center;">
-                                <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Sala de Egipto" />
-                            </StackPane>
+                            <StackPane id="imageOverlay" layoutY="200" prefHeight="250.0" prefWidth="197.0" />
                         </StackPane>
-                        <Label style="-fx-text-fill: #7f8c8d;" text="Misterios del Antiguo Egipto" />
+                        <Label id="roomDescription" text="Misterios del Antiguo Egipto" />
                     </VBox>
                 </HBox>
             </VBox>
         </ScrollPane>
     </center>
     
-    <!-- Pie de página -->
     <bottom>
-        <HBox alignment="CENTER" prefHeight="82.0" prefWidth="900.0" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0; -fx-padding: 15;">
-            <Button onAction="#cerrarSesion" prefHeight="37.0" prefWidth="139.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;" text="Atrás">
-                <effect>
-                    <DropShadow color="#00000020" radius="3" />
-                </effect>
-            </Button>
-         <Button prefHeight="37.0" prefWidth="96.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;" text="Cerrar Sesión" visible="false">
-            <effect>
-               <DropShadow color="#00000020" radius="3" />
-            </effect>
-         </Button>
-         <Button onAction="#manejarSalir" prefHeight="37.0" prefWidth="137.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;" text="Salir">
-            <effect>
-               <DropShadow color="#00000020" radius="3" />
-            </effect>
-         </Button>
+        <HBox id="footer" alignment="CENTER">
+            <Button id="redButton" onAction="#cerrarSesion" prefHeight="28.0" prefWidth="125.0" text="Atrás" />
+            <Button id="redButton" text="Cerrar Sesión" visible="false" />
+            <Button id="redButton" onAction="#manejarSalir" prefHeight="25.0" prefWidth="105.0" text="Cerrar Sesion" textOverrun="CLIP" />
         </HBox>
     </bottom>
 </BorderPane>

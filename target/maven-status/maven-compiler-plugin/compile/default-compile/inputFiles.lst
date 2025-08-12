@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Usuario.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\PrimaryController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\App.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\ObraAutor.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\module-info.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AdministradorController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Rol.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Obra.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\LoginController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\REGISTRARSEController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\SecondaryController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Autor.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Sala.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\util\DatabaseConnection.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\TipoObra.java
-=======
 C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\LoginController.java
 C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\SecondaryController.java
 C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Rol.java
@@ -32,4 +15,3 @@ C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\REGISTRA
 C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Sala1Controller.java
 C:\xampp\htdocs\ProyectoFinal\src\main\java\module-info.java
 C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\RecuperarController.java
->>>>>>> cdeb4fd1241645add3f6d2a1b0a8e3d2e6aa6316

@@ -1,63 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Administrador.fxml -->
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
-<BorderPane fx:id="panelPrincipal" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.AdministradorController">
+<BorderPane fx:id="panelPrincipal" prefHeight="600.0" prefWidth="900.0" 
+            xmlns="http://javafx.com/javafx/23.0.1" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.mycompany.proyectofinal.AdministradorController"
+            stylesheets="@Administrador.css">
     
     <left>
-        <!-- Panel lateral de navegación -->
-        <VBox prefWidth="220.0" style="-fx-background-color: #2c3e50;">
-            <!-- Logo y título -->
-            <VBox alignment="CENTER" spacing="10.0" style="-fx-padding: 20 10 20 10;">
+        <VBox prefWidth="220.0" id="sidePanel">
+            <VBox alignment="CENTER" spacing="10.0" id="logoContainer">
                 <ImageView fitHeight="95.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../../../RECURSOS/dinomuseo.PNG" />
                     </image>
                 </ImageView>
-                <Label text="Administradores" textFill="WHITE">
-                    <font>
-                        <Font name="Arial" size="16.0" />
-                    </font>
-                </Label>
+                <Label id="panelTitle" text="Administradores"/>
             </VBox>
             
-            <!-- Botones de navegación -->
-            <VBox alignment="TOP_CENTER" spacing="8.0" style="-fx-padding: 20 10 20 10;">
-                <Button fx:id="BtnUsarios" mnemonicParsing="false" onAction="#manejarUsuarios" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #3498db; -fx-border-width: 1; -fx-text-fill: white; -fx-font-size: 14; -fx-alignment: center-left;" text="Usuarios" />
-                <Button mnemonicParsing="false" onAction="#manejarSala1" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #3498db; -fx-border-width: 1; -fx-text-fill: white; -fx-font-size: 14; -fx-alignment: center-left;" text="Sala 1" />
-                <Button mnemonicParsing="false" onAction="#manejarSala2" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #3498db; -fx-border-width: 1; -fx-text-fill: white; -fx-font-size: 14; -fx-alignment: center-left;" text="Sala 2" />
-                <Button mnemonicParsing="false" onAction="#manejarSala3" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #3498db; -fx-border-width: 1; -fx-text-fill: white; -fx-font-size: 14; -fx-alignment: center-left;" text="Sala 3" />
-                <Button mnemonicParsing="false" onAction="#manejarReporteria" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #3498db; -fx-border-width: 1; -fx-text-fill: white; -fx-font-size: 14; -fx-alignment: center-left;" text="Reportería" />
-                <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-border-color: #3498db; -fx-border-width: 1; -fx-text-fill: white; -fx-font-size: 14; -fx-alignment: center-left;" text="Salir" visible="false" />
-            <Button mnemonicParsing="false" onAction="#volverLogin" prefHeight="40.0" prefWidth="198.0" style="-fx-background-color: transparent; -fx-border-color: #3498db; -fx-border-width: 1; -fx-text-fill: white; -fx-font-size: 14; -fx-alignment: center-left;" text="Volver a Inicio de Sesión" />
-            <Button mnemonicParsing="false" onAction="#manejarSalir" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: transparent; -fx-border-color: #3498db; -fx-border-width: 1; -fx-text-fill: white; -fx-font-size: 14; -fx-alignment: center-left;" text="Salir" />
+            <VBox alignment="TOP_CENTER" spacing="8.0" id="buttonContainer">
+                <Button fx:id="BtnUsarios" mnemonicParsing="false" onAction="#manejarUsuarios" 
+                        prefHeight="40.0" prefWidth="180.0" id="navButton" text="Usuarios" />
+                <Button mnemonicParsing="false" onAction="#manejarSala1" 
+                        prefHeight="40.0" prefWidth="180.0" id="navButton" text="Sala 1" />
+                <Button mnemonicParsing="false" onAction="#manejarSala2" 
+                        prefHeight="40.0" prefWidth="180.0" id="navButton" text="Sala 2" />
+                <Button mnemonicParsing="false" onAction="#manejarSala3" 
+                        prefHeight="40.0" prefWidth="180.0" id="navButton" text="Sala 3" />
+                <Button mnemonicParsing="false" onAction="#manejarReporteria" 
+                        prefHeight="40.0" prefWidth="180.0" id="navButton" text="Reportería" />
+                <Button mnemonicParsing="false" id="navButton" text="Salir" visible="false" />
+                <Button mnemonicParsing="false" onAction="#volverLogin" 
+                        id="navButton" text="Volver a Inicio de Sesión" />
+                <Button mnemonicParsing="false" onAction="#manejarSalir" 
+                        id="navButton" text="Salir" />
             </VBox>
         </VBox>
     </left>
     
     <center>
         <VBox BorderPane.alignment="CENTER">
-            <!-- Encabezado -->
-            <HBox alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
-                <Label fx:id="etiquetaTitulo" style="-fx-padding: 15;" text="Panel de Administración">
-                    <font>
-                        <Font name="Arial" size="24.0" />
-                    </font>
-                </Label>
+            <HBox alignment="CENTER_LEFT" id="adminHeader">
+                <Label fx:id="etiquetaTitulo" id="adminTitle" text="Panel de Administración"/>
             </HBox>
             
-            <!-- Área de contenido dinámico -->
-            <StackPane fx:id="areaContenido" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-radius: 5; -fx-background-radius: 5;" VBox.vgrow="ALWAYS">
-                <!-- El contenido se carga dinámicamente aquí -->
-            </StackPane>
+            <StackPane fx:id="areaContenido" prefHeight="200.0" prefWidth="200.0" 
+                      id="contentArea" VBox.vgrow="ALWAYS"/>
         </VBox>
     </center>
 </BorderPane>
