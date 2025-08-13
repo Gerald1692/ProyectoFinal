@@ -6,6 +6,7 @@
     -fx-background-radius: 15;
     -fx-padding: 35;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 0);
+    -fx-max-width: 600px;
 }
 
 /* Título principal */
@@ -79,4 +80,13 @@
 
 #transparentButton:pressed {
     -fx-text-fill: #2980b9;
+}
+
+
+.background-container {
+    -fx-background-image: url("../../../RECURSOS/fondo.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0);
 }

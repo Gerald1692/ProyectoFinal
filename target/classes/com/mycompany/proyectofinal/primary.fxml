@@ -13,7 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600" prefWidth="800.0" style="-fx-background-color: #f5f7fa;" stylesheets="@primary.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.PrimaryController">
+<BorderPane prefHeight="600" prefWidth="800.0" 
+            stylesheets="@primary.css" xmlns="http://javafx.com/javafx/23.0.1" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.mycompany.proyectofinal.PrimaryController"
+            style="-fx-background-color: transparent;">
     
     <top>
         <HBox id="header" alignment="CENTER_LEFT">
@@ -25,8 +29,8 @@
     </top>
     
     <center>
-        <ScrollPane fitToWidth="true" hbarPolicy="NEVER">
-            <VBox alignment="CENTER" minHeight="1.0" minWidth="1.0" prefHeight="417.0" prefWidth="781.0" spacing="30" style="-fx-padding: 40;">
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: transparent;">
+            <VBox alignment="CENTER" minHeight="1.0" minWidth="1.0" prefHeight="417.0" prefWidth="781.0" spacing="30" style="-fx-padding: 40; -fx-background-color: rgba(255,255,255,0.7);">
                 <Label id="welcomeTitle" prefHeight="33.0" prefWidth="131.0" text="BIENVENIDO">
                <font>
                   <Font name="Bodoni MT" size="19.0" />
@@ -48,7 +52,7 @@
                     </VBox>
                     
                     <VBox alignment="CENTER" spacing="10" style="-fx-cursor: hand;">
-                        <StackPane>
+                        <StackPane  onMouseClicked="#irSala2">
                             <ImageView fitHeight="250" fitWidth="250" preserveRatio="true">
                                 <image>
                                     <Image url="@../../../RECURSOS/Sala2Renacimiento.png" />
@@ -62,7 +66,7 @@
                     </VBox>
                     
                     <VBox alignment="CENTER" spacing="10" style="-fx-cursor: hand;">
-                        <StackPane>
+                        <StackPane  onMouseClicked="#irSala1">
                             <ImageView fitHeight="250" fitWidth="250" preserveRatio="true">
                                 <image>
                                     <Image url="@../../../RECURSOS/sala3_Egipto.png" />

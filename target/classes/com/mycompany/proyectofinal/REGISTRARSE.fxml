@@ -19,7 +19,7 @@
     <!-- Fondo que se expande con la ventana -->
     <ImageView fitHeight="600.0" fitWidth="900.0" preserveRatio="false">
         <image>
-            <Image url="@../../../RECURSOS/fondo.png" />
+            <Image url="@../../../RECURSOS/Animado.png" />
         </image>
         <effect>
             <GaussianBlur radius="8.0" />

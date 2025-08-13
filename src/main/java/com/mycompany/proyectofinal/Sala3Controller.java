@@ -4,11 +4,8 @@
  */
 package com.mycompany.proyectofinal;
 
-import com.mycompany.proyectofinal.App;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -16,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author geral
  */
-public class RecuperarController implements Initializable {
+public class Sala3Controller implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -25,11 +22,5 @@ public class RecuperarController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-     @FXML
-    private void volverLogin() throws IOException {
-        // Volver a la vista de login
-        App.setRoot("Login");
-    }
-    
     
 }

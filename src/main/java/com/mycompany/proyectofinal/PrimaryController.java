@@ -1,5 +1,6 @@
 package com.mycompany.proyectofinal;
 
+import com.mycompany.proyectofinal.App;
 import java.io.IOException;
 import javafx.fxml.FXML;
 
@@ -60,13 +61,12 @@ public class PrimaryController {
     
     @FXML
     private void irSala2() throws IOException {
-        // Implementar lógica para Sala 2
-        System.out.println("Navegando a Sala 2");
+      App.setRoot("Sala2");
     }
     
     @FXML
     private void irSala3() throws IOException {
         // Implementar lógica para Sala 3
-        System.out.println("Navegando a Sala 3");
+        App.setRoot("Sala3");
     }
 }

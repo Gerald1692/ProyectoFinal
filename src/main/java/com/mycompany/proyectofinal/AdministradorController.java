@@ -1,5 +1,6 @@
 package com.mycompany.proyectofinal;
 
+import com.mycompany.proyectofinal.App;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
