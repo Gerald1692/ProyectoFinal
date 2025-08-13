@@ -5,7 +5,10 @@ com\mycompany\proyectofinal\SecondaryController.class
 com\mycompany\proyectofinal\ModelosPOJOs\Rol.class
 com\mycompany\proyectofinal\AdministradorController.class
 com\mycompany\proyectofinal\ModelosPOJOs\TipoObra.class
+<<<<<<< Updated upstream
 com\mycompany\proyectofinal\AccesoDatos\DAOs\SalaDAO.class
+=======
+>>>>>>> Stashed changes
 com\mycompany\proyectofinal\ModelosPOJOs\Autor.class
 com\mycompany\proyectofinal\App.class
 com\mycompany\proyectofinal\RecuperarController.class
