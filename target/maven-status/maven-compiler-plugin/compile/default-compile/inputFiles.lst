@@ -1,30 +1,17 @@
-<<<<<<< Updated upstream
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\LoginController.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\SecondaryController.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Rol.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Obra.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\util\DatabaseConnection.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\App.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Autor.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Sala.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\TipoObra.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AdministradorController.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Usuario.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\ObraAutor.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\PrimaryController.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\REGISTRARSEController.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Sala1Controller.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\module-info.java
-C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\RecuperarController.java
-=======
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\RecuperarController.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Usuario.java
+C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\AutorDAO.java
+C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\TipoObraDAO.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\PrimaryController.java
+C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\SalaDAO.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\App.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\ObraAutor.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\module-info.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AdministradorController.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Sala1Controller.java
+C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\UsuarioDAO.java
+C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\ObraAutorDAO.java
+C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\ObraDAO.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Rol.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Obra.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\LoginController.java
@@ -34,4 +21,3 @@ C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoF
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Sala.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\util\DatabaseConnection.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\TipoObra.java
->>>>>>> Stashed changes
