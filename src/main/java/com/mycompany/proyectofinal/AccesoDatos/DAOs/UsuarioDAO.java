@@ -50,12 +50,12 @@ public class UsuarioDAO {
         }
     }
     
-    public void actualizarContrasena(int idUsuario, String nuevaContrasenaHash) throws SQLException {
+    public void actualizarContrasena(String Correo, String nuevaContrasenaHash) throws SQLException {
         String sql = "{call MARCE.ACTUALIZAR_CONTRASENA_USUARIO(?, ?)}";
         try (Connection conn = DatabaseConnection.connect();
              CallableStatement cstmt = conn.prepareCall(sql)) {
             
-            cstmt.setInt(1, idUsuario);
+            cstmt.setString(1,Correo );
             cstmt.setString(2, nuevaContrasenaHash);
             
             cstmt.execute();

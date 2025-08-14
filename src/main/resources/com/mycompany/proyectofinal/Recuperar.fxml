@@ -11,25 +11,31 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" stylesheets="@Recuperar.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.RecuperarController">
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" 
+           prefHeight="600.0" prefWidth="800.0" stylesheets="@Recuperar.css" 
+           xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+           fx:controller="com.mycompany.proyectofinal.RecuperarController">
     
     <!-- Fondo responsivo usando CSS -->
     <StackPane styleClass="background-container">
-      <children>
-         <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../../../RECURSOS/Animado.png" />
-            </image>
-         </ImageView>
-      </children></StackPane>
+        <children>
+            <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../RECURSOS/Animado.png" />
+                </image>
+            </ImageView>
+        </children>
+    </StackPane>
     
     <!-- Contenedor principal -->
     <VBox id="recoveryContainer" alignment="CENTER" maxWidth="600" spacing="20">
         
         <Label id="recoveryTitle" text="Recuperar Contraseña" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
-         </font></Label>
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        
         <ImageView fitHeight="130.0" fitWidth="131.0" preserveRatio="true">
             <image>
                 <Image url="@../../../RECURSOS/dinomuseo.PNG" />
@@ -38,20 +44,26 @@
         
         <VBox alignment="CENTER" spacing="15">
             <Label id="instructionLabel" text="Ingrese su correo electrónico:" textFill="WHITE">
-            <font>
-               <Font size="20.0" />
-            </font></Label>
-            <TextField fx:id="txtCorreo" prefHeight="42.0" prefWidth="550.0" />
+                <font>
+                    <Font size="20.0" />
+                </font>
+            </Label>
+            <TextField fx:id="txtCorreo" prefHeight="42.0" prefWidth="493.0" />
             <Label id="instructionLabel" text="Su nueva contraseña es:" textFill="WHITE">
-            <font>
-               <Font size="20.0" />
-            </font></Label>
+                <font>
+                    <Font size="20.0" />
+                </font>
+            </Label>
         </VBox>
-        <Label id="newPassword" text="Aqui nueva Contraseña" textFill="WHITE" />
+        
+        <!-- CORRECCIÓN: fx:id actualizado a lblNuevaContrasena -->
+        <Label id="newPassword" fx:id="lblNuevaContrasena" text="" textFill="WHITE" />
         
         <VBox alignment="CENTER" spacing="10">
-            <Button id="recoveryButton" prefHeight="40.0" prefWidth="200.0" text="Recuperar" />
+            <Button id="recoveryButton" onAction="#recuperarContrasena" 
+                    prefHeight="40.0" prefWidth="200.0" text="Recuperar" />
         </VBox>
-         <Button id="transparentButton" onAction="#volverLogin" text="Volver al Login" />
+        
+        <Button id="transparentButton" onAction="#volverLogin" text="Volver al Login" />
     </VBox>
 </StackPane>
