@@ -1,17 +1,11 @@
 module com.mycompany.proyectofinal {
-    // Módulos de JavaFX
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
+    requires jbcrypt;
     
-    
-    requires java.sql;      
-    requires jbcrypt;       
-    requires java.base;
-    requires java.desktop;
-    
-    // Abre tu paquete principal a javafx.fxml
     opens com.mycompany.proyectofinal to javafx.fxml;
+    opens com.mycompany.proyectofinal.ModelosPOJOs to javafx.base, javafx.fxml;
     
-    // Exporta tu paquete principal
     exports com.mycompany.proyectofinal;
 }

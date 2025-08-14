@@ -21,7 +21,19 @@ public class Usuario {
         this.telefono = telefono;
         this.rolNombre = rolNombre;
     }
-
+    
+     public Usuario( String nombreUsuario,  
+                  String correo, String telefono, String rolNombre) {
+        
+        this.nombreUsuario = nombreUsuario;
+       
+        this.correo = correo;
+        this.telefono = telefono;
+        this.rolNombre = rolNombre;
+    }
+    
+    public Usuario() {
+    }
     // Constructor para datos de BD
     public Usuario(int idUsuario, String nombreUsuario, String contrasenaHash, 
                   String correo, String telefono, int idRol, boolean fromDB) {

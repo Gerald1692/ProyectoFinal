@@ -1,6 +1,8 @@
+com\mycompany\proyectofinal\AdmiUsuariosController.class
 com\mycompany\proyectofinal\REGISTRARSEController.class
 com\mycompany\proyectofinal\SecondaryController.class
 com\mycompany\proyectofinal\AdministradorController.class
+com\mycompany\proyectofinal\AdmiObrasController.class
 com\mycompany\proyectofinal\ModelosPOJOs\Autor.class
 com\mycompany\proyectofinal\App.class
 com\mycompany\proyectofinal\RecuperarController.class

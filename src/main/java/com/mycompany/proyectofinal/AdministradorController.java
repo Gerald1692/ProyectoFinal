@@ -1,13 +1,16 @@
 package com.mycompany.proyectofinal;
 
 import com.mycompany.proyectofinal.App;
+import com.mycompany.proyectofinal.AdmiUsuariosController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -53,38 +56,58 @@ public class AdministradorController implements Initializable {
     }
     
     @FXML
-    private void manejarUsuarios() {
+    private void manejarUsuarios() throws IOException {
         etiquetaTitulo.setText("Mantenimiento de Usuarios");
         areaContenido.getChildren().clear();
-        areaContenido.getChildren().add(crearContenidoUsuarios());
+
+        // Cargar el FXML de administración de usuarios
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdmiUsuarios.fxml"));
+        Parent root = loader.load();
+        areaContenido.getChildren().add(root);
     }
     
     @FXML
-    private void manejarSala1() {
-        etiquetaTitulo.setText("Administración de Sala 1");
+    private void manejarSala1() throws IOException {
+        etiquetaTitulo.setText("Mantenimiento de Usuarios");
         areaContenido.getChildren().clear();
-        areaContenido.getChildren().add(crearContenidoSala("Sala 1"));
+
+        // Cargar el FXML de administración de usuarios
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdmiObras.fxml"));
+        Parent root = loader.load();
+        areaContenido.getChildren().add(root);
     }
     
     @FXML
-    private void manejarSala2() {
-        etiquetaTitulo.setText("Administración de Sala 2");
+    private void manejarSala2() throws IOException {
+         etiquetaTitulo.setText("Mantenimiento de Usuarios");
         areaContenido.getChildren().clear();
-        areaContenido.getChildren().add(crearContenidoSala("Sala 2"));
+
+        // Cargar el FXML de administración de usuarios
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdmiObras.fxml"));
+        Parent root = loader.load();
+        areaContenido.getChildren().add(root);
     }
     
     @FXML
-    private void manejarSala3() {
-        etiquetaTitulo.setText("Administración de Sala 3");
+    private void manejarSala3() throws IOException {
+         etiquetaTitulo.setText("Mantenimiento de Usuarios");
         areaContenido.getChildren().clear();
-        areaContenido.getChildren().add(crearContenidoSala("Sala 3"));
+
+        // Cargar el FXML de administración de usuarios
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdmiObras.fxml"));
+        Parent root = loader.load();
+        areaContenido.getChildren().add(root);
     }
     
     @FXML
-    private void manejarReporteria() {
-        etiquetaTitulo.setText("Reportería y Estadísticas");
+    private void manejarReporteria() throws IOException {
+        etiquetaTitulo.setText("Mantenimiento de Usuarios");
         areaContenido.getChildren().clear();
-        areaContenido.getChildren().add(crearContenidoReporteria());
+
+        // Cargar el FXML de administración de usuarios
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdmiObras.fxml"));
+        Parent root = loader.load();
+        areaContenido.getChildren().add(root);
     }
     
     @FXML
