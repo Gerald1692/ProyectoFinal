@@ -7,6 +7,7 @@ module com.mycompany.proyectofinal {
     requires java.sql;      
     requires jbcrypt;       
     requires java.base;
+    requires java.desktop;
     
     // Abre tu paquete principal a javafx.fxml
     opens com.mycompany.proyectofinal to javafx.fxml;
