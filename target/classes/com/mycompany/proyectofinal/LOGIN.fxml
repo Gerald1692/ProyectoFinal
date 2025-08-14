@@ -53,12 +53,12 @@
                   </rowConstraints>
                   
                   <!-- Campo de correo -->
-                  <Label id="fieldLabel" text="Correo:" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                  <Label id="fieldLabel" text="Usuario;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
                       <font>
                           <Font name="System Bold" size="12.0" />
                       </font>
                   </Label>
-                  <TextField fx:id="txtCorreo" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                  <TextField fx:id="txtUsuario" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                   
                   <!-- Campo de contraseña -->
                   <Label id="fieldLabel" text="Contraseña:" textFill="#fff2f2" GridPane.columnIndex="0" GridPane.rowIndex="1">
