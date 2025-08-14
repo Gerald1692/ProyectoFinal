@@ -1,6 +1,7 @@
-package com.mycompany.proyectofinal;
+package com.mycompany.proyectofinal.Controllers;
 
 import com.mycompany.proyectofinal.AccesoDatos.DAOs.UsuarioDAO;
+import com.mycompany.proyectofinal.App;
 import com.mycompany.proyectofinal.ModelosPOJOs.Usuario;
 import java.io.IOException;
 import java.net.URL;
