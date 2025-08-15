@@ -37,6 +37,30 @@ public class SalaDAO {
             return cstmt.getInt(4);
         }
     }
+    public void actualizarSala(Sala sala) throws SQLException {
+        String sql = "{call MARCE.ACTUALIZAR_SALA(?, ?, ?, ?)}";
+        try (Connection conn = DatabaseConnection.connect();
+             CallableStatement cstmt = conn.prepareCall(sql)) {
+            
+            cstmt.setInt(1, sala.getIdSala());
+            cstmt.setString(2, sala.getNombreSala());
+            cstmt.setString(3, sala.getTematica());
+            cstmt.setInt(4, sala.getNumeroPuerta());
+            
+            cstmt.execute();
+        }
+    }
+    
+    public void eliminarSala(int idSala) throws SQLException {
+        String sql = "{call MARCE.ELIMINAR_SALA(?)}";
+        try (Connection conn = DatabaseConnection.connect();
+             CallableStatement cstmt = conn.prepareCall(sql)) {
+            
+            cstmt.setInt(1, idSala);
+            cstmt.execute();
+        }
+    }
+
     
     public List<Sala> listarSalas() throws SQLException {
         List<Sala> salas = new ArrayList<>();

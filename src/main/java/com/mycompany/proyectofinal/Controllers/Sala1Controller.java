@@ -1,6 +1,7 @@
 // Sala1Controller.java
-package com.mycompany.proyectofinal;
+package com.mycompany.proyectofinal.Controllers;
 
+import com.mycompany.proyectofinal.App;
 import com.mycompany.proyectofinal.App;
 import java.io.IOException;
 import java.net.URL;

@@ -1,7 +1,11 @@
-package com.mycompany.proyectofinal;
+package com.mycompany.proyectofinal.Controllers;
 
 import com.mycompany.proyectofinal.App;
+<<<<<<< HEAD:src/main/java/com/mycompany/proyectofinal/AdministradorController.java
 import com.mycompany.proyectofinal.AdmiUsuariosController;
+=======
+import com.mycompany.proyectofinal.App;
+>>>>>>> 4fccdc03951130e937e70215c1711b1345e56b72:src/main/java/com/mycompany/proyectofinal/Controllers/AdministradorController.java
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -10,7 +14,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+<<<<<<< HEAD:src/main/java/com/mycompany/proyectofinal/AdministradorController.java
 import javafx.scene.Parent;
+=======
+import javafx.scene.Node;
+>>>>>>> 4fccdc03951130e937e70215c1711b1345e56b72:src/main/java/com/mycompany/proyectofinal/Controllers/AdministradorController.java
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -67,6 +75,7 @@ public class AdministradorController implements Initializable {
     }
     
     @FXML
+<<<<<<< HEAD:src/main/java/com/mycompany/proyectofinal/AdministradorController.java
     private void manejarSala1() throws IOException {
         etiquetaTitulo.setText("Mantenimiento de Usuarios");
         areaContenido.getChildren().clear();
@@ -75,9 +84,14 @@ public class AdministradorController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AdmiObras.fxml"));
         Parent root = loader.load();
         areaContenido.getChildren().add(root);
+=======
+    private void manejarSala1() {
+        cargarVistaSala(1);
+>>>>>>> 4fccdc03951130e937e70215c1711b1345e56b72:src/main/java/com/mycompany/proyectofinal/Controllers/AdministradorController.java
     }
-    
+
     @FXML
+<<<<<<< HEAD:src/main/java/com/mycompany/proyectofinal/AdministradorController.java
     private void manejarSala2() throws IOException {
          etiquetaTitulo.setText("Mantenimiento de Usuarios");
         areaContenido.getChildren().clear();
@@ -86,9 +100,14 @@ public class AdministradorController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AdmiObras.fxml"));
         Parent root = loader.load();
         areaContenido.getChildren().add(root);
+=======
+    private void manejarSala2() {
+        cargarVistaSala(2);
+>>>>>>> 4fccdc03951130e937e70215c1711b1345e56b72:src/main/java/com/mycompany/proyectofinal/Controllers/AdministradorController.java
     }
-    
+
     @FXML
+<<<<<<< HEAD:src/main/java/com/mycompany/proyectofinal/AdministradorController.java
     private void manejarSala3() throws IOException {
          etiquetaTitulo.setText("Mantenimiento de Usuarios");
         areaContenido.getChildren().clear();
@@ -109,6 +128,13 @@ public class AdministradorController implements Initializable {
         Parent root = loader.load();
         areaContenido.getChildren().add(root);
     }
+=======
+    private void manejarSala3() {
+        cargarVistaSala(3);
+    }
+    
+    
+>>>>>>> 4fccdc03951130e937e70215c1711b1345e56b72:src/main/java/com/mycompany/proyectofinal/Controllers/AdministradorController.java
     
     @FXML
     private void manejarSalir() {
@@ -157,22 +183,20 @@ public class AdministradorController implements Initializable {
         return contenido;
     }
     
-    private AnchorPane crearContenidoReporteria() {
-        AnchorPane contenido = new AnchorPane();
-        contenido.setPadding(new Insets(20));
+     private void cargarVistaSala(int numeroSala) {
+    try {
+        etiquetaTitulo.setText("Administración de Sala " + numeroSala);
         
-        Label titulo = new Label("Reportería y Estadísticas");
-        titulo.setFont(Font.font("Arial", FontWeight.BOLD, 18));
-        AnchorPane.setTopAnchor(titulo, 10.0);
-        AnchorPane.setLeftAnchor(titulo, 20.0);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SalaView.fxml"));
+        Node vistaSala = loader.load();
         
-        // Aquí iría el contenido real de reportería
-        Label placeholder = new Label("Contenido de reportería aquí");
-        placeholder.setFont(Font.font("Arial", 16));
-        AnchorPane.setTopAnchor(placeholder, 50.0);
-        AnchorPane.setLeftAnchor(placeholder, 20.0);
+        SalaViewController controller = loader.getController();
+        controller.setNumeroSala(numeroSala);
         
-        contenido.getChildren().addAll(titulo, placeholder);
-        return contenido;
+        areaContenido.getChildren().setAll(vistaSala);
+    } catch (IOException e) {
+        e.printStackTrace();
+        areaContenido.getChildren().setAll(new Label("Error al cargar la vista de sala"));
     }
+}
 }

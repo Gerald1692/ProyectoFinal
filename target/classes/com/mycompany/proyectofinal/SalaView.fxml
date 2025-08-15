@@ -1,0 +1,47 @@
+<!-- SalaView.fxml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.mycompany.proyectofinal.Controllers.SalaViewController" 
+      alignment="CENTER" spacing="20" style="-fx-padding: 20;">
+    
+    <Label fx:id="tituloSala" style="-fx-font-weight: bold; -fx-font-size: 18px;"/>
+    
+    <!-- Formulario -->
+    <GridPane hgap="10" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints prefWidth="100"/>
+            <ColumnConstraints prefWidth="200"/>
+        </columnConstraints>
+        
+        <Label text="Nombre:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtNombre" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        
+        <Label text="Temática:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtTematica" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        
+        <Label text="Número Puerta:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtNumeroPuerta" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    </GridPane>
+    
+    <!-- Botones -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Nuevo" onAction="#nuevoRegistro"/>
+        <Button text="Guardar" onAction="#guardarRegistro"/>
+        <Button text="Eliminar" onAction="#eliminarRegistro"/>
+        <Button text="Actualizar" onAction="#actualizarRegistro"/>
+    </HBox>
+    
+    <!-- Tabla -->
+    <TableView fx:id="tablaSala" prefHeight="300">
+        <columns>
+            <TableColumn text="ID" fx:id="colId"/>
+            <TableColumn text="Nombre" fx:id="colNombre"/>
+            <TableColumn text="Temática" fx:id="colTematica"/>
+            <TableColumn text="N° Puerta" fx:id="colNumeroPuerta"/>
+        </columns>
+    </TableView>
+</VBox>
