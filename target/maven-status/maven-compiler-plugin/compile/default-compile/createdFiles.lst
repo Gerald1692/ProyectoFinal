@@ -14,6 +14,7 @@ com\mycompany\proyectofinal\Controllers\RecuperarController.class
 com\mycompany\proyectofinal\Controllers\PrimaryController.class
 com\mycompany\proyectofinal\Controllers\SecondaryController.class
 com\mycompany\proyectofinal\Controllers\REGISTRARSEController.class
+com\mycompany\proyectofinal\Controllers\SalaSimple2Controller.class
 com\mycompany\proyectofinal\Controllers\SalaViewController.class
 com\mycompany\proyectofinal\AccesoDatos\DAOs\AutorDAO.class
 com\mycompany\proyectofinal\AccesoDatos\DAOs\ObraDAO.class
@@ -28,7 +29,9 @@ com\mycompany\proyectofinal\ModelosPOJOs\Rol.class
 com\mycompany\proyectofinal\ModelosPOJOs\TipoObra.class
 com\mycompany\proyectofinal\AccesoDatos\DAOs\SalaDAO.class
 com\mycompany\proyectofinal\Controllers\Sala1Controller.class
+com\mycompany\proyectofinal\Controllers\SalaSimple3Controller.class
 module-info.class
+com\mycompany\proyectofinal\Controllers\SalaSimple1Controller.class
 com\mycompany\proyectofinal\Controllers\Sala2Controller.class
 com\mycompany\proyectofinal\ModelosPOJOs\ObraAutor.class
 com\mycompany\proyectofinal\ModelosPOJOs\Sala.class

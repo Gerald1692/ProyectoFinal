@@ -7,6 +7,7 @@ module com.mycompany.proyectofinal {
     requires javafx.fxml;
     requires java.sql;
     requires jbcrypt;
+<<<<<<< Updated upstream
     
 <<<<<<< HEAD
     opens com.mycompany.proyectofinal to javafx.fxml;
@@ -20,10 +21,12 @@ module com.mycompany.proyectofinal {
     requires java.sql;      
     requires jbcrypt;       
     requires java.base;
+=======
+>>>>>>> Stashed changes
     requires java.desktop;
-    
-    // Abre tu paquete principal a javafx.fxml
->>>>>>> 451e650764d99c262e0a853c99de7dbe69604594
+    requires java.base;
+
+    // Abre tus paquetes a javafx.fxml para reflexión
     opens com.mycompany.proyectofinal to javafx.fxml;
     opens com.mycompany.proyectofinal.Controllers to javafx.fxml;
     

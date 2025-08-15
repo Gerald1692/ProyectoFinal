@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\RecuperarController.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Sala2Controller.java
@@ -27,13 +28,18 @@ C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoF
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Autor.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Sala.java
 =======
+=======
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaSimple2Controller.java
+>>>>>>> Stashed changes
 C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaViewController.java
 C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\PrimaryController.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaSimple1Controller.java
 C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\LoginController.java
 C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Autor.java
 C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Sala.java
 C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\UsuarioDAO.java
 C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\TipoObra.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaSimple3Controller.java
 C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Usuario.java
 C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\AdministradorController.java
 C:\xampp\htdocs\ProyectoFinal\src\main\java\module-info.java

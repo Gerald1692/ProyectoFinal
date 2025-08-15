@@ -54,20 +54,19 @@ public class PrimaryController {
     }
     
     
-    // Nuevos métodos para navegar a salas específicas
     @FXML
-    private void irSala1() throws IOException {
-        App.setRoot("Sala1");
-    }
-    
-    @FXML
-    private void irSala2() throws IOException {
-      App.setRoot("Sala2");
-    }
-    
-    @FXML
-    private void irSala3() throws IOException {
-        // Implementar lógica para Sala 3
-        App.setRoot("Sala3");
-    }
+private void irSalaSimple1() throws IOException {
+    App.setRoot("SalaSimple1");
+}
+
+@FXML
+private void irSalaSimple2() throws IOException {
+    App.setRoot("SalaSimple2");
+}
+
+@FXML
+private void irSalaSimple3() throws IOException {
+    App.setRoot("SalaSimple3");
+}
+
 }

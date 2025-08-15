@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" stylesheets="@saximple1.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.Controllers.SalaSimple1Controller">
+    
+          
+   <ImageView fitHeight="548.0" fitWidth="800.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../../../RECURSOS/FONDONEGRO.png" />
+      </image>
+   </ImageView>
+    
+    <VBox fx:id="contentBox" spacing="20" AnchorPane.bottomAnchor="50" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="50">
+        
+        <!-- Sección 1 -->
+        <AnchorPane styleClass="section">
+            <ImageView fitHeight="150" fitWidth="200" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
+            <image>
+               <Image url="@../../../../../../../../../Users/geral/Downloads/sala1Dino.png" />
+            </image></ImageView>
+            <Label layoutX="206.4" prefHeight="18.0" prefWidth="493.0" styleClass="section-text" text="ESPECIE1" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="0" />
+         <Label layoutX="210.0" layoutY="34.0" prefHeight="93.0" prefWidth="303.0" styleClass="section-text" text="Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas &quot;Letraset&quot;, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum." textFill="WHITE" wrapText="true" />
+        </AnchorPane>
+        
+        <!-- Sección 2 -->
+        <AnchorPane styleClass="section">
+            <ImageView fitHeight="150.0" fitWidth="164.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
+            <image>
+               <Image url="@../../../RECURSOS/sala1Dino.png" />
+            </image></ImageView>
+            <Label layoutX="206.4" prefHeight="18.0" prefWidth="493.0" styleClass="section-text" text="ESPECIE1" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="0" />
+         <Label layoutX="198.0" layoutY="42.0" prefHeight="94.0" prefWidth="303.0" styleClass="section-text" text="Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas &quot;Letraset&quot;, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum." textFill="WHITE" wrapText="true" />
+        </AnchorPane>
+        
+        <!-- Sección 3 -->
+        <AnchorPane styleClass="section">
+            <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
+            <image>
+               <Image url="@../../../RECURSOS/sala1Dino.png" />
+            </image></ImageView>
+            <Label layoutX="206.4" prefHeight="18.0" prefWidth="493.0" styleClass="section-text" text="ESPECIE1" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="0" />
+         <Label layoutX="198.0" layoutY="42.0" prefHeight="93.0" prefWidth="303.0" styleClass="section-text" text="Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas &quot;Letraset&quot;, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum." textFill="WHITE" wrapText="true" />
+        </AnchorPane>
+        
+    </VBox>
+ <Button layoutX="653.0" layoutY="37.0" mnemonicParsing="false" onAction="#atras" prefHeight="26.0" prefWidth="118.0" text="Atras" />
+    
+    
+</AnchorPane>

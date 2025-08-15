@@ -16,7 +16,7 @@ public class App extends Application {
         primaryStage = stage;
         scene = new Scene(loadFXML("Login"), 800, 600); // Tamaño acorde al diseño
         stage.setScene(scene);
-        stage.setTitle("Museo de Historia Natural");
+        stage.setTitle("Curiosópolis");
         stage.show();
     }
 
