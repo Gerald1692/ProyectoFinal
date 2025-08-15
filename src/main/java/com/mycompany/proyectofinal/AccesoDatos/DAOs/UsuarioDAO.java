@@ -33,6 +33,33 @@ public class UsuarioDAO {
         }
     }
     
+    public List<Usuario> obtenerTodosUsuarios() throws SQLException {
+    List<Usuario> usuarios = new ArrayList<>();
+    // Cambiar a sintaxis de procedimiento
+    String sql = "{ call MARCE.OBTENER_USUARIOS_CON_ROLES(?) }";
+    
+    try (Connection conn = DatabaseConnection.connect();
+         CallableStatement cstmt = conn.prepareCall(sql)) {
+        
+        cstmt.registerOutParameter(1, Types.REF_CURSOR);
+        cstmt.execute();
+        
+        try (ResultSet rs = (ResultSet) cstmt.getObject(1)) {
+            while (rs.next()) {
+                usuarios.add(new Usuario(
+                    rs.getInt("ID_USUARIO"),
+                    rs.getString("NOMBRE_USUARIO"),
+                    rs.getString("CONTRASENA"),
+                    rs.getString("CORREO"),
+                    rs.getString("TELEFONO"),
+                    rs.getString("NOMBRE_ROL")
+                ));
+            }
+        }
+    }
+    return usuarios;
+}
+    
     public void actualizarUsuario(Usuario usuario) throws SQLException {
         String sql = "{call MARCE.ACTUALIZAR_USUARIO(?, ?, ?, ?, ?)}";
         try (Connection conn = DatabaseConnection.connect();
@@ -97,34 +124,7 @@ public class UsuarioDAO {
         }
         return null;
     }
-    
-    public List<Usuario> obtenerTodosUsuarios() throws SQLException {
-        List<Usuario> usuarios = new ArrayList<>();
-        String sql = "{ ? = call MARCE.OBTENER_TODOS_USUARIOS() }";
-        
-        try (Connection conn = DatabaseConnection.connect();
-             CallableStatement cstmt = conn.prepareCall(sql)) {
-            
-            cstmt.registerOutParameter(1, Types.REF_CURSOR);
-            cstmt.execute();
-            
-            try (ResultSet rs = (ResultSet) cstmt.getObject(1)) {
-                while (rs.next()) {
-                    usuarios.add(new Usuario(
-                        rs.getInt("id_usuario"),
-                        rs.getString("nombre_usuario"),
-                        rs.getString("contrasena"),
-                        rs.getString("correo"),
-                        rs.getString("telefono"),
-                        rs.getInt("id_rol"),
-                        true
-                    ));
-                }
-            }
-        }
-        return usuarios;
-    }
-    
+   
     public Usuario obtenerUsuarioPorId(int id) throws SQLException {
         String sql = "{ ? = call MARCE.OBTENER_USUARIO_POR_ID(?) }";
         try (Connection conn = DatabaseConnection.connect();

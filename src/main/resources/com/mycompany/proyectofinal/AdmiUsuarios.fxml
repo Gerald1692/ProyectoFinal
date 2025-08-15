@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.AdmiUsuariosController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.AdmiUsuariosController">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
-            <TableView fx:id="TUsuarios" layoutX="252.0" layoutY="59.0" prefHeight="239.0" prefWidth="400.0">
+            <TableView fx:id="TUsuarios" layoutX="183.0" layoutY="102.0" prefHeight="239.0" prefWidth="597.0">
               <columns>
                 <TableColumn fx:id="ColIdUsuario" prefWidth="50.0" text="ID" />
+                <TableColumn fx:id="ColNombreUsuario" prefWidth="85.0" text="Nombre" />
+                  <TableColumn fx:id="ColcontrasenaUsuario" prefWidth="85.0" text="Contraseña" />
                   <TableColumn fx:id="ColCorreo" prefWidth="150.0" text="Correo" />
                   <TableColumn fx:id="ColTelefono" prefWidth="115.0" text="Telefono" />
-                <TableColumn fx:id="ColNombreUsuario" prefWidth="85.0" text="Nombre" />
+                  <TableColumn fx:id="colRol" prefWidth="115.0" text="Rol" />
               </columns>
             </TableView>
             <TextArea fx:id="txtidUsuario" layoutX="20.0" layoutY="59.0" prefHeight="43.0" prefWidth="46.0" promptText="id" />
-            <TextArea fx:id="txtNombre" layoutX="15.0" layoutY="108.0" prefHeight="43.0" prefWidth="157.0" promptText="nombre" />
-            <TextArea fx:id="txtTelefono" layoutX="15.0" layoutY="255.0" prefHeight="43.0" prefWidth="157.0" promptText="telefono" />
-            <TextArea fx:id="txtCorreo" layoutX="15.0" layoutY="207.0" prefHeight="43.0" prefWidth="157.0" promptText="correo" />
+            <TextArea fx:id="txtNombre" layoutX="15.0" layoutY="108.0" prefHeight="43.0" prefWidth="119.0" promptText="nombre" />
+            <TextArea fx:id="txtTelefono" layoutX="15.0" layoutY="255.0" prefHeight="43.0" prefWidth="119.0" promptText="telefono" />
+            <TextArea fx:id="txtCorreo" layoutX="15.0" layoutY="207.0" prefHeight="43.0" prefWidth="119.0" promptText="correo" />
             <Button fx:id="btnCrear" layoutX="32.0" layoutY="14.0" mnemonicParsing="false" text="crear" />
             <Button fx:id="btnActualizar" layoutX="115.0" layoutY="14.0" mnemonicParsing="false" text="Actualizar" />
             <Button fx:id="btnMostrar" layoutX="226.0" layoutY="14.0" mnemonicParsing="false" text="Buscar" />
             <Button fx:id="btnEliminar" layoutX="328.0" layoutY="14.0" mnemonicParsing="false" text="Eliminar" />
             <Button fx:id="btnLimpiar" layoutX="409.0" layoutY="14.0" mnemonicParsing="false" text="Limpiar" />
+            <TextArea fx:id="txtcontrasena" layoutX="15.0" layoutY="157.0" prefHeight="43.0" prefWidth="119.0" promptText="nombre" />
+            <ComboBox fx:id="cmbRoles" layoutX="15.0" layoutY="309.0" prefWidth="150.0" />
          </children>
       </AnchorPane>
    </children>

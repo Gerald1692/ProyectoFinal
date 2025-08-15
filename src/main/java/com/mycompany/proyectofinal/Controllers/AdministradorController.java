@@ -20,6 +20,8 @@ import javafx.scene.text.FontWeight;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 
 public class AdministradorController implements Initializable {
 
@@ -29,6 +31,8 @@ public class AdministradorController implements Initializable {
     private StackPane areaContenido;
     @FXML
     private Label etiquetaTitulo;
+    @FXML
+    private Button BtnUsarios;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,14 +60,15 @@ public class AdministradorController implements Initializable {
     }
 
     @FXML
-    private void manejarUsuarios() throws IOException {
-        etiquetaTitulo.setText("Mantenimiento de Usuarios");
-        areaContenido.getChildren().clear();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AdmiUsuarios.fxml"));
-        Parent root = loader.load();
-        areaContenido.getChildren().add(root);
-    }
+private void manejarUsuarios() throws IOException {
+    etiquetaTitulo.setText("Mantenimiento de Usuarios");
+    areaContenido.getChildren().clear();
+    
+    // Usar ruta absoluta desde el classpath raíz
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/mycompany/proyectofinal/AdmiUsuarios.fxml"));
+    Parent root = loader.load();
+    areaContenido.getChildren().add(root);
+}
 
     @FXML
     private void manejarSala1() {
@@ -126,20 +131,28 @@ public class AdministradorController implements Initializable {
         return contenido;
     }
 
+ 
     private void cargarVistaSala(int numeroSala) {
         try {
             etiquetaTitulo.setText("Administración de Sala " + numeroSala);
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("SalaView.fxml"));
+            
+            // Cargar el FXML específico para la sala
+            String fxmlPath = "/com/mycompany/proyectofinal/Sala" + numeroSala + ".fxml";
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Node vistaSala = loader.load();
-
+            
+            // Obtener el controlador y configurarlo si es necesario
             SalaViewController controller = loader.getController();
             controller.setNumeroSala(numeroSala);
-
+            
             areaContenido.getChildren().setAll(vistaSala);
         } catch (IOException e) {
             e.printStackTrace();
-            areaContenido.getChildren().setAll(new Label("Error al cargar la vista de sala"));
+            System.out.println("Error al cargar sala " + numeroSala);
         }
+    }
+
+    @FXML
+    private void manejarReporteria(ActionEvent event) {
     }
 }

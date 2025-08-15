@@ -14,10 +14,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class AdmiUsuariosController implements Initializable {
 
@@ -31,6 +33,8 @@ public class AdmiUsuariosController implements Initializable {
     private TableColumn<Usuario, String> ColCorreo;
     @FXML
     private TableColumn<Usuario, String> ColTelefono;
+    @FXML
+    private TableColumn<Usuario, String> ColcontrasenaUsuario;
    
     @FXML
     private TextArea txtidUsuario;
@@ -40,6 +44,8 @@ public class AdmiUsuariosController implements Initializable {
     private TextArea txtTelefono;
     @FXML
     private TextArea txtCorreo;
+    @FXML
+    private TextArea txtcontrasena;
 
     @FXML
     private Button btnCrear;
@@ -52,8 +58,13 @@ public class AdmiUsuariosController implements Initializable {
     @FXML
     private Button btnLimpiar;
 
+    @FXML
+    private ComboBox<String> cmbRoles;
+
     private UsuarioDAO usuarioDAO;
     private ObservableList<Usuario> usuariosList;
+    @FXML
+    private TableColumn<Usuario, String> colRol;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -61,20 +72,22 @@ public class AdmiUsuariosController implements Initializable {
         usuariosList = FXCollections.observableArrayList();
         
         configurarTabla();
+        cargarRoles();
         cargarTodosUsuarios();
         configurarEventos();
     }
     
     private void configurarTabla() {
-        // CORRECCIÓN: Configurar correctamente las columnas
         ColIdUsuario.setCellValueFactory(new PropertyValueFactory<>("idUsuario"));
         ColNombreUsuario.setCellValueFactory(new PropertyValueFactory<>("nombreUsuario"));
         ColCorreo.setCellValueFactory(new PropertyValueFactory<>("correo"));
         ColTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
-        
+        ColcontrasenaUsuario.setCellValueFactory(new PropertyValueFactory<>("contrasena"));
+        // Añade esta línea para la columna de roles
+        colRol.setCellValueFactory(new PropertyValueFactory<>("rolNombre"));
+
         TUsuarios.setItems(usuariosList);
-        
-        // Listener para selección de filas
+
         TUsuarios.getSelectionModel().selectedItemProperty().addListener(
             (obs, oldSelection, newSelection) -> {
                 if (newSelection != null) {
@@ -82,6 +95,11 @@ public class AdmiUsuariosController implements Initializable {
                 }
             }
         );
+}
+    
+    private void cargarRoles() {
+        cmbRoles.getItems().clear();
+        cmbRoles.getItems().addAll("Administrador", "Cliente");
     }
     
     private void configurarEventos() {
@@ -95,10 +113,10 @@ public class AdmiUsuariosController implements Initializable {
     private void cargarTodosUsuarios() {
         try {
             usuariosList.setAll(usuarioDAO.obtenerTodosUsuarios());
-            TUsuarios.refresh(); // CORRECCIÓN: Refrescar la tabla después de cargar datos
+            TUsuarios.refresh();
         } catch (SQLException ex) {
             mostrarAlerta("Error al cargar usuarios", "Error: " + ex.getMessage(), AlertType.ERROR);
-            ex.printStackTrace(); // CORRECCIÓN: Imprimir stack trace para depuración
+            ex.printStackTrace();
         }
     }
     
@@ -108,23 +126,31 @@ public class AdmiUsuariosController implements Initializable {
             return;
         }
         
+        String rolSeleccionado = cmbRoles.getSelectionModel().getSelectedItem();
+        if (rolSeleccionado == null) {
+            mostrarAlerta("Rol requerido", "Seleccione un rol para el usuario", AlertType.WARNING);
+            return;
+        }
+
         try {
-            // CORRECCIÓN: Usar constructor vacío y setters
             Usuario nuevo = new Usuario();
             nuevo.setNombreUsuario(txtNombre.getText());
             nuevo.setCorreo(txtCorreo.getText());
             nuevo.setTelefono(txtTelefono.getText());
             
-            // Generar contraseña temporal
-            String tempPassword = generarContrasenaTemporal();
-            nuevo.setContrasenaPlana(tempPassword);
-            nuevo.setIdRol(2); // Rol por defecto
+            int idRol = convertirRolAId(rolSeleccionado);
+            nuevo.setIdRol(idRol);
+            
+            String contrasena = txtcontrasena.getText().trim();
+            if (contrasena.isEmpty()) {
+                contrasena = generarContrasenaTemporal();
+            }
+            nuevo.setContrasenaPlana(contrasena); // Esto genera el hash BCrypt
             
             usuarioDAO.insertarUsuario(nuevo);
             
-            // Mostrar contraseña temporal
             mostrarAlerta("Éxito", "Usuario creado con ID: " + nuevo.getIdUsuario() 
-                + "\nContraseña temporal: " + tempPassword, AlertType.INFORMATION);
+                + "\nContraseña: " + contrasena, AlertType.INFORMATION);
             
             cargarTodosUsuarios();
             limpiarCampos();
@@ -134,8 +160,16 @@ public class AdmiUsuariosController implements Initializable {
         }
     }
     
+    private int convertirRolAId(String nombreRol) {
+        switch (nombreRol) {
+            case "Administrador": return 1;
+            case "Usuario": return 2;
+            case "Invitado": return 3;
+            default: return 2; // Default: Usuario
+        }
+    }
+    
     private String generarContrasenaTemporal() {
-        // Generar contraseña aleatoria de 8 caracteres
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 8; i++) {
@@ -157,13 +191,31 @@ public class AdmiUsuariosController implements Initializable {
             return;
         }
         
+        String rolSeleccionado = cmbRoles.getSelectionModel().getSelectedItem();
+        if (rolSeleccionado == null) {
+            mostrarAlerta("Rol requerido", "Seleccione un rol para el usuario", AlertType.WARNING);
+            return;
+        }
+
         try {
-            // Actualizar datos
             seleccionado.setNombreUsuario(txtNombre.getText());
             seleccionado.setCorreo(txtCorreo.getText());
             seleccionado.setTelefono(txtTelefono.getText());
             
+            int idRol = convertirRolAId(rolSeleccionado);
+            seleccionado.setIdRol(idRol);
+            
             usuarioDAO.actualizarUsuario(seleccionado);
+            
+            // Actualizar contraseña si se proporcionó
+            String nuevaContrasena = txtcontrasena.getText().trim();
+            if (!nuevaContrasena.isEmpty()) {
+                String hashedPassword = BCrypt.hashpw(nuevaContrasena, BCrypt.gensalt());
+                usuarioDAO.actualizarContrasena(seleccionado.getCorreo(), hashedPassword);
+                // También actualizamos localmente para mostrar en la tabla (si se refresca)
+                seleccionado.setContrasenaHash(hashedPassword);
+            }
+            
             mostrarAlerta("Éxito", "Usuario actualizado correctamente", AlertType.INFORMATION);
             cargarTodosUsuarios();
         } catch (SQLException ex) {
@@ -231,6 +283,19 @@ public class AdmiUsuariosController implements Initializable {
         txtNombre.setText(usuario.getNombreUsuario());
         txtCorreo.setText(usuario.getCorreo());
         txtTelefono.setText(usuario.getTelefono());
+        txtcontrasena.clear();
+        
+        String nombreRol = convertirIdARol(usuario.getIdRol());
+        cmbRoles.getSelectionModel().select(nombreRol);
+    }
+    
+    private String convertirIdARol(int idRol) {
+        switch (idRol) {
+            case 1: return "Administrador";
+            case 2: return "Usuario";
+            case 3: return "Invitado";
+            default: return "Usuario";
+        }
     }
     
     private void limpiarCampos() {
@@ -238,6 +303,8 @@ public class AdmiUsuariosController implements Initializable {
         txtNombre.clear();
         txtCorreo.clear();
         txtTelefono.clear();
+        txtcontrasena.clear();
+        cmbRoles.getSelectionModel().clearSelection();
         TUsuarios.getSelectionModel().clearSelection();
         cargarTodosUsuarios();
     }
@@ -245,13 +312,12 @@ public class AdmiUsuariosController implements Initializable {
     private boolean validarCamposCreacion() {
         return !txtNombre.getText().isEmpty() && 
                !txtCorreo.getText().isEmpty() && 
-               !txtTelefono.getText().isEmpty();
+               !txtTelefono.getText().isEmpty() &&
+               cmbRoles.getSelectionModel().getSelectedItem() != null;
     }
     
     private boolean validarCamposActualizacion() {
-        return !txtNombre.getText().isEmpty() && 
-               !txtCorreo.getText().isEmpty() && 
-               !txtTelefono.getText().isEmpty();
+        return validarCamposCreacion();
     }
     
     private void mostrarAlerta(String titulo, String mensaje, AlertType tipo) {

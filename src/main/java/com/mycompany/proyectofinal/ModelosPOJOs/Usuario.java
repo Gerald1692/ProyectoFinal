@@ -11,6 +11,8 @@ public class Usuario {
     private int idRol;
     private String rolNombre; // Nuevo campo para el nombre del rol
 
+    
+    
     // Constructor para registro
     public Usuario(int idUsuario, String nombreUsuario, String contrasenaPlana, 
                   String correo, String telefono, String rolNombre) {
@@ -109,4 +111,7 @@ public class Usuario {
     public boolean verificarContrasena(String contrasenaPlana) {
         return BCrypt.checkpw(contrasenaPlana, this.contrasena);
     }
+    
+    
+    
 }

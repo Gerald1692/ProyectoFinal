@@ -6,6 +6,8 @@ import com.mycompany.proyectofinal.ModelosPOJOs.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,13 +26,20 @@ public class REGISTRARSEController implements Initializable {
     @FXML private Button btnRegistrar;
     @FXML private Button btnVolver;
     @FXML private ComboBox<String> cmbRoles;
+    
+    // Mapa como variable de instancia
+    private final Map<String, Integer> roles = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Solo los roles que existen en la base de datos
-        cmbRoles.getItems().addAll("Administrador", "Cliente");
-        cmbRoles.setValue("Cliente"); // Valor inicial válido
-    }    
+        // Inicializar el mapa de roles
+        roles.put("Administrador", 1);
+        roles.put("Cliente", 4);
+
+        // Configurar el ComboBox
+        cmbRoles.getItems().addAll(roles.keySet());
+        cmbRoles.setValue("Cliente");
+    }
 
     @FXML
     private void registrarse() {
@@ -53,15 +62,16 @@ public class REGISTRARSEController implements Initializable {
         }
         
         try {
-            // Crear nuevo usuario con el nombre del rol
-            Usuario nuevoUsuario = new Usuario(
-                0,
-                nombre,
-                contrasena,
-                correo,
-                telefono,
-                rolSeleccionado
-            );
+            // Obtener ID del rol seleccionado
+            int idRol = roles.get(rolSeleccionado);
+            
+            // Crear nuevo usuario con ID de rol
+            Usuario nuevoUsuario = new Usuario();
+            nuevoUsuario.setNombreUsuario(nombre);
+            nuevoUsuario.setCorreo(correo);
+            nuevoUsuario.setTelefono(telefono);
+            nuevoUsuario.setContrasenaPlana(contrasena);
+            nuevoUsuario.setIdRol(idRol);
             
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             usuarioDAO.insertarUsuario(nuevoUsuario);

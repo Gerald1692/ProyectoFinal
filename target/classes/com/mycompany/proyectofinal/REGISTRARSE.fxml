@@ -67,13 +67,6 @@
             </font></Label>
             <PasswordField fx:id="txtContrasena" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             
-            <!-- CAMPO NUEVO AGREGADO PARA CONFIRMAR CONTRASEÑA -->
-            <Label styleClass="fieldLabel" text="Confirmar Contraseña:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4">
-            <font>
-               <Font size="15.0" />
-            </font></Label>
-            <PasswordField fx:id="txtConfirmarContrasena" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            
             <Label styleClass="fieldLabel" text="Rol" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="5">
             <font>
                <Font size="15.0" />

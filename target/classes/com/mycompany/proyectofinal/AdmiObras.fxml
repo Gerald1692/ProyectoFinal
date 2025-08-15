@@ -1,69 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
-      prefHeight="500.0" prefWidth="800.0" 
-      xmlns="http://javafx.com/javafx/23.0.1" 
-      xmlns:fx="http://javafx.com/fxml/1" 
-      fx:controller="com.mycompany.proyectofinal.AdmiObrasController"
-      style="-fx-background-color: #f4f4f4; -fx-padding: 15;">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" style="-fx-background-color: #f4f4f4; -fx-padding: 15;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.AdmiObrasController">
    <children>
-      <AnchorPane prefHeight="600.0" prefWidth="800.0">
+      <AnchorPane fx:id="col_idObra" prefHeight="700.0" prefWidth="700.0">
          <children>
-            <!-- Tabla de Obras -->
-            <TableView fx:id="TObras" layoutX="250.0" layoutY="70.0" prefHeight="350.0" prefWidth="520.0"
-                      style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);">
+            <TableView layoutX="179.0" layoutY="88.0" prefHeight="200.0" prefWidth="485.0">
               <columns>
-                <TableColumn fx:id="ColIdObra" prefWidth="70.0" text="ID OBRA" />
-                <TableColumn fx:id="ColTitulo" prefWidth="150.0" text="TITULO" />
-                <TableColumn fx:id="ColDescripcion" prefWidth="200.0" text="DESCRIPCION" />
-                <TableColumn fx:id="ColFechaCreacion" prefWidth="120.0" text="FECHA CREACIÓN" />
-                <TableColumn fx:id="ColFechaIngreso" prefWidth="120.0" text="FECHA INGRESO" />
+                <TableColumn prefWidth="30.0" text="id" />
+                <TableColumn fx:id="col_tituloObra" prefWidth="75.0" text="Titulo" />
+                  <TableColumn fx:id="col_descripcionObra" prefWidth="75.0" text="Descripcion" />
+                  <TableColumn fx:id="col_fechaCreacioObra" prefWidth="93.0" text="Fecha Creacion" />
+                  <TableColumn fx:id="col_fechaIngresoObra" prefWidth="87.0" text="Fecha Ingreso" />
+                  <TableColumn fx:id="col_autorObra" text="Autor" />
               </columns>
             </TableView>
-            
-            <!-- Campos de entrada -->
-            <TextArea fx:id="txtIdObra" layoutX="20.0" layoutY="70.0" prefHeight="40.0" prefWidth="200.0" 
-                      promptText="ID OBRA" style="-fx-font-size: 14px;"/>
-            
-            <TextArea fx:id="txtTitulo" layoutX="20.0" layoutY="120.0" prefHeight="40.0" prefWidth="200.0" 
-                      promptText="TITULO" style="-fx-font-size: 14px;"/>
-            
-            <TextArea fx:id="txtDescripcion" layoutX="20.0" layoutY="170.0" prefHeight="100.0" prefWidth="200.0" 
-                      promptText="DESCRIPCION" style="-fx-font-size: 14px;"/>
-            
-            <TextArea fx:id="txtFechaCreacion" layoutX="20.0" layoutY="280.0" prefHeight="40.0" prefWidth="200.0" 
-                      promptText="FECHA CREACIÓN (dd/mm/aaaa)" style="-fx-font-size: 14px;"/>
-            
-            <TextArea fx:id="txtFechaIngreso" layoutX="20.0" layoutY="330.0" prefHeight="40.0" prefWidth="200.0" 
-                      promptText="FECHA INGRESO (dd/mm/aaaa)" style="-fx-font-size: 14px;"/>
-            
-            <!-- Botones -->
-            <Button fx:id="btnCrear" layoutX="30.0" layoutY="20.0" mnemonicParsing="false" 
-                    text="Crear" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-min-width: 80px;"/>
-            
-            <Button fx:id="btnActualizar" layoutX="120.0" layoutY="20.0" mnemonicParsing="false" 
-                    text="Actualizar" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-min-width: 80px;"/>
-            
-            <Button fx:id="btnMostrar" layoutX="210.0" layoutY="20.0" mnemonicParsing="false" 
-                    text="Buscar" style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-weight: bold; -fx-min-width: 80px;"/>
-            
-            <Button fx:id="btnEliminar" layoutX="300.0" layoutY="20.0" mnemonicParsing="false" 
-                    text="Eliminar" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-min-width: 80px;"/>
-            
-            <Button fx:id="btnLimpiar" layoutX="390.0" layoutY="20.0" mnemonicParsing="false" 
-                    text="Limpiar" style="-fx-background-color: #9E9E9E; -fx-text-fill: white; -fx-font-weight: bold; -fx-min-width: 80px;"/>
-            
-            <!-- Título de la aplicación -->
-            <TextArea layoutX="500.0" layoutY="20.0" prefHeight="40.0" prefWidth="260.0" 
-                      editable="false" style="-fx-background-color: transparent; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333;"
-                      text="ADMINISTRACIÓN DE OBRAS"/>
+            <TextArea fx:id="txt_id" layoutX="8.0" layoutY="88.0" prefHeight="15.0" prefWidth="134.0" promptText="id" />
+            <TextArea fx:id="txt_autor" layoutX="8.0" layoutY="349.0" prefHeight="15.0" prefWidth="134.0" promptText="autor" />
+            <TextArea fx:id="txt_fechaI" layoutX="8.0" layoutY="288.0" prefHeight="15.0" prefWidth="134.0" promptText="Fecha ingreso" />
+            <TextArea fx:id="txt_fechaC" layoutX="8.0" layoutY="236.0" prefHeight="15.0" prefWidth="134.0" promptText="Fecha Crear" />
+            <TextArea fx:id="txt_descripcion" layoutX="8.0" layoutY="188.0" prefHeight="15.0" prefWidth="134.0" promptText="descripcion" />
+            <TextArea fx:id="txt_tilulo" layoutX="8.0" layoutY="136.0" prefHeight="15.0" prefWidth="134.0" promptText="titulo" />
+            <ComboBox fx:id="cmb_imagen" layoutX="179.0" layoutY="356.0" prefWidth="150.0" />
+            <ComboBox fx:id="cmb_audio" layoutX="378.0" layoutY="356.0" prefWidth="150.0" />
+            <ImageView fx:id="imgV_ImagenObra" fitHeight="137.0" fitWidth="150.0" layoutX="179.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="btn_crear" layoutX="30.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
+            <Button fx:id="btn_eliminar" layoutX="262.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
+            <Button fx:id="btn_buscar" layoutX="179.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
+            <Button fx:id="btn_actualizar" layoutX="105.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
+            <Button fx:id="btn_limpiar" layoutX="352.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
+            <Button layoutX="378.0" layoutY="411.0" mnemonicParsing="false" prefHeight="137.0" prefWidth="150.0" text="Button" />
          </children>
       </AnchorPane>
    </children>
