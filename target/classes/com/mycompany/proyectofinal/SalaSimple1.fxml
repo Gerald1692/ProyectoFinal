@@ -29,13 +29,14 @@
             <font>
                <Font name="Book Antiqua" size="14.0" />
             </font></Label>
-         <Label layoutX="315.0" layoutY="5.0" prefHeight="171.0" prefWidth="342.0" styleClass="section-text" text="Tyrannosaurus rex fue un enorme depredador del Cretácico superior en Norteamérica, que vivió hace 68–66 millones de años. Tenía cráneo masivo, dientes serrados, brazos pequeños y cola larga para equilibrar. Fósiles muestran crecimiento rápido, heridas de combate y posible plumaje en etapas juveniles; pieza central en exhibiciones, museos y divulgación." textFill="WHITE" wrapText="true" />
+         <Label layoutX="233.0" layoutY="23.0" prefHeight="171.0" prefWidth="342.0" styleClass="section-text" text="Tyrannosaurus rex fue un enorme depredador del Cretácico superior en Norteamérica, que vivió hace 68–66 millones de años. Tenía cráneo masivo, dientes serrados, brazos pequeños y cola larga para equilibrar. Fósiles muestran crecimiento rápido, heridas de combate y posible plumaje en etapas juveniles; pieza central en exhibiciones, museos y divulgación." textFill="WHITE" wrapText="true" />
+         <Button layoutX="591.0" layoutY="85.0" mnemonicParsing="false" onAction="#irSala1" prefHeight="26.0" prefWidth="110.0" text="Más información" />
         </AnchorPane>
         
         <!-- Sección 2 -->
         <AnchorPane styleClass="section">
-         <Label layoutX="309.0" layoutY="19.0" prefHeight="138.0" prefWidth="360.0" styleClass="section-text" text="Triceratops fue un gran herbívoro del Cretácico superior en Norteamérica, presente hace 68–66 millones de años. Destacaba por su cráneo masivo con tres cuernos y un volante óseo; medía hasta nueve metros. Sus cuernos servían para defensa y disputas sociales. En museos, cráneos y réplicas ilustran su ecología y comportamiento." textFill="WHITE" wrapText="true" />
-         <ImageView fitHeight="120.0" fitWidth="199.0" layoutX="40.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
+         <Label layoutX="232.0" layoutY="19.0" prefHeight="138.0" prefWidth="360.0" styleClass="section-text" text="Triceratops fue un gran herbívoro del Cretácico superior en Norteamérica, presente hace 68–66 millones de años. Destacaba por su cráneo masivo con tres cuernos y un volante óseo; medía hasta nueve metros. Sus cuernos servían para defensa y disputas sociales. En museos, cráneos y réplicas ilustran su ecología y comportamiento." textFill="WHITE" wrapText="true" />
+         <ImageView fitHeight="120.0" fitWidth="199.0" layoutX="41.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
             <image>
                <Image url="@../../../RECURSOS/triceratop.png" />
             </image>
@@ -45,11 +46,12 @@
                <Font name="Book Antiqua" size="14.0" />
             </font>
          </Label>
+         <Button layoutX="592.0" layoutY="61.0" mnemonicParsing="false" onAction="#irSala1" prefHeight="26.0" prefWidth="109.0" text="Más información" />
         </AnchorPane>
         
         <!-- Sección 3 -->
         <AnchorPane styleClass="section">
-            <ImageView fitHeight="120.0" fitWidth="199.0" layoutX="38.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
+            <ImageView fitHeight="120.0" fitWidth="199.0" layoutX="41.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
             <image>
                <Image url="@../../../RECURSOS/Velociraptor.png" />
             </image></ImageView>
@@ -58,7 +60,8 @@
                <Font name="Book Antiqua" size="14.0" />
             </font>
          </Label>
-         <Label layoutX="311.0" layoutY="13.0" prefHeight="93.0" prefWidth="303.0" styleClass="section-text" text="Velociraptor fue un terópodo ágil del Cretácico tardío en Asia, que vivió hace 75–71 millones de años. Mucho más pequeño que en el cine, medía cerca de dos metros y probablemente tenía plumas. Tenía una garra en hoz en cada pata usada para atacar. Réplicas y modelos muestran su aspecto." textFill="WHITE" wrapText="true" />
+         <Label layoutX="229.0" layoutY="13.0" prefHeight="94.0" prefWidth="360.0" styleClass="section-text" text="Velociraptor fue un terópodo ágil del Cretácico tardío en Asia, que vivió hace 75–71 millones de años. Mucho más pequeño que en el cine, medía cerca de dos metros y probablemente tenía plumas. Tenía una garra en hoz en cada pata usada para atacar. Réplicas y modelos muestran su aspecto." textFill="WHITE" wrapText="true" />
+         <Button layoutX="589.0" layoutY="42.0" mnemonicParsing="false" onAction="#irSala1" prefHeight="26.0" prefWidth="110.0" text="Más información" />
         </AnchorPane>
         
     </VBox>

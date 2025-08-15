@@ -24,33 +24,36 @@
         
         <!-- Sección 1 -->
         <AnchorPane styleClass="section">
-            <Label layoutX="199.2" prefHeight="18.0" prefWidth="500.0" styleClass="section-text" text="OBRA" textFill="#f4f4f4" wrapText="true" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0" />
-         <Label layoutX="210.0" layoutY="34.0" prefHeight="93.0" prefWidth="303.0" styleClass="section-text" text="IFOTIFOTIFLorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas &quot;Letraset&quot;, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas &quot;Letraset&quot;, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.OTIFOTIFOTIFOTIFOTIFOTIFOT" textFill="WHITE" wrapText="true" />
-         <ImageView fitHeight="150.0" fitWidth="164.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
+            <Label layoutX="199.2" prefHeight="18.0" prefWidth="500.0" styleClass="section-text" text="Mona Lisa" textFill="#f4f4f4" wrapText="true" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0" />
+         <Label layoutX="210.0" layoutY="34.0" prefHeight="93.0" prefWidth="303.0" styleClass="section-text" text="Pintada entre 1503 y 1506, la Mona Lisa es una obra maestra del Renacimiento italiano. Destaca por la misteriosa sonrisa de la modelo y el uso del sfumato. Se exhibe en el Museo del Louvre, París, y es considerada el retrato más famoso del mundo." textFill="WHITE" wrapText="true" />
+         <ImageView fitHeight="185.0" fitWidth="200.0" layoutX="-22.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
             <image>
-               <Image url="@../../../../../../../../../Users/geral/Downloads/Sala2Renacimiento.png" />
+               <Image url="@../../../RECURSOS/MONALISA.png" />
             </image>
          </ImageView>
+         <Button fx:id="Minfo" layoutX="554.0" layoutY="79.0" mnemonicParsing="false" onAction="#irSala1" text="Más Información" />
         </AnchorPane>
         
         <!-- Sección 2 -->
         <AnchorPane styleClass="section">
-            <ImageView fitHeight="150.0" fitWidth="164.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
+            <ImageView fitHeight="133.0" fitWidth="200.0" layoutX="-21.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
             <image>
-               <Image url="@../../../../../../../../../Users/geral/Downloads/Sala2Renacimiento.png" />
+               <Image url="@../../../RECURSOS/NocheEstrellada.png" />
             </image></ImageView>
-            <Label layoutX="199.2" prefHeight="18.0" prefWidth="500.0" styleClass="section-text" text="OBRA" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0.0" />
-         <Label layoutX="198.0" layoutY="42.0" prefHeight="94.0" prefWidth="303.0" styleClass="section-text" text="Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas &quot;Letraset&quot;, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum." textFill="#fff7f7" wrapText="true" />
+            <Label layoutX="199.2" prefHeight="18.0" prefWidth="500.0" styleClass="section-text" text="La Noche Estrellada" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0.0" />
+         <Label layoutX="198.0" layoutY="42.0" prefHeight="94.0" prefWidth="303.0" styleClass="section-text" text="Realizada en 1889, muestra una vista nocturna desde la habitación del artista en Saint-Rémy-de-Provence. Con pinceladas ondulantes y colores vibrantes, refleja la intensidad emocional de Van Gogh. Es una de las obras más reconocidas del postimpresionismo y se exhibe en el Museo de Arte Moderno, Nueva York." textFill="#fff7f7" wrapText="true" />
+         <Button layoutX="554.0" layoutY="68.0" mnemonicParsing="false" onAction="#irSala1" prefHeight="26.0" prefWidth="106.0" text="Más Información" />
         </AnchorPane>
         
         <!-- Sección 3 -->
         <AnchorPane styleClass="section">
-            <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
+            <ImageView fitHeight="137.0" fitWidth="200.0" layoutX="-23.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
             <image>
-               <Image url="@../../../RECURSOS/Sala2Renacimiento.png" />
+               <Image url="@../../../RECURSOS/EL%20GRITO.png" />
             </image></ImageView>
-            <Label layoutX="199.2" prefHeight="18.0" prefWidth="500.0" styleClass="section-text" text="OBRA" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0" />
-         <Label layoutX="198.0" layoutY="42.0" prefHeight="93.0" prefWidth="303.0" styleClass="section-text" text="Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas &quot;Letraset&quot;, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum." textFill="WHITE" wrapText="true" />
+            <Label layoutX="199.2" prefHeight="18.0" prefWidth="500.0" styleClass="section-text" text="El Grito" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0" />
+         <Label layoutX="198.0" layoutY="42.0" prefHeight="93.0" prefWidth="303.0" styleClass="section-text" text="Pintado en 1893, representa una figura angustiada sobre un fondo de cielo rojo ardiente. Expresa ansiedad y desesperación, convirtiéndose en un icono del arte expresionista. Existen varias versiones en pintura y litografía. Una de las más conocidas se encuentra en la Galería Nacional de Noruega." textFill="WHITE" wrapText="true" />
+         <Button layoutX="556.0" layoutY="62.0" mnemonicParsing="false" onAction="#irSala1" text="Más información" />
         </AnchorPane>
         
     </VBox>

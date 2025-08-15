@@ -1,3 +1,5 @@
+[file name]: SalaVelociraptor.fxml
+[file content begin]
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
@@ -14,35 +16,33 @@
 
 <BorderPane prefHeight="600" prefWidth="800.0" stylesheets="@Sala1.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.Controllers.Sala1Controller">
     
-    <!-- Encabezado minimalista -->
     <top>
         <HBox alignment="CENTER" styleClass="header">
-            <Label prefHeight="60.0" prefWidth="178.0" styleClass="headerTitle" text="Sala #1">
-            <font>
-               <Font name="Bodoni MT Bold" size="48.0" />
-            </font></Label>
+            <Label styleClass="headerTitle" text="Velociraptor">
+                <font>
+                    <Font name="Bodoni MT Bold" size="48.0" />
+                </font>
+            </Label>
         </HBox>
     </top>
     
     <center>
         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER">
             <HBox alignment="TOP_CENTER" spacing="40" style="-fx-padding: 30;">
-                <!-- Imagen a la izquierda -->
                 <VBox alignment="CENTER" styleClass="imageContainer">
-                    <ImageView fitHeight="341.0" fitWidth="319.0" preserveRatio="true" styleClass="objectImage">
+                    <ImageView fitHeight="341" fitWidth="319" preserveRatio="true" styleClass="objectImage">
                         <image>
-                            <Image url="@../../../RECURSOS/sala1Dino.png" />
+                            <Image url="@../../../RECURSOS/Velociraptor.png" />
                         </image>
                     </ImageView>
                 </VBox>
                 
-                <!-- Información a la derecha -->
                 <VBox alignment="TOP_LEFT" prefWidth="400" spacing="20" styleClass="infoContainer">
-                    <Label styleClass="sectionTitle" text="GIGANTES DEL JURÁSICO" />
+                    <Label styleClass="sectionTitle" text="EL CAZADOR ÁGIL" />
                     
-                    <Text styleClass="descriptionText" text="El Ayuntamiento no es uno de los dispositivos cambiosos más grandes que jamás hayan existido. Con sus poderosas maniobras y dentro de hasta 20 cm de larga, este dependece dentro el coste de frecuencias para aproximadamente 80 de millones de años. Su nombre significa 'rey de las lagartas tareas'." wrappingWidth="400" />
+                    <Text styleClass="descriptionText" text="El Velociraptor fue un dinosaurio terópodo dromeosáurido que vivió durante el período Cretácico superior, hace aproximadamente 75 a 71 millones de años, en lo que hoy es Asia. A diferencia de su representación en el cine, el Velociraptor era de tamaño pequeño, con una longitud de alrededor de 2 metros y una altura de 0.5 metros, y un peso estimado de 15 a 20 kilogramos. Su nombre significa 'ladrón veloz'." wrappingWidth="400" />
                     
-                    <Text styleClass="descriptionText" text="El primer completo parcial de T. mares de Alcoolabergo fue Ramona Bueno en Montoya, Estados Unidos, en 1955. Esta experiencia conocida como 'Montoya CAI-3587', fue vendida a Marcos Clemaye de Huesca Nueva en Pittsburgh. Desde entonces, se han encontrado más de 30 experiencias en varias partes de frecuencias." wrappingWidth="400" />
+                    <Text styleClass="descriptionText" text="El primer espécimen de Velociraptor fue descubierto en el Desierto de Gobi, Mongolia, en 1923 durante una expedición del Museo Americano de Historia Natural. El hallazgo más famoso es el de un Velociraptor luchando con un Protoceratops, conocido como el 'fósil de lucha', que muestra a ambos dinosaurios muertos durante el combate. El Velociraptor tenía un cuerpo ligero y ágil, con una garra en forma de hoz en cada pie que usaba para atacar a sus presas. Además, se cree que estaba cubierto de plumas, similar a las aves modernas, como lo indican las impresiones de folículos de plumas encontradas en algunos fósiles." wrappingWidth="400" />
                     
                     <Separator styleClass="separator" />
                     
@@ -51,19 +51,18 @@
                         <Label styleClass="infoValue" text="Sala 1 - Gigantes del Jurásico" />
                         
                         <Label styleClass="infoLabel" text="Estado:" />
-                        <Label prefHeight="17.0" prefWidth="79.0" styleClass="infoStatus" text="En exhibición" textFill="#0027e3fc" />
-                        <Label styleClass="infoValue" />
+                        <Label styleClass="infoStatus" text="En exhibición" />
                     </VBox>
                 </VBox>
             </HBox>
         </ScrollPane>
     </center>
     
-    <!-- Pie de página minimalista -->
     <bottom>
         <HBox alignment="CENTER" spacing="20" styleClass="footer">
-            <Button accessibleRoleDescription="sasa" onAction="#volverLogin" prefHeight="37.0" prefWidth="149.0" styleClass="navButton" text="Volver al Incio de Sesion " />
-            <Button onAction="#irSalaPrincipal" prefHeight="40.0" prefWidth="104.0" styleClass="navButton" text="Volver a Sala" />
+            <Button onAction="#volverLogin" styleClass="navButton" text="Volver al Inicio de Sesión" />
+            <Button onAction="#irSalaPrincipal" styleClass="navButton" text="Volver a Sala" />
         </HBox>
     </bottom>
 </BorderPane>
+[file content end]
