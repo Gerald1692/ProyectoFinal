@@ -8,6 +8,7 @@ module com.mycompany.proyectofinal {
     requires java.sql;
     requires jbcrypt;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     
 <<<<<<< HEAD
     opens com.mycompany.proyectofinal to javafx.fxml;
@@ -21,6 +22,8 @@ module com.mycompany.proyectofinal {
     requires java.sql;      
     requires jbcrypt;       
     requires java.base;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     requires java.desktop;
