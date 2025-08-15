@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" stylesheets="@saximple1.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.Controllers.SalaSimple1Controller">
     
@@ -20,32 +21,44 @@
         
         <!-- Sección 1 -->
         <AnchorPane styleClass="section">
-            <ImageView fitHeight="150" fitWidth="200" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
+            <ImageView fitHeight="120.0" fitWidth="199.0" layoutX="43.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
             <image>
-               <Image url="@../../../../../../../../../Users/geral/Downloads/sala1Dino.png" />
+               <Image url="@../../../RECURSOS/DINOIMAGEN.png" />
             </image></ImageView>
-            <Label layoutX="206.4" prefHeight="18.0" prefWidth="493.0" styleClass="section-text" text="ESPECIE1" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="0" />
-         <Label layoutX="210.0" layoutY="34.0" prefHeight="93.0" prefWidth="303.0" styleClass="section-text" text="Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas &quot;Letraset&quot;, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum." textFill="WHITE" wrapText="true" />
+            <Label layoutX="217.0" layoutY="24.0" prefHeight="18.0" prefWidth="493.0" styleClass="section-text" text="Tyrannosaurus rex" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="217.0" AnchorPane.rightAnchor="-10.600000000000023">
+            <font>
+               <Font name="Book Antiqua" size="14.0" />
+            </font></Label>
+         <Label layoutX="315.0" layoutY="5.0" prefHeight="171.0" prefWidth="342.0" styleClass="section-text" text="Tyrannosaurus rex fue un enorme depredador del Cretácico superior en Norteamérica, que vivió hace 68–66 millones de años. Tenía cráneo masivo, dientes serrados, brazos pequeños y cola larga para equilibrar. Fósiles muestran crecimiento rápido, heridas de combate y posible plumaje en etapas juveniles; pieza central en exhibiciones, museos y divulgación." textFill="WHITE" wrapText="true" />
         </AnchorPane>
         
         <!-- Sección 2 -->
         <AnchorPane styleClass="section">
-            <ImageView fitHeight="150.0" fitWidth="164.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
+         <Label layoutX="309.0" layoutY="19.0" prefHeight="138.0" prefWidth="360.0" styleClass="section-text" text="Triceratops fue un gran herbívoro del Cretácico superior en Norteamérica, presente hace 68–66 millones de años. Destacaba por su cráneo masivo con tres cuernos y un volante óseo; medía hasta nueve metros. Sus cuernos servían para defensa y disputas sociales. En museos, cráneos y réplicas ilustran su ecología y comportamiento." textFill="WHITE" wrapText="true" />
+         <ImageView fitHeight="120.0" fitWidth="199.0" layoutX="40.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
             <image>
-               <Image url="@../../../RECURSOS/sala1Dino.png" />
-            </image></ImageView>
-            <Label layoutX="206.4" prefHeight="18.0" prefWidth="493.0" styleClass="section-text" text="ESPECIE1" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="0" />
-         <Label layoutX="198.0" layoutY="42.0" prefHeight="94.0" prefWidth="303.0" styleClass="section-text" text="Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas &quot;Letraset&quot;, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum." textFill="WHITE" wrapText="true" />
+               <Image url="@../../../RECURSOS/triceratop.png" />
+            </image>
+         </ImageView>
+         <Label layoutX="232.0" layoutY="12.0" prefHeight="18.0" prefWidth="493.0" styleClass="section-text" text="Triceratops" textFill="WHITE" wrapText="true">
+            <font>
+               <Font name="Book Antiqua" size="14.0" />
+            </font>
+         </Label>
         </AnchorPane>
         
         <!-- Sección 3 -->
         <AnchorPane styleClass="section">
-            <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
+            <ImageView fitHeight="120.0" fitWidth="199.0" layoutX="38.0" pickOnBounds="true" preserveRatio="true" styleClass="section-image">
             <image>
-               <Image url="@../../../RECURSOS/sala1Dino.png" />
+               <Image url="@../../../RECURSOS/Velociraptor.png" />
             </image></ImageView>
-            <Label layoutX="206.4" prefHeight="18.0" prefWidth="493.0" styleClass="section-text" text="ESPECIE1" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="0" />
-         <Label layoutX="198.0" layoutY="42.0" prefHeight="93.0" prefWidth="303.0" styleClass="section-text" text="Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas &quot;Letraset&quot;, las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum." textFill="WHITE" wrapText="true" />
+            <Label layoutX="228.8" layoutY="-10.0" prefHeight="18.0" prefWidth="531.0" styleClass="section-text" text="Velociraptor" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="229.0" AnchorPane.rightAnchor="-34.0">
+            <font>
+               <Font name="Book Antiqua" size="14.0" />
+            </font>
+         </Label>
+         <Label layoutX="311.0" layoutY="13.0" prefHeight="93.0" prefWidth="303.0" styleClass="section-text" text="Velociraptor fue un terópodo ágil del Cretácico tardío en Asia, que vivió hace 75–71 millones de años. Mucho más pequeño que en el cine, medía cerca de dos metros y probablemente tenía plumas. Tenía una garra en hoz en cada pata usada para atacar. Réplicas y modelos muestran su aspecto." textFill="WHITE" wrapText="true" />
         </AnchorPane>
         
     </VBox>
