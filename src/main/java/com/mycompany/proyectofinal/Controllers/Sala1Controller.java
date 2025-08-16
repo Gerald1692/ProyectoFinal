@@ -4,60 +4,64 @@ import com.mycompany.proyectofinal.App;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 
 public class Sala1Controller implements Initializable {
+    @FXML
+    private BorderPane rootPane; // Referencia al nodo raíz
+    
     private MediaPlayer mediaPlayer;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {}
+    public void initialize(URL url, ResourceBundle rb) {
+        // Configurar manejador para cuando se cierre la ventana
+        Platform.runLater(() -> {
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setOnCloseRequest(event -> {
+                detenerSonido();
+            });
+        });
+    }
+    
+    // Método para detener el sonido
+    private void detenerSonido() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.dispose(); // Libera recursos
+            mediaPlayer = null;
+        }
+    }
 
     @FXML
     private void volverLogin() throws IOException {
+        detenerSonido(); // Detiene el sonido antes de cambiar de vista
         App.setRoot("Login");
     }
     
     @FXML
     private void manejarSalir() {
+        detenerSonido(); // Detiene el sonido antes de salir
         System.exit(0);
     }
     
     @FXML
     private void irSalaPrincipal() throws IOException {
+        detenerSonido(); // Detiene el sonido antes de cambiar de vista
         App.setRoot("SalaSimple1");
-    }
-    
-    @FXML
-    private void irSala1() throws IOException {
-        App.setRoot("Sala1");
-    }
-    
-    @FXML
-    private void irSala2() throws IOException {
-        // Implementar lógica para Sala 2
-        System.out.println("Navegando a Sala 2");
-    }
-    
-    @FXML
-    private void irSala3() throws IOException {
-        // Implementar lógica para Sala 3
-        System.out.println("Navegando a Sala 3");
     }
     
     @FXML
     private void reproducirSonido() {
         try {
-            // Detener cualquier reproducción anterior
-            if (mediaPlayer != null) {
-                mediaPlayer.stop();
-            }
+            detenerSonido(); // Detiene cualquier sonido previo
             
-            // Obtener la URL del recurso usando el classloader
             URL resource = getClass().getResource("/SONIDOSANIMALES/3cuernos.m4a");
-            
             if (resource == null) {
                 throw new RuntimeException("Archivo de audio no encontrado");
             }
@@ -65,6 +69,9 @@ public class Sala1Controller implements Initializable {
             String audioPath = resource.toExternalForm();
             Media media = new Media(audioPath);
             mediaPlayer = new MediaPlayer(media);
+            
+            // Configurar para detener el sonido cuando termine
+            mediaPlayer.setOnEndOfMedia(() -> detenerSonido());
             
             mediaPlayer.play();
             
