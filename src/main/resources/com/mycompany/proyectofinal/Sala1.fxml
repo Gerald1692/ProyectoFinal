@@ -40,14 +40,14 @@
                 <VBox alignment="TOP_LEFT" prefWidth="400" spacing="20" styleClass="infoContainer">
                     <Label prefHeight="18.0" prefWidth="191.0" styleClass="sectionTitle" text="GIGANTES DEL JURASICO" />
                     
-                    <Text styleClass="descriptionText" text="Los dinosaurios dominaron la Tierra durante más de 180 millones de años, desde el período Triásico hasta el final del Cretácico. Estas criaturas extraordinarias, como el imponente Tyrannosaurus rex y el colosal Argentinosaurus, desarrollaron adaptaciones únicas que les permitieron conquistar todos los ecosistemas terrestres. Sus fósiles, encontrados en sedimentos de todos los continentes, revelan una sorprendente diversidad morfológica y de comportamiento que sigue fascinando a los paleontólogos." wrappingWidth="400" />
+                    <Text styleClass="descriptionText" text="Los dinosaurios dominaron la Tierra durante más de 180 millones de años, desde el período Triásico hasta el final del Cretácico. Estas criaturas extraordinarias, como el imponente Tyrannosaurus rex y el colosal Argentinosaurus, desarrollaron adaptaciones únicas que les permitieron conquistar todos los ecosistemas terrestres. Sus fósiles, encontrados en sedimentos de todos los continentes, revelan una sorprendente diversidad morfológica y de comportamiento que sigue fascinando a los paleontólogos." wrappingWidth="437.0" />
                     
-                    <Text styleClass="descriptionText" text="La extinción masiva del Cretácico-Paleógeno, hace 66 millones de años, marcó el fin de su reinado, aunque su legado perdura en las aves modernas. Estudios recientes de icnitas (huellas fosilizadas) y huesos con marcas de tejidos blandos confirman que muchas especies poseían plumas, sugiriendo complejas interacciones ecológicas. Hoy, más de 1,200 géneros identificados nos ayudan a reconstruir este capítulo fundamental de la historia natural." wrappingWidth="400" />
+                    <Text styleClass="descriptionText" text="La extinción masiva del Cretácico-Paleógeno, hace 66 millones de años, marcó el fin de su reinado, aunque su legado perdura en las aves modernas. Estudios recientes de icnitas (huellas fosilizadas) y huesos con marcas de tejidos blandos confirman que muchas especies poseían plumas, sugiriendo complejas interacciones ecológicas. Hoy, más de 1,200 géneros identificados nos ayudan a reconstruir este capítulo fundamental de la historia natural." wrappingWidth="435.0" />
                     
                     <Separator styleClass="separator" />
+                 <Button onAction="#reproducirSonido" prefHeight="25.0" prefWidth="441.0" styleClass="navButton" text="Reproducir Sonido " />
                     
                     <VBox spacing="10" style="-fx-padding: 10 0;">
-                        <Label styleClass="infoLabel" text="Ubicación:" />
                         <Label styleClass="infoValue" text="Sala 2 - Obras Maestras del Renacimiento" />
                         
                         <Label styleClass="infoLabel" text="Estado:" />
