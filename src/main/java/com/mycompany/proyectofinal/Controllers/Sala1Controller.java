@@ -1,6 +1,7 @@
 package com.mycompany.proyectofinal.Controllers;
 
 import com.mycompany.proyectofinal.App;
+import com.mycompany.proyectofinal.MusicManager;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -59,9 +60,11 @@ public class Sala1Controller implements Initializable {
     @FXML
     private void reproducirSonido() {
         try {
-            detenerSonido(); // Detiene cualquier sonido previo
+            MusicManager.pauseMusic();
             
             URL resource = getClass().getResource("/SONIDOSANIMALES/3cuernos.m4a");
+            
+            MusicManager.playBackgroundMusic();
             if (resource == null) {
                 throw new RuntimeException("Archivo de audio no encontrado");
             }

@@ -10,6 +10,8 @@ import java.io.IOException;
 public class App extends Application {
     private static Scene scene;
     private static Stage primaryStage;
+    private static String currentView="";
+    
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -18,10 +20,16 @@ public class App extends Application {
         stage.setScene(scene);
         stage.setTitle("Curiosópolis");
         stage.show();
+          MusicManager.playBackgroundMusic();
     }
 
     public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
+        currentView = fxml;
+        scene.setRoot(loadFXML(fxml));
+        
+        // Solo reanudar la música si está pausada
+        MusicManager.playBackgroundMusic();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
