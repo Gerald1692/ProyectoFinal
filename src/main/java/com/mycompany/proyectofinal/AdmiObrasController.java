@@ -159,7 +159,6 @@ public class AdmiObrasController implements Initializable {
         }
     }
     
-    @FXML
     private void crearObra() {
         try {
             Obra obra = new Obra();
@@ -183,7 +182,6 @@ public class AdmiObrasController implements Initializable {
         }
     }
     
-    @FXML
     private void actualizarObra() {
         try {
             if (txt_id.getText().isEmpty()) {
@@ -216,7 +214,6 @@ public class AdmiObrasController implements Initializable {
         }
     }
     
-    @FXML
     private void eliminarObra() {
         try {
             if (txt_id.getText().isEmpty()) {
@@ -239,13 +236,11 @@ public class AdmiObrasController implements Initializable {
         }
     }
     
-    @FXML
     private void buscarObra() {
         // Implementar lógica de búsqueda según criterios
         mostrarAlerta("Información", "Función de búsqueda no implementada aún", Alert.AlertType.INFORMATION);
     }
     
-    @FXML
     private void limpiarCampos() {
         txt_id.clear();
         txt_titulo.clear();

@@ -9,12 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" 
-      prefHeight="700.0" prefWidth="1000.0" 
-      style="-fx-background-color: #f4f4f4; -fx-padding: 15;" 
-      xmlns="http://javafx.com/javafx/23.0.1" 
-      xmlns:fx="http://javafx.com/fxml/1" 
-      fx:controller="com.mycompany.proyectofinal.AdmiObrasController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f4f4f4; -fx-padding: 15;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.AdmiObrasController">
    
    <children>
       <AnchorPane fx:id="col_idObra" prefHeight="700.0" prefWidth="700.0">
@@ -25,12 +20,12 @@
                 <TableColumn fx:id="col_id" prefWidth="30.0" text="ID" />
                 <TableColumn fx:id="col_titulo" prefWidth="75.0" text="Título" />
                 <TableColumn fx:id="col_descripcion" prefWidth="75.0" text="Descripción" />
-                <TableColumn fx:id="col_fechaCreacion" prefWidth="93.0" text="Fecha Creación" />
-                <TableColumn fx:id="col_fechaIngreso" prefWidth="87.0" text="Fecha Ingreso" />
-                <TableColumn fx:id="col_autor" prefWidth="75.0" text="Autor" />
-                <TableColumn fx:id="col_sala" prefWidth="75.0" text="Sala" />
-                <TableColumn fx:id="col_tipoObra" prefWidth="96.0" text="Tipo Obra" />
-                <TableColumn fx:id="col_tecnica" prefWidth="94.0" text="Técnica" />
+                <TableColumn fx:id="col_fechaCreacion" prefWidth="143.0" text="Fecha Creación" />
+                <TableColumn fx:id="col_fechaIngreso" prefWidth="149.0" text="Fecha Ingreso" />
+                <TableColumn fx:id="col_autor" prefWidth="75.0" text="Autor" visible="false" />
+                <TableColumn fx:id="col_sala" prefWidth="121.0" text="Sala" />
+                <TableColumn fx:id="col_tipoObra" prefWidth="111.0" text="Tipo Obra" />
+                <TableColumn fx:id="col_tecnica" prefWidth="106.0" text="Técnica" />
               </columns>
             </TableView>
 
@@ -46,10 +41,10 @@
             <ComboBox fx:id="cmb_audio" layoutX="378.0" layoutY="356.0" prefWidth="150.0" promptText="Audio" />
             <ComboBox fx:id="cmb_autor" layoutX="554.0" layoutY="356.0" prefWidth="150.0" promptText="Autor" />
             <ComboBox fx:id="cmb_tipoObra" layoutX="554.0" layoutY="461.0" prefWidth="150.0" promptText="Tipo Obra" />
-            <ComboBox fx:id="cmb_sala" layoutX="179.0" layoutY="461.0" prefWidth="150.0" promptText="Sala" />
+            <ComboBox fx:id="cmb_sala" layoutX="378.0" layoutY="461.0" prefWidth="150.0" promptText="Sala" />
 
             <!-- Imagen de la obra -->
-            <ImageView fx:id="imgV_ImagenObra" fitHeight="137.0" fitWidth="150.0" layoutX="179.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imgV_ImagenObra" fitHeight="137.0" fitWidth="150.0" layoutX="173.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true" />
 
             <!-- Botones de acciones -->
             <Button fx:id="btn_crear" layoutX="30.0" layoutY="14.0" mnemonicParsing="false" text="Crear" />
