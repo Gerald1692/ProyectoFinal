@@ -26,9 +26,7 @@
             
             <VBox id="buttonContainer" alignment="TOP_CENTER" spacing="8.0">
                 <Button id="navButton" fx:id="BtnUsarios" mnemonicParsing="false" onAction="#manejarUsuarios" prefHeight="40.0" prefWidth="180.0" text="Usuarios" />
-                <Button id="navButton" mnemonicParsing="false" onAction="#manejarSala1" prefHeight="40.0" prefWidth="180.0" text="Sala 1" />
-                <Button id="navButton" mnemonicParsing="false" onAction="#manejarSala2" prefHeight="40.0" prefWidth="180.0" text="Sala 2" />
-                <Button id="navButton" mnemonicParsing="false" onAction="#manejarSala3" prefHeight="40.0" prefWidth="180.0" text="Sala 3" />
+                <Button id="navButton" fx:id="btnSalas" mnemonicParsing="false" onAction="#manejarSala1" prefHeight="40.0" prefWidth="180.0" text="Sala " />
                 <Button id="navButton" mnemonicParsing="false" text="Salir" visible="false" />
                 <Button id="navButton" mnemonicParsing="false" onAction="#volverLogin" text="Volver a Inicio de Sesión" />
                 <Button id="navButton" mnemonicParsing="false" onAction="#manejarSalir" text="Salir" />

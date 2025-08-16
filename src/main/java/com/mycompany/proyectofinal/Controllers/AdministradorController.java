@@ -33,6 +33,8 @@ public class AdministradorController implements Initializable {
     private Label etiquetaTitulo;
     @FXML
     private Button BtnUsarios;
+    @FXML
+    private Button btnSalas;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -71,16 +73,20 @@ private void manejarUsuarios() throws IOException {
 }
 
     @FXML
-    private void manejarSala1() {
-        cargarVistaSala(1);
+    private void manejarSala1() throws IOException {
+        etiquetaTitulo.setText("Mantenimiento de Usuarios");
+    areaContenido.getChildren().clear();
+    
+    // Usar ruta absoluta desde el classpath raíz
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/mycompany/proyectofinal/AdmiObras.fxml"));
+    Parent root = loader.load();
+    areaContenido.getChildren().add(root);
     }
 
-    @FXML
     private void manejarSala2() {
         cargarVistaSala(2);
     }
 
-    @FXML
     private void manejarSala3() {
         cargarVistaSala(3);
     }
@@ -152,7 +158,4 @@ private void manejarUsuarios() throws IOException {
         }
     }
 
-    @FXML
-    private void manejarReporteria(ActionEvent event) {
-    }
 }

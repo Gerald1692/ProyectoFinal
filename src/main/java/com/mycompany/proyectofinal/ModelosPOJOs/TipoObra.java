@@ -11,10 +11,12 @@ package com.mycompany.proyectofinal.ModelosPOJOs;
 public class TipoObra {
    private int idTipoObra;
    private String nombreTipoObra;
+   private String TecnicaTipoObra;
 
-    public TipoObra(int idTipoObra, String nombreTipoObra) {
+    public TipoObra(int idTipoObra, String nombreTipoObra, String TecnicaTipoObra) {
         this.idTipoObra = idTipoObra;
         this.nombreTipoObra = nombreTipoObra;
+        this.TecnicaTipoObra = TecnicaTipoObra;
     }
 
     public int getIdTipoObra() {
@@ -25,6 +27,10 @@ public class TipoObra {
         return nombreTipoObra;
     }
 
+    public String getTecnicaTipoObra() {
+        return TecnicaTipoObra;
+    }
+
     public void setIdTipoObra(int idTipoObra) {
         this.idTipoObra = idTipoObra;
     }
@@ -32,6 +38,11 @@ public class TipoObra {
     public void setNombreTipoObra(String nombreTipoObra) {
         this.nombreTipoObra = nombreTipoObra;
     }
+
+    public void setTecnicaTipoObra(String TecnicaTipoObra) {
+        this.TecnicaTipoObra = TecnicaTipoObra;
+    }
+
    
    
 }

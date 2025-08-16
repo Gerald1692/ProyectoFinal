@@ -44,7 +44,7 @@ public class TipoObraDAO {
              ResultSet rs = stmt.executeQuery(sql)) {
             
             while (rs.next()) {
-                TipoObra tipo = new TipoObra(0, sql);
+                TipoObra tipo = new TipoObra(0, sql, sql);
                 tipo.setIdTipoObra(rs.getInt("id_tipo_obra"));
                 tipo.setNombreTipoObra(rs.getString("nombre"));
                 tipos.add(tipo);
