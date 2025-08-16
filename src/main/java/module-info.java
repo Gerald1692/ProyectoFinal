@@ -6,6 +6,8 @@ module com.mycompany.proyectofinal {
     requires java.desktop;
     requires java.base;
    requires javafx.media;
+   requires com.oracle.database.jdbc;
+   requires java.naming;
 
     // Abre tus paquetes a javafx.fxml para reflexión
     opens com.mycompany.proyectofinal to javafx.fxml;

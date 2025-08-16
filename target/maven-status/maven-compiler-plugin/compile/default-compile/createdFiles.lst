@@ -3,6 +3,7 @@ com\mycompany\proyectofinal\AdmiObrasController.class
 com\mycompany\proyectofinal\Controllers\LoginController.class
 com\mycompany\proyectofinal\ModelosPOJOs\Autor.class
 com\mycompany\proyectofinal\Controllers\PrimaryController.class
+com\mycompany\proyectofinal\AccesoDatos\DAOs\ObraDAO$TipoAutor.class
 com\mycompany\proyectofinal\Controllers\SalaViewController.class
 com\mycompany\proyectofinal\AccesoDatos\DAOs\AutorDAO.class
 com\mycompany\proyectofinal\AccesoDatos\DAOs\ObraDAO.class
@@ -24,9 +25,12 @@ com\mycompany\proyectofinal\Controllers\RecuperarController.class
 com\mycompany\proyectofinal\Controllers\SecondaryController.class
 com\mycompany\proyectofinal\Controllers\REGISTRARSEController.class
 com\mycompany\proyectofinal\Controllers\SalaSimple2Controller.class
+com\mycompany\proyectofinal\AccesoDatos\DAOs\ObraDAO$Sala.class
 com\mycompany\proyectofinal\AccesoDatos\DAOs\TipoObraDAO.class
 com\mycompany\proyectofinal\ModelosPOJOs\Usuario.class
 com\mycompany\proyectofinal\AccesoDatos\DAOs\SalaDAO.class
+com\mycompany\proyectofinal\AccesoDatos\DAOs\ObraDAO$TipoObra.class
 com\mycompany\proyectofinal\Controllers\SalaSimple1Controller.class
+com\mycompany\proyectofinal\AccesoDatos\DAOs\ObraDAO$Autor.class
 com\mycompany\proyectofinal\Controllers\Sala2Controller.class
 com\mycompany\proyectofinal\ModelosPOJOs\ObraAutor.class

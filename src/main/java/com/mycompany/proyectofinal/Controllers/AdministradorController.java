@@ -74,7 +74,7 @@ private void manejarUsuarios() throws IOException {
 
     @FXML
     private void manejarSala1() throws IOException {
-        etiquetaTitulo.setText("Mantenimiento de Usuarios");
+        etiquetaTitulo.setText("Mantenimiento de obras");
     areaContenido.getChildren().clear();
     
     // Usar ruta absoluta desde el classpath raíz
