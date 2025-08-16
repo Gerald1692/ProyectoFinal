@@ -5,6 +5,7 @@ module com.mycompany.proyectofinal {
     requires jbcrypt;
     requires java.desktop;
     requires java.base;
+   requires javafx.media;
 
     // Abre tus paquetes a javafx.fxml para reflexión
     opens com.mycompany.proyectofinal to javafx.fxml;
@@ -14,4 +15,5 @@ module com.mycompany.proyectofinal {
     // Exporta tus paquetes
     exports com.mycompany.proyectofinal;
     exports com.mycompany.proyectofinal.Controllers;
+    requires javafx.mediaEmpty;
 }
