@@ -29,25 +29,14 @@ public class SalaSimple1Controller implements Initializable {
     
     // Nuevos métodos para navegar a salas específicas
     @FXML
-    private void irSala1() throws IOException {
+    private void IRASALA1() throws IOException {
         App.setRoot("Sala1");
     }
-    @FXML
-private void irSalaSimple1() throws IOException {
-    App.setRoot("SalaSimple1");
-}
-    @FXML
-    private void irSala2() throws IOException {
-        // Implementar lógica para Sala 2
-        System.out.println("Navegando a Sala 2");
-    }
+  
+   
     @FXML
     private void atras() throws IOException {
         App.setRoot("primary");
     }
-    @FXML
-    private void irSala3() throws IOException {
-        // Implementar lógica para Sala 3
-        System.out.println("Navegando a Sala 3");
-    }
+
 }

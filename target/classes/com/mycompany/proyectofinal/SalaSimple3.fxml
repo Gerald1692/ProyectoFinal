@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" stylesheets="salasimple3.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.Controllers.SalaSimple2Controller">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" stylesheets="salasimple3.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.Controllers.SalaSimple3Controller">
     
    <ImageView fitHeight="567.0" fitWidth="800.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
       <image>
@@ -30,7 +30,7 @@
             </image></ImageView>
             <Label layoutX="199.2" prefHeight="18.0" prefWidth="500.0" styleClass="section-text" text="Pirámides de Guiza" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0" />
          <Label layoutX="207.0" layoutY="25.0" prefHeight="103.0" prefWidth="352.0" styleClass="section-text" text="Construidas hace más de 4,500 años, las Pirámides de Guiza son tumbas monumentales para los faraones Keops, Kefrén y Micerinos. Su arquitectura refleja el avanzado conocimiento egipcio en ingeniería y matemáticas. Son la única maravilla del mundo antiguo que aún perdura y un símbolo de la grandeza egipcia." textFill="WHITE" wrapText="true" />
-       <Button layoutX="569.0" layoutY="56.0" minWidth="55.0" mnemonicParsing="false" onAction="#irSala1" prefHeight="26.0" prefWidth="116.0" text="Más Información" />
+       <Button layoutX="569.0" layoutY="56.0" minWidth="55.0" mnemonicParsing="false" onAction="#irSala3" prefHeight="26.0" prefWidth="116.0" text="Más Información" />
         </AnchorPane>
         
         <!-- Sección 2 - Tutankamón -->
@@ -41,7 +41,7 @@
             </image></ImageView>
             <Label layoutX="199.2" prefHeight="18.0" prefWidth="500.0" styleClass="section-text" text="Tutankamón" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0.0" />
          <Label layoutX="199.0" layoutY="33.0" prefHeight="103.0" prefWidth="352.0" styleClass="section-text" text="Tutankamón fue un joven faraón de la dinastía XVIII, que gobernó alrededor del 1332 a.C. Su tumba, descubierta casi intacta en 1922 por Howard Carter, reveló un tesoro impresionante de objetos funerarios. Aunque su reinado fue breve, su máscara de oro es uno de los íconos más famosos de Egipto." textFill="WHITE" wrapText="true" />
-         <Button layoutX="569.0" layoutY="55.0" minWidth="55.0" mnemonicParsing="false" onAction="#irSala1" prefHeight="26.0" prefWidth="116.0" text="Más Información" />
+         <Button layoutX="569.0" layoutY="55.0" minWidth="55.0" mnemonicParsing="false" onAction="#irSala3" prefHeight="26.0" prefWidth="116.0" text="Más Información" />
         </AnchorPane>
         
         <!-- Sección 3 - Río Nilo -->
@@ -52,7 +52,7 @@
             </image></ImageView>
             <Label layoutX="199.2" prefHeight="18.0" prefWidth="500.0" styleClass="section-text" text="Río Nilo" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0" />
          <Label layoutX="190.0" layoutY="28.0" prefHeight="94.0" prefWidth="352.0" styleClass="section-text" text="El Nilo fue la columna vertebral de la civilización egipcia. Sus crecidas anuales fertilizaban las tierras, permitiendo la agricultura y el sustento de la población. Además, servía como vía de transporte y comercio. Para los egipcios, el Nilo tenía un profundo significado espiritual y estaba ligado a sus dioses y mitos." textFill="WHITE" wrapText="true" />
-         <Button layoutX="571.0" layoutY="54.0" minWidth="55.0" mnemonicParsing="false" onAction="#irSala1" prefHeight="26.0" prefWidth="116.0" text="Más Información" />
+         <Button layoutX="571.0" layoutY="54.0" minWidth="55.0" mnemonicParsing="false" onAction="#irSala3" prefHeight="26.0" prefWidth="116.0" text="Más Información" />
         </AnchorPane>
         
     </VBox>

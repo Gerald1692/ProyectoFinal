@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" stylesheets="@saximple1.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.Controllers.SalaSimple1Controller">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" styleClass="mainFxmlClass" stylesheets="@salasimple1.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.Controllers.SalaSimple1Controller">
     
           
    <ImageView fitHeight="548.0" fitWidth="800.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
@@ -30,7 +30,7 @@
                <Font name="Book Antiqua" size="14.0" />
             </font></Label>
          <Label layoutX="233.0" layoutY="23.0" prefHeight="171.0" prefWidth="342.0" styleClass="section-text" text="Tyrannosaurus rex fue un enorme depredador del Cretácico superior en Norteamérica, que vivió hace 68–66 millones de años. Tenía cráneo masivo, dientes serrados, brazos pequeños y cola larga para equilibrar. Fósiles muestran crecimiento rápido, heridas de combate y posible plumaje en etapas juveniles; pieza central en exhibiciones, museos y divulgación." textFill="WHITE" wrapText="true" />
-         <Button layoutX="591.0" layoutY="85.0" mnemonicParsing="false" onAction="#irSala1" prefHeight="26.0" prefWidth="110.0" text="Más información" />
+         <Button fx:id="aja" layoutX="591.0" layoutY="85.0" mnemonicParsing="false" onAction="#IRASALA1" prefHeight="26.0" prefWidth="110.0" text="Más información" />
         </AnchorPane>
         
         <!-- Sección 2 -->
@@ -46,7 +46,7 @@
                <Font name="Book Antiqua" size="14.0" />
             </font>
          </Label>
-         <Button layoutX="592.0" layoutY="61.0" mnemonicParsing="false" onAction="#irSala1" prefHeight="26.0" prefWidth="109.0" text="Más información" />
+         <Button fx:id="aja" layoutX="592.0" layoutY="61.0" mnemonicParsing="false" onAction="#IRASALA1" prefHeight="26.0" prefWidth="109.0" text="Más información" />
         </AnchorPane>
         
         <!-- Sección 3 -->
@@ -61,7 +61,7 @@
             </font>
          </Label>
          <Label layoutX="229.0" layoutY="13.0" prefHeight="94.0" prefWidth="360.0" styleClass="section-text" text="Velociraptor fue un terópodo ágil del Cretácico tardío en Asia, que vivió hace 75–71 millones de años. Mucho más pequeño que en el cine, medía cerca de dos metros y probablemente tenía plumas. Tenía una garra en hoz en cada pata usada para atacar. Réplicas y modelos muestran su aspecto." textFill="WHITE" wrapText="true" />
-         <Button layoutX="589.0" layoutY="42.0" mnemonicParsing="false" onAction="#irSala1" prefHeight="26.0" prefWidth="110.0" text="Más información" />
+         <Button fx:id="aja" layoutX="589.0" layoutY="42.0" mnemonicParsing="false" onAction="#IRASALA1" prefHeight="26.0" prefWidth="110.0" text="Más información" />
         </AnchorPane>
         
     </VBox>

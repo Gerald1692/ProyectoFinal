@@ -33,6 +33,7 @@ private void irSalaSimple3() throws IOException {
         App.setRoot("primary");
     }
     
+    
     // Nuevos métodos para navegar a salas específicas
     @FXML
     private void irSala1() throws IOException {

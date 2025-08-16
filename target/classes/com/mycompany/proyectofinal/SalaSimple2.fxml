@@ -31,7 +31,7 @@
                <Image url="@../../../RECURSOS/MONALISA.png" />
             </image>
          </ImageView>
-         <Button fx:id="Minfo" layoutX="554.0" layoutY="79.0" mnemonicParsing="false" onAction="#irSala1" text="Más Información" />
+         <Button fx:id="Minfo" layoutX="554.0" layoutY="79.0" mnemonicParsing="false" onAction="#irSala2" text="Más Información" />
         </AnchorPane>
         
         <!-- Sección 2 -->
@@ -42,7 +42,7 @@
             </image></ImageView>
             <Label layoutX="199.2" prefHeight="18.0" prefWidth="500.0" styleClass="section-text" text="La Noche Estrellada" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0.0" />
          <Label layoutX="198.0" layoutY="42.0" prefHeight="94.0" prefWidth="303.0" styleClass="section-text" text="Realizada en 1889, muestra una vista nocturna desde la habitación del artista en Saint-Rémy-de-Provence. Con pinceladas ondulantes y colores vibrantes, refleja la intensidad emocional de Van Gogh. Es una de las obras más reconocidas del postimpresionismo y se exhibe en el Museo de Arte Moderno, Nueva York." textFill="#fff7f7" wrapText="true" />
-         <Button layoutX="554.0" layoutY="68.0" mnemonicParsing="false" onAction="#irSala1" prefHeight="26.0" prefWidth="106.0" text="Más Información" />
+         <Button layoutX="554.0" layoutY="68.0" mnemonicParsing="false" onAction="#irSala2" prefHeight="26.0" prefWidth="106.0" text="Más Información" />
         </AnchorPane>
         
         <!-- Sección 3 -->
@@ -53,7 +53,7 @@
             </image></ImageView>
             <Label layoutX="199.2" prefHeight="18.0" prefWidth="500.0" styleClass="section-text" text="El Grito" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0" />
          <Label layoutX="198.0" layoutY="42.0" prefHeight="93.0" prefWidth="303.0" styleClass="section-text" text="Pintado en 1893, representa una figura angustiada sobre un fondo de cielo rojo ardiente. Expresa ansiedad y desesperación, convirtiéndose en un icono del arte expresionista. Existen varias versiones en pintura y litografía. Una de las más conocidas se encuentra en la Galería Nacional de Noruega." textFill="WHITE" wrapText="true" />
-         <Button layoutX="556.0" layoutY="62.0" mnemonicParsing="false" onAction="#irSala1" text="Más información" />
+         <Button layoutX="556.0" layoutY="62.0" mnemonicParsing="false" onAction="#irSala2" text="Más información" />
         </AnchorPane>
         
     </VBox>

@@ -24,7 +24,7 @@ public class Sala1Controller implements Initializable {
     }
     @FXML
     private void irSalaPrincipal() throws IOException {
-        App.setRoot("primary");
+        App.setRoot("SalaSimple1");
     }
     
     // Nuevos métodos para navegar a salas específicas

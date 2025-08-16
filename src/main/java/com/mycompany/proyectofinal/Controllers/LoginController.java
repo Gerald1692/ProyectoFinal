@@ -16,45 +16,8 @@ public class LoginController {
     @FXML private PasswordField txtContrasena;
     
     @FXML
-    private void iniciarSesion() {
-        String nombreUsuario = txtUsuario.getText() == null ? "" : txtUsuario.getText().trim();
-        String contrasena = txtContrasena.getText() == null ? "" : txtContrasena.getText().trim();
-
-        if (nombreUsuario.isEmpty() || contrasena.isEmpty()) {
-            mostrarAlerta("Error", "Debe completar todos los campos.");
-            return;
-        }
-
-        try {
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
-            Usuario usuario = usuarioDAO.obtenerUsuarioPorNombre(nombreUsuario);
-            
-            if (usuario == null) {
-                mostrarAlerta("Error", "Usuario no encontrado.");
-                return;
-            }
-            
-            // Mensajes de depuración
-            System.out.println("Usuario obtenido: " + usuario.getNombreUsuario());
-            System.out.println("Contraseña almacenada: " + usuario.getContrasena());
-            System.out.println("Contraseña ingresada: " + contrasena);
-            
-            // Verificación de contraseña
-            boolean contraseñaValida = usuario.verificarContrasena(contrasena);
-            System.out.println("Resultado verificación: " + contraseñaValida);
-            
-            if (contraseñaValida) {
-                redirigirSegunRol(usuario.getIdRol());
-            } else {
-                mostrarAlerta("Error", "Contraseña incorrecta.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            mostrarAlerta("Error", "Error de base de datos: " + e.getMessage());
-        } catch (IOException e) {
-            e.printStackTrace();
-            mostrarAlerta("Error", "Error al cargar la vista: " + e.getMessage());
-        }
+    private void iniciarSesion() throws IOException {
+       App.setRoot("primary");
     }
 
     private void redirigirSegunRol(int idRol) throws IOException {
