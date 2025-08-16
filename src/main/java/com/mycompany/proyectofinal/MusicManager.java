@@ -1,35 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.proyectofinal;
 
 import java.net.URL;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-/**
- *
- * @author geral
- */
 public class MusicManager {
     private static MediaPlayer mediaPlayer;
     private static final String BACKGROUND_MUSIC = "/musica/musica.mp3"; // Ruta única para todas las vistas
 
     public static void playBackgroundMusic() {
         if (mediaPlayer != null) {
-            // Si ya está reproduciendo, no hacer nada
             if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
                 return;
             }
-            // Si está pausado, reanudar
             if (mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED) {
                 mediaPlayer.play();
                 return;
             }
         }
         
-        // Crear nuevo reproductor si no existe
         try {
             URL resource = MusicManager.class.getResource(BACKGROUND_MUSIC);
             if (resource == null) {
@@ -52,12 +41,28 @@ public class MusicManager {
             mediaPlayer.pause();
         }
     }
-
+    
     public static void stopMusic() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.dispose();
             mediaPlayer = null;
+        }
+    }
+    
+    public static void setVolume(double volume) {
+        if (mediaPlayer != null) {
+            mediaPlayer.setVolume(volume);
+        }
+    }
+    
+    public static double getVolume() {
+        return mediaPlayer != null ? mediaPlayer.getVolume() : 0.5;
+    }
+    
+    public static void setMute(boolean mute) {
+        if (mediaPlayer != null) {
+            mediaPlayer.setMute(mute);
         }
     }
 }

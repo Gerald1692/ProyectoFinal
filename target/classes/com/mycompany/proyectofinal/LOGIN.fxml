@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,6 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="800.0" stylesheets="@LOGIN.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.Controllers.LoginController">
@@ -24,9 +26,20 @@
     <!-- Fondo responsivo usando CSS -->
     <StackPane styleClass="background-container">
       <children>
-      
           <!-- Contenedor principal centrado -->
           <VBox id="loginContainer" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="665.0" prefHeight="600.0" prefWidth="800.0" spacing="20" style="-fx-padding: 35;">
+         
+                      <!-- Controles de volumen en la esquina superior derecha -->
+             <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="441.0" spacing="5">
+                 
+                 <Button id="volumeButton" fx:id="btnVolume" onAction="#toggleVolume">
+                     <graphic>
+                         <SVGPath id="volumeIcon" content="M11,5 L6,9 L2,9 L2,15 L6,15 L11,19 L11,5 z M15,12 C15,10.619 13.933,9.5 12.5,9.5 C11.067,9.5 10,10.619 10,12 C10,13.381 11.067,14.5 12.5,14.5 C13.933,14.5 15,13.381 15,12 z" />
+                     </graphic>
+                 </Button>
+                 
+                          <Slider fx:id="volumeSlider" majorTickUnit="0.5" max="1" maxWidth="100" min="0" minorTickCount="4" prefWidth="80" snapToTicks="true" style="-fx-opacity: 0.7;" value="0.5" />
+             </HBox>
               <!-- Logo del museo -->
               <ImageView fitHeight="95.0" fitWidth="117.0" preserveRatio="true">
                   <image>
@@ -79,5 +92,6 @@
                   </HBox>
               </VBox>
           </VBox>
-      </children></StackPane>
+      </children>
+    </StackPane>
 </StackPane>
