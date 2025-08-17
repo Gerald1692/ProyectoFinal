@@ -18,9 +18,12 @@ public class Sala1Controller implements Initializable {
     private BorderPane rootPane; // Referencia al nodo raíz
     
     private MediaPlayer mediaPlayer;
+    
+    private String dinosaurioActual;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        dinosaurioActual = App.getDinosaurioSeleccionado();
         // Configurar manejador para cuando se cierre la ventana
         Platform.runLater(() -> {
             Stage stage = (Stage) rootPane.getScene().getWindow();
@@ -57,12 +60,52 @@ public class Sala1Controller implements Initializable {
         App.setRoot("SalaSimple1");
     }
     
-    @FXML
+    
+   @FXML
     private void reproducirSonido() {
+        if (dinosaurioActual == null) return;
+        
+        String archivoSonido;
+        switch (dinosaurioActual) {
+            case "Tyrannosaurus":
+                archivoSonido = "/musica/t_rex.mp3";
+                break;
+            case "Triceratops":
+                archivoSonido = "/musica/3cuernos.m4a";
+                break;
+            case "Velociraptor":
+                archivoSonido = "/musica/velociraptor.mp3";
+                break;
+            default:
+                archivoSonido = "/musica/velociraptor.mp3";
+        }
+        
+        try {
+            MusicManager.pauseMusic();
+            URL resource = getClass().getResource(archivoSonido);
+            
+            if (resource == null) {
+                throw new RuntimeException("Archivo de audio no encontrado");
+            }
+            
+            String audioPath = resource.toExternalForm();
+            Media media = new Media(audioPath);
+            mediaPlayer = new MediaPlayer(media);
+            
+            mediaPlayer.setOnEndOfMedia(() -> detenerSonido());
+            mediaPlayer.play();
+            
+        } catch (Exception e) {
+            System.err.println("Error al reproducir sonido: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void reproducirSonidoT_REX() {
         try {
             MusicManager.pauseMusic();
             
-            URL resource = getClass().getResource("/SONIDOSANIMALES/3cuernos.m4a");
+            URL resource = getClass().getResource("/musica/3cuernos.m4a");
             
             MusicManager.playBackgroundMusic();
             if (resource == null) {
@@ -82,5 +125,52 @@ public class Sala1Controller implements Initializable {
             System.err.println("Error al reproducir sonido: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+    
+    
+    @FXML
+    private void irATyrannosaurus() throws IOException {
+        App.setRoot("Sala1", "Tyrannosaurus");
+    }
+
+    @FXML
+    private void irATriceratops() throws IOException {
+        App.setRoot("Sala1", "Triceratops");
+    }
+
+    @FXML
+    private void irAVelociraptor() throws IOException {
+        App.setRoot("Sala1", "Velociraptor");
+    }
+    @FXML
+    private void reproducirSonidoVELOCI() {
+        try {
+            MusicManager.pauseMusic();
+            
+            URL resource = getClass().getResource("/musica/3cuernos.m4a");
+            
+            MusicManager.playBackgroundMusic();
+            if (resource == null) {
+                throw new RuntimeException("Archivo de audio no encontrado");
+            }
+            
+            String audioPath = resource.toExternalForm();
+            Media media = new Media(audioPath);
+            mediaPlayer = new MediaPlayer(media);
+            
+            // Configurar para detener el sonido cuando termine
+            mediaPlayer.setOnEndOfMedia(() -> detenerSonido());
+            
+            mediaPlayer.play();
+            
+        } catch (Exception e) {
+            System.err.println("Error al reproducir sonido: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        
+        
+        
+        
     }
 }

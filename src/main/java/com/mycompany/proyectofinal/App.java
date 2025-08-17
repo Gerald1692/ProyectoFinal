@@ -11,7 +11,18 @@ public class App extends Application {
     private static Scene scene;
     private static Stage primaryStage;
     private static String currentView="";
+    private static String dinosaurioSeleccionado;
     
+
+    
+    public static void setRoot(String fxml, String dinosaurio) throws IOException {
+        dinosaurioSeleccionado = dinosaurio;
+        setRoot(fxml);
+    }
+    
+    public static String getDinosaurioSeleccionado() {
+        return dinosaurioSeleccionado;
+    }
 
     @Override
     public void start(Stage stage) throws IOException {

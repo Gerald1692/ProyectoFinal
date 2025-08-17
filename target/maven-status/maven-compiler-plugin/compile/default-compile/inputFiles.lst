@@ -1,33 +1,33 @@
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\Sala3Controller.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaSimple2Controller.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SecondaryController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Usuario.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\TipoObraDAO.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\SalaDAO.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\LoginController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\Sala2Controller.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\module-info.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\UsuarioDAO.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AdmiUsuariosController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaSimple3Controller.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Obra.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\ObraDetallada.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AdmiObrasController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\util\DatabaseConnection.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\AdministradorController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\TipoObra.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\RecuperarController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\AutorDAO.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\App.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\ObraAutor.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\Sala1Controller.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\MusicManager.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\ObraAutorDAO.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\ObraDAO.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaSimple1Controller.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\PrimaryController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Rol.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\REGISTRARSEController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Autor.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Sala.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaViewController.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaSimple2Controller.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AdmiObrasController.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AdmiUsuariosController.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaViewController.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\PrimaryController.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaSimple1Controller.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\LoginController.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Autor.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\MusicManager.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Sala.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\UsuarioDAO.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\TipoObra.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaSimple3Controller.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Usuario.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\AdministradorController.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\ObraDetallada.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\module-info.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\ObraDAO.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Rol.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Obra.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\util\DatabaseConnection.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\App.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\Sala3Controller.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\SalaDAO.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SecondaryController.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\AutorDAO.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\REGISTRARSEController.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\Sala1Controller.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\TipoObraDAO.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\ObraAutor.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\RecuperarController.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\ObraAutorDAO.java
+C:\xampp\htdocs\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\Sala2Controller.java

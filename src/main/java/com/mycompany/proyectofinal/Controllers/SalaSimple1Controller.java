@@ -1,4 +1,4 @@
-// Sala1Controller.java
+    // Sala1Controller.java
 package com.mycompany.proyectofinal.Controllers;
 
 import com.mycompany.proyectofinal.App;
@@ -26,7 +26,21 @@ public class SalaSimple1Controller implements Initializable {
     private void irSalaPrincipal() throws IOException {
         App.setRoot("primary");
     }
-    
+      // AÑADE ESTOS MÉTODOS FALTANTES
+    @FXML
+    private void irATyrannosaurus() throws IOException {
+        App.setRoot("Sala1", "Tyrannosaurus");
+    }
+
+    @FXML
+    private void irATriceratops() throws IOException {
+        App.setRoot("Sala1", "Triceratops");
+    }
+
+    @FXML
+    private void irAVelociraptor() throws IOException {
+        App.setRoot("Sala1", "Velociraptor");
+    }
     // Nuevos métodos para navegar a salas específicas
     @FXML
     private void IRASALA1() throws IOException {
