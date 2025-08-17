@@ -25,17 +25,18 @@ public class ObraAutorDAO {
         }
     }
     public void asociarAutorObra(int idObra, int idAutor, int idTipoAutor) throws SQLException {
-        String sql = "{call MARCE.ASOCIAR_AUTOR_OBRA(?, ?, ?)}";
+        String sql = "{call MARCE.INSERTAR_OBRA_AUTOR(?, ?, ?)}"; // 👈 CORREGIDO
         try (Connection conn = DatabaseConnection.connect();
              CallableStatement cstmt = conn.prepareCall(sql)) {
-            
+
             cstmt.setInt(1, idObra);
             cstmt.setInt(2, idAutor);
             cstmt.setInt(3, idTipoAutor);
-            
+
             cstmt.execute();
         }
-    }
+}
+
     
     public void desasociarAutorObra(int idObra, int idAutor) throws SQLException {
         String sql = "{call MARCE.DESASOCIAR_AUTOR_OBRA(?, ?)}";
