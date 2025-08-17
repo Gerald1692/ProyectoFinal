@@ -22,8 +22,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SalaDAO {
-    
-    public int insertarSala(Sala sala) throws SQLException {
+ private Connection conn;
+
+    public SalaDAO() {
+        try {
+            this.conn = DatabaseConnection.connect();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }    public int insertarSala(Sala sala) throws SQLException {
         String sql = "{call MARCE.INSERTAR_SALA(?, ?, ?, ?)}";
         try (Connection conn = DatabaseConnection.connect();
              CallableStatement cstmt = conn.prepareCall(sql)) {
@@ -63,21 +70,21 @@ public class SalaDAO {
 
     
     public List<Sala> listarSalas() throws SQLException {
-        List<Sala> salas = new ArrayList<>();
-        String sql = "SELECT * FROM MARCE.SALA";
-        try (Connection conn = DatabaseConnection.connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            
-            while (rs.next()) {
-                Sala sala = new Sala(0, sql, sql, 0);
-                sala.setIdSala(rs.getInt("id_sala"));
-                sala.setNombreSala(rs.getString("nombre"));
-                sala.setTematica(rs.getString("tematica"));
-                sala.setNumeroPuerta(rs.getInt("numero_puerta"));
-                salas.add(sala);
-            }
+    List<Sala> salas = new ArrayList<>();
+    String sql = "SELECT * FROM MARCE.SALA";
+    try (Connection conn = DatabaseConnection.connect();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+        
+        while (rs.next()) {
+            Sala sala = new Sala(); // Objeto vacío
+            sala.setIdSala(rs.getInt("id_sala"));
+            sala.setNombreSala(rs.getString("nombre_sala"));
+            sala.setTematica(rs.getString("tematica"));
+            sala.setNumeroPuerta(rs.getInt("numero_puerta"));
+            salas.add(sala);
         }
-        return salas;
     }
+    return salas;
+}
 }

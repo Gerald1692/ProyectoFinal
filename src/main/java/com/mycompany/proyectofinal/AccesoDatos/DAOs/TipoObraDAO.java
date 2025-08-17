@@ -22,7 +22,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TipoObraDAO {
-    
+ private Connection conn;
+
+    public TipoObraDAO() {
+        try {
+            this.conn = DatabaseConnection.connect();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public int insertarTipoObra(TipoObra tipoObra) throws SQLException {
         String sql = "{call MARCE.INSERTAR_TIPO_OBRA(?, ?)}";
         try (Connection conn = DatabaseConnection.connect();
@@ -36,17 +44,19 @@ public class TipoObraDAO {
         }
     }
     
-    public List<TipoObra> listarTiposObra() throws SQLException {
+     public List<TipoObra> listarTiposObra() throws SQLException {
         List<TipoObra> tipos = new ArrayList<>();
-        String sql = "SELECT * FROM MARCE.TIPO_OBRA";
+        String sql = "SELECT ID_TIPO_OBRA, NOMBRE_TIPO_OBRA, TECNICA FROM MARCE.TIPO_OBRA ORDER BY NOMBRE_TIPO_OBRA";
+
         try (Connection conn = DatabaseConnection.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-            
+
             while (rs.next()) {
-                TipoObra tipo = new TipoObra(0, sql, sql);
-                tipo.setIdTipoObra(rs.getInt("id_tipo_obra"));
-                tipo.setNombreTipoObra(rs.getString("nombre"));
+                TipoObra tipo = new TipoObra();
+                tipo.setIdTipoObra(rs.getInt("ID_TIPO_OBRA"));             // correcto
+                tipo.setNombreTipoObra(rs.getString("NOMBRE_TIPO_OBRA")); // correcto
+                tipo.setTecnica(rs.getString("TECNICA"));                 // correcto (puede ser null)
                 tipos.add(tipo);
             }
         }

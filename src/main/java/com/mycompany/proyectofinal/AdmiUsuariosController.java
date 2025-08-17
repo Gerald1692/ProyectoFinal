@@ -160,15 +160,21 @@ public class AdmiUsuariosController implements Initializable {
         }
     }
     
-    private int convertirRolAId(String nombreRol) {
-        switch (nombreRol) {
-            case "Administrador": return 1;
-            case "Usuario": return 2;
-            case "Invitado": return 3;
-            default: return 2; // Default: Usuario
+   private int convertirRolAId(String nombreRol) {
+    switch (nombreRol) {
+        case "Administrador": return 1;
+        case "Cliente": return 4; // Nuevo mapeo
+        default: return 4; // Valor por defecto Cliente
+    }
+}
+
+    private String convertirIdARol(int idRol) {
+        switch (idRol) {
+            case 1: return "Administrador";
+            case 4: return "Cliente"; // Nuevo mapeo
+            default: return "Cliente"; // Valor por defecto
         }
     }
-    
     private String generarContrasenaTemporal() {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         StringBuilder sb = new StringBuilder();
@@ -289,14 +295,7 @@ public class AdmiUsuariosController implements Initializable {
         cmbRoles.getSelectionModel().select(nombreRol);
     }
     
-    private String convertirIdARol(int idRol) {
-        switch (idRol) {
-            case 1: return "Administrador";
-            case 2: return "Usuario";
-            case 3: return "Invitado";
-            default: return "Usuario";
-        }
-    }
+ 
     
     private void limpiarCampos() {
         txtidUsuario.clear();

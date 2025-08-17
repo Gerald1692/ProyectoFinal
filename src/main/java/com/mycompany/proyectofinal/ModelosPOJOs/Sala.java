@@ -14,6 +14,8 @@ public class Sala {
     private String tematica;
     private int numeroPuerta;
 
+    public Sala() {}
+    
     public Sala(int idSala, String nombreSala, String tematica, int numeroPuerta) {
         this.idSala = idSala;
         this.nombreSala = nombreSala;
@@ -52,6 +54,9 @@ public class Sala {
     public void setNumeroPuerta(int numeroPuerta) {
         this.numeroPuerta = numeroPuerta;
     }
-    
+     @Override
+    public String toString() {
+        return nombreSala; // 👈 Esto hace que se muestre bonito en el ComboBox
+    }
     
 }

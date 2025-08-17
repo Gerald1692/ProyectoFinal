@@ -1,14 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.proyectofinal.AccesoDatos.DAOs;
-
-/**
- *
- * @author admar
- */
-
 
 import com.mycompany.proyectofinal.ModelosPOJOs.Autor;
 import com.mycompany.proyectofinal.util.DatabaseConnection;
@@ -23,14 +13,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AutorDAO {
-    
+      private Connection conn;
+
+    public AutorDAO() {
+        try {
+            this.conn = DatabaseConnection.connect();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public int insertarAutor(Autor autor) throws SQLException {
         String sql = "{call MARCE.INSERTAR_AUTOR(?, ?, ?)}";
         try (Connection conn = DatabaseConnection.connect();
              CallableStatement cstmt = conn.prepareCall(sql)) {
             
-            cstmt.setString(1, autor.getNombreAutor());
-            cstmt.setString(2, autor.getApellidoAutor());
+            cstmt.setString(1, autor.getNombre());
+            cstmt.setString(2, autor.getApellido());
             cstmt.registerOutParameter(3, Types.INTEGER);
             
             cstmt.execute();
@@ -43,9 +41,9 @@ public class AutorDAO {
         try (Connection conn = DatabaseConnection.connect();
              CallableStatement cstmt = conn.prepareCall(sql)) {
             
-            cstmt.setInt(1, autor.getIdAutor());
-            cstmt.setString(2, autor.getNombreAutor());
-            cstmt.setString(3, autor.getApellidoAutor());
+            cstmt.setInt(1, autor.getId());
+            cstmt.setString(2, autor.getNombre());
+            cstmt.setString(3, autor.getApellido());
             
             cstmt.execute();
         }
@@ -69,10 +67,10 @@ public class AutorDAO {
             pstmt.setInt(1, idAutor);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    Autor autor = new Autor(idAutor, sql, sql);
-                    autor.setIdAutor(rs.getInt("id_autor"));
-                    autor.setNombreAutor(rs.getString("nombre"));
-                    autor.setApellidoAutor(rs.getString("apellido"));
+                    Autor autor = new Autor();
+                    autor.setId(rs.getInt("id_autor"));
+                    autor.setNombre(rs.getString("nombre"));
+                    autor.setApellido(rs.getString("apellido"));
                     return autor;
                 }
             }
@@ -82,16 +80,17 @@ public class AutorDAO {
     
     public List<Autor> listarAutores() throws SQLException {
         List<Autor> autores = new ArrayList<>();
-        String sql = "SELECT * FROM MARCE.AUTOR";
+        String sql = "SELECT ID_AUTOR, NOMBRE, APELLIDO FROM MARCE.AUTOR ORDER BY NOMBRE";
+
         try (Connection conn = DatabaseConnection.connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-            
+
             while (rs.next()) {
-                Autor autor = new Autor(0, sql, sql);
-                autor.setIdAutor(rs.getInt("id_autor"));
-                autor.setNombreAutor(rs.getString("nombre"));
-                autor.setApellidoAutor(rs.getString("apellido"));
+                Autor autor = new Autor();
+                autor.setId(rs.getInt("ID_AUTOR"));          // correcto
+                autor.setNombre(rs.getString("NOMBRE"));     // correcto
+                autor.setApellido(rs.getString("APELLIDO")); // correcto
                 autores.add(autor);
             }
         }

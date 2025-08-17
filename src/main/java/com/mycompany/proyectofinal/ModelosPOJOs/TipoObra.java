@@ -13,6 +13,8 @@ public class TipoObra {
    private String nombreTipoObra;
    private String TecnicaTipoObra;
 
+   public TipoObra() {}
+   
     public TipoObra(int idTipoObra, String nombreTipoObra, String TecnicaTipoObra) {
         this.idTipoObra = idTipoObra;
         this.nombreTipoObra = nombreTipoObra;
@@ -43,6 +45,13 @@ public class TipoObra {
         this.TecnicaTipoObra = TecnicaTipoObra;
     }
 
-   
+    @Override
+    public String toString() {
+        return nombreTipoObra; // 
+    }
+
+    public String setTecnica(String string) {
+        return TecnicaTipoObra;
+    }
    
 }

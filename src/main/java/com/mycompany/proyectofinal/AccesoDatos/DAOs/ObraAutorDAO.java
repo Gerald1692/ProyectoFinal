@@ -15,7 +15,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class ObraAutorDAO {
-    
+ private Connection conn;
+
+    public ObraAutorDAO() {
+        try {
+            this.conn = DatabaseConnection.connect();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public void asociarAutorObra(int idObra, int idAutor, int idTipoAutor) throws SQLException {
         String sql = "{call MARCE.ASOCIAR_AUTOR_OBRA(?, ?, ?)}";
         try (Connection conn = DatabaseConnection.connect();
