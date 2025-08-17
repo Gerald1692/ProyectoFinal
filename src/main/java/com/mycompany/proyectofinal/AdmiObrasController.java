@@ -3,13 +3,12 @@ package com.mycompany.proyectofinal;
 import com.mycompany.proyectofinal.AccesoDatos.DAOs.*;
 import com.mycompany.proyectofinal.ModelosPOJOs.*;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -33,19 +32,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 /**
- * Controlador principal para administrar obras.
- * Apuntes rápidos (humanos):
- * - Carga imágenes desde resources o filesystem; no muestra alerta modal si falla (solo limpia).
- * - Combo de audios permite seleccionar rutas; botón btn_Audios reproduce/pausa el seleccionado.
- * - Si el audio está dentro del JAR lo extrae a un temp file (Media necesita URI de archivo).
- * - Normaliza rutas (convierte "\" a "/") para evitar problemas en Windows/JAR.
- * - Mantén javafx-media en el classpath (pom.xml).
+ * AdmiObrasController completo — apuntes rápidos en comentarios.
+ *
+ * NOTA: esta versión carga LOS AUDIOS desde la carpeta de recursos "SONIDOS/"
+ *       (primero intenta classpath/JAR, luego src/main/resources en dev).
+ *       No usa la BD para audios.
  */
 public class AdmiObrasController implements Initializable {
 
-    // --- UI bindings (asegúrate de que los fx:id coincidan en tu FXML) ---
+    // --- UI (asegúrate de que los fx:id en tu FXML coincidan) ---
     @FXML private TableView<ObraCompleta> tblObras;
     @FXML private TableColumn<ObraCompleta, Integer> col_id;
     @FXML private TableColumn<ObraCompleta, String> col_titulo;
@@ -64,7 +62,7 @@ public class AdmiObrasController implements Initializable {
     @FXML private TextArea txt_fechaI;
 
     @FXML private ComboBox<String> cmb_imagen;
-    @FXML private ComboBox<String> cmb_audio;
+    @FXML private ComboBox<String> cmb_audio;          // <-- audios mostrados como rutas tipo "SONIDOS/archivo.mp3"
     @FXML private ComboBox<Sala> cmb_sala;
     @FXML private ComboBox<TipoObra> cmb_tipoObra;
     @FXML private ComboBox<Autor> cmb_autor;
@@ -76,9 +74,7 @@ public class AdmiObrasController implements Initializable {
     @FXML private Button btn_eliminar;
     @FXML private Button btn_limpiar;
     @FXML private Button btn_buscar;
-
-    // botón para reproducir/pausar audio (usa el fx:id que ya tienes)
-    @FXML private Button btn_Audios;
+    @FXML private Button btn_Audios; // botón para reproducir audio
 
     @FXML private AnchorPane col_idObra;
 
@@ -89,15 +85,17 @@ public class AdmiObrasController implements Initializable {
     private AutorDAO autorDAO;
     private ObraAutorDAO obraAutorDAO;
     private ObservableList<ObraCompleta> obrasList;
-
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    // --- Media player (audio) ---
+    // MediaPlayer para reproducir audio (reutilizable)
     private MediaPlayer mediaPlayer;
-    private final List<File> tempAudioFiles = new ArrayList<>(); // archivos temporales extraídos del JAR
+
+    // Carpeta de recursos donde están los audios (ajústala si usas otro path)
+    private static final String RECURSO_SONIDOS = "SONIDOS";
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // inicializar DAOs
         obraDAO = new ObraDAO();
         salaDAO = new SalaDAO();
         tipoObraDAO = new TipoObraDAO();
@@ -112,6 +110,9 @@ public class AdmiObrasController implements Initializable {
         configurarEventos();
     }
 
+    // --------------------------
+    // Configurar la tabla
+    // --------------------------
     private void configurarTabla() {
         col_id.setCellValueFactory(new PropertyValueFactory<>("idObra"));
         col_titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
@@ -126,30 +127,38 @@ public class AdmiObrasController implements Initializable {
 
         tblObras.setItems(obrasList);
 
-        // al seleccionar una fila, actualizar campos y combos
-        tblObras.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> {
-            if (newSel != null) llenarCampos(newSel);
-        });
+        // cuando seleccionas fila, llenamos campos (y seleccionamos en combos)
+        tblObras.getSelectionModel().selectedItemProperty().addListener(
+            (obs, oldSelection, newSelection) -> {
+                if (newSelection != null) {
+                    llenarCampos(newSelection);
+                }
+            }
+        );
     }
 
-    // -------------------------
-    // UTIL: listar recursos dentro de resources/<recursoPath>
-    // devuelve rutas como "RECURSOS/AdminImagenes/archivo.jpg"
-    // funciona en IDE y en JAR
-    // -------------------------
+    // --------------------------
+    // Listar recursos dentro de resources/<ruta>
+    // - devuelve rutas tipo "SONIDOS/archivo.mp3"
+    // - funciona en IDE y en JAR
+    // --------------------------
     private List<String> listarRecursos(String recursoPath) {
         List<String> archivos = new ArrayList<>();
         try {
+            // intento 1: classloader
             URL dirURL = getClass().getClassLoader().getResource(recursoPath);
             if (dirURL != null) {
                 String protocol = dirURL.getProtocol();
                 if ("file".equals(protocol)) {
                     Path folder = Paths.get(dirURL.toURI());
-                    try (java.nio.file.DirectoryStream<Path> ds = Files.newDirectoryStream(folder)) {
-                        for (Path p : ds) if (Files.isRegularFile(p)) archivos.add(recursoPath + "/" + p.getFileName().toString());
+                    try (DirectoryStream<Path> ds = Files.newDirectoryStream(folder)) {
+                        for (Path p : ds) {
+                            if (Files.isRegularFile(p)) archivos.add(recursoPath + "/" + p.getFileName().toString());
+                        }
                     }
                     return archivos;
                 } else if ("jar".equals(protocol)) {
+                    // dentro de JAR: recorrer entradas
                     String path = dirURL.getPath();
                     String jarPath = path.substring(path.indexOf("file:") + 5, path.indexOf("!"));
                     jarPath = URLDecoder.decode(jarPath, "UTF-8");
@@ -158,17 +167,22 @@ public class AdmiObrasController implements Initializable {
                         while (entries.hasMoreElements()) {
                             JarEntry entry = entries.nextElement();
                             String name = entry.getName();
-                            if (name.startsWith(recursoPath + "/") && !entry.isDirectory()) archivos.add(name);
+                            if (name.startsWith(recursoPath + "/") && !entry.isDirectory()) {
+                                archivos.add(name);
+                            }
                         }
                     }
                     return archivos;
                 }
             }
-            // fallback dev
+
+            // fallback dev: carpeta src/main/resources/<recursoPath>
             File devDir = new File("src/main/resources/" + recursoPath);
             if (devDir.exists() && devDir.isDirectory()) {
                 File[] files = devDir.listFiles();
-                if (files != null) for (File f : files) if (f.isFile()) archivos.add(recursoPath + "/" + f.getName());
+                if (files != null) {
+                    for (File f : files) if (f.isFile()) archivos.add(recursoPath + "/" + f.getName());
+                }
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -176,67 +190,156 @@ public class AdmiObrasController implements Initializable {
         return archivos;
     }
 
-    // -------------------------
-    // Cargar datos en combos
-    // - salas, tipos y autores: objetos (muestran toString)
-    // - imágenes: preferir carpeta resources, sino BD
-    // - audios: desde BD (o resources si quieres)
-    // -------------------------
+    // --------------------------
+    // Cargar combos (salas, tipos, autores, imágenes, audios)
+    // Audios: los cargamos SIEMPRE desde RECURSO_SONIDOS (no BD).
+    // --------------------------
     private void cargarCombos() {
         try {
+            // objetos completos para salas/tipos/autores
             cmb_sala.setItems(FXCollections.observableArrayList(salaDAO.listarSalas()));
             cmb_tipoObra.setItems(FXCollections.observableArrayList(tipoObraDAO.listarTiposObra()));
             cmb_autor.setItems(FXCollections.observableArrayList(autorDAO.listarAutores()));
 
+            // imágenes (igual que antes, intenta recursos o BD)
             List<String> imgs = listarRecursos("RECURSOS/AdminImagenes");
-            if (!imgs.isEmpty()) cmb_imagen.setItems(FXCollections.observableArrayList(imgs));
-            else cmb_imagen.setItems(FXCollections.observableArrayList(obraDAO.obtenerImagenes()));
+            if (!imgs.isEmpty()) {
+                cmb_imagen.setItems(FXCollections.observableArrayList(imgs));
+            } else {
+                // fallback: desde BD (si tienes)
+                cmb_imagen.setItems(FXCollections.observableArrayList(obraDAO.obtenerImagenes()));
+            }
 
-            // audios: intento BD (puedes cambiar por listarRecursos similar a imágenes)
-            cmb_audio.setItems(FXCollections.observableArrayList(obraDAO.obtenerAudios()));
+            // ===========================
+            // AUDIOS: fuerza recursos SONIDOS/
+            // ===========================
+            List<String> audios = listarRecursos(RECURSO_SONIDOS);
+            if (!audios.isEmpty()) {
+                cmb_audio.setItems(FXCollections.observableArrayList(audios));
+            } else {
+                // Si por alguna razón no hay archivos en resources/SONIDOS,
+                // puedes opcionalmente usar BD como backup; pero la petición
+                // fue "asegúrate que se carguen de las rutas SONIDOS/ no la BD",
+                // así que mostramos vacío (o podrías llenar con obraDAO.obtenerAudios()).
+                cmb_audio.setItems(FXCollections.observableArrayList());
+                System.out.println("No se encontraron audios en resources/" + RECURSO_SONIDOS);
+            }
+
         } catch (SQLException ex) {
             mostrarAlerta("Error al cargar combos", ex.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
-    // -------------------------
-    // Cargar imagen robustamente desde varias fuentes
-    // - classpath (resources)
-    // - filesystem absoluto/relativo (user.dir)
-    // - src/main/resources (modo dev)
-    // No muestra alert modal en fallo; solo limpia ImageView.
-    // -------------------------
+    // --------------------------
+    // Obtener URI utilizable por Media a partir de una ruta tipo:
+    // - dentro del JAR: "SONIDOS/file.mp3" -> extrae a temp y devuelve file:// URI
+    // - filesystem (absoluto o relativo): devuelve file:// URI
+    // - classpath directo: devuelve toExternalForm()
+    // --------------------------
+    private String obtenerUriAudioParaMedia(String ruta) throws Exception {
+        if (ruta == null || ruta.trim().isEmpty()) return null;
+        String rutaNorm = ruta.trim().replace("\\", "/");
+
+        // 1) intentar classloader directo
+        URL res = getClass().getClassLoader().getResource(rutaNorm);
+        if (res != null) {
+            // Si está dentro del JAR, URL puede ser "jar:file:/...!/..."; Media no acepta jar: URIs -> extraer si es jar
+            String protocol = res.getProtocol();
+            if ("file".equals(protocol)) {
+                return res.toURI().toString();
+            } else if ("jar".equals(protocol)) {
+                // extraer entrada a temp file
+                JarURLConnection jarCon = (JarURLConnection) res.openConnection();
+                try (InputStream is = jarCon.getInputStream()) {
+                    String tmpName = Paths.get(rutaNorm).getFileName().toString();
+                    File tmp = File.createTempFile("audio_", "_" + tmpName);
+                    tmp.deleteOnExit();
+                    try (FileOutputStream fos = new FileOutputStream(tmp)) {
+                        byte[] buf = new byte[8192];
+                        int r;
+                        while ((r = is.read(buf)) != -1) fos.write(buf, 0, r);
+                    }
+                    return tmp.toURI().toString();
+                }
+            } else {
+                // fallback: usar external form si existe
+                return res.toExternalForm();
+            }
+        }
+
+        // 2) probar como archivo en filesystem (absoluto o relativo)
+        File f = new File(rutaNorm);
+        if (!f.exists()) f = new File(System.getProperty("user.dir"), rutaNorm);
+        if (!f.exists()) f = new File("src/main/resources", rutaNorm); // modo dev
+        if (f.exists()) {
+            return f.toURI().toString();
+        }
+
+        // 3) intentar getResource con leading slash
+        res = getClass().getResource(rutaNorm.startsWith("/") ? rutaNorm : ("/" + rutaNorm));
+        if (res != null) {
+            if ("file".equals(res.getProtocol())) return res.toURI().toString();
+            // si está en jar, extraemos:
+            if ("jar".equals(res.getProtocol())) {
+                try (InputStream is = res.openStream()) {
+                    String tmpName = Paths.get(rutaNorm).getFileName().toString();
+                    File tmp = File.createTempFile("audio_", "_" + tmpName);
+                    tmp.deleteOnExit();
+                    try (FileOutputStream fos = new FileOutputStream(tmp)) {
+                        byte[] buf = new byte[8192];
+                        int r;
+                        while ((r = is.read(buf)) != -1) fos.write(buf, 0, r);
+                    }
+                    return tmp.toURI().toString();
+                }
+            }
+            return res.toExternalForm();
+        }
+
+        throw new IllegalArgumentException("No se encontró la ruta de audio: " + rutaNorm);
+    }
+
+    // --------------------------
+    // Cargar imagen (igual lógica robusta usada antes)
+    // --------------------------
     private void cargarImagenDesdeRuta(String ruta) {
         if (ruta == null || ruta.trim().isEmpty()) {
             imgV_ImagenObra.setImage(null);
             return;
         }
+
         String rutaNorm = ruta.trim().replace("\\", "/");
+
         try {
-            // try classloader resource
             URL res = getClass().getClassLoader().getResource(rutaNorm);
             if (res != null) {
                 Image img = new Image(res.toExternalForm(), false);
-                if (!img.isError()) { imgV_ImagenObra.setImage(img); return; }
+                if (!img.isError()) {
+                    imgV_ImagenObra.setImage(img);
+                    return;
+                }
             }
 
-            // try filesystem
             File f = new File(rutaNorm);
             if (!f.exists()) f = new File(System.getProperty("user.dir"), rutaNorm);
             if (!f.exists()) f = new File("src/main/resources", rutaNorm);
             if (f.exists()) {
                 Image img = new Image(f.toURI().toString(), false);
-                if (!img.isError()) { imgV_ImagenObra.setImage(img); return; }
+                if (!img.isError()) {
+                    imgV_ImagenObra.setImage(img);
+                    return;
+                }
             }
 
-            // try getResource with leading slash
-            res = getClass().getResource(rutaNorm.startsWith("/") ? rutaNorm : ("/" + rutaNorm));
-            if (res != null) {
-                Image img = new Image(res.toExternalForm(), false);
-                if (!img.isError()) { imgV_ImagenObra.setImage(img); return; }
+            URL res2 = getClass().getResource(rutaNorm.startsWith("/") ? rutaNorm : ("/" + rutaNorm));
+            if (res2 != null) {
+                Image img = new Image(res2.toExternalForm(), false);
+                if (!img.isError()) {
+                    imgV_ImagenObra.setImage(img);
+                    return;
+                }
             }
 
-            // not found
             imgV_ImagenObra.setImage(null);
             System.err.println("No se pudo localizar ni cargar la imagen: " + rutaNorm);
         } catch (Exception ex) {
@@ -245,6 +348,9 @@ public class AdmiObrasController implements Initializable {
         }
     }
 
+    // --------------------------
+    // Cargar obras en la tabla
+    // --------------------------
     private void cargarObras() {
         try {
             obrasList.setAll(obraDAO.obtenerObrasCompletas());
@@ -254,186 +360,147 @@ public class AdmiObrasController implements Initializable {
         }
     }
 
-    // -------------------------
+    // --------------------------
     // Eventos UI
-    // -------------------------
+    // --------------------------
     private void configurarEventos() {
         btn_crear.setOnAction(e -> crearObra());
         btn_actualizar.setOnAction(e -> actualizarObra());
         btn_eliminar.setOnAction(e -> eliminarObra());
         btn_limpiar.setOnAction(e -> limpiarCampos());
+        btn_buscar.setOnAction(e -> { /* implementar si tienes búsqueda */ });
 
-        // cuando eliges una imagen en el combo, la mostramos de inmediato (silencioso)
-        cmb_imagen.valueProperty().addListener((obs, oldVal, newVal) -> cargarImagenDesdeRuta(newVal));
+        // cuando el usuario selecciona una ruta en el combo, no auto-reproducimos
+        // solo cargamos el thumbnail/imagen (si quieres) o dejamos para botón.
+        cmb_imagen.valueProperty().addListener((obs, oldVal, newVal) -> {
+            cargarImagenDesdeRuta(newVal);
+        });
 
-        // botón de audios: reproduce/pausa el audio seleccionado
+        // btn_Audios reproduce/para audio seleccionado
         btn_Audios.setOnAction(e -> {
-            String sel = cmb_audio.getValue();
-            if (sel == null || sel.trim().isEmpty()) {
-                mostrarAlerta("Audio requerido", "Seleccione una ruta de audio en el combo", Alert.AlertType.WARNING);
+            String rutaSeleccionada = cmb_audio.getValue();
+            if (rutaSeleccionada == null || rutaSeleccionada.trim().isEmpty()) {
+                mostrarAlerta("Audio", "Seleccione un audio en el combo", Alert.AlertType.INFORMATION);
                 return;
             }
-            try {
-                // si ya hay reproductor y está reproduciendo -> pausa
-                if (mediaPlayer != null) {
-                    MediaPlayer.Status st = mediaPlayer.getStatus();
-                    if (st == MediaPlayer.Status.PLAYING) {
-                        mediaPlayer.pause();
-                        btn_Audios.setText("▶"); // pequeño feedback
-                        return;
-                    } else if (st == MediaPlayer.Status.PAUSED || st == MediaPlayer.Status.STOPPED || st == MediaPlayer.Status.READY) {
-                        mediaPlayer.play();
-                        btn_Audios.setText("⏸");
-                        return;
-                    }
-                }
-                // si no hay mediaPlayer o no listo -> crear y reproducir
-                String uri = obtenerUriAudioParaMedia(sel);
-                if (uri == null) {
-                    mostrarAlerta("Audio no encontrado", "No fue posible localizar el archivo de audio seleccionado.", Alert.AlertType.ERROR);
-                    return;
-                }
-                prepararYReproducirMedia(uri);
-                btn_Audios.setText("⏸");
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                mostrarAlerta("Error audio", "No se pudo reproducir el audio: " + ex.getMessage(), Alert.AlertType.ERROR);
-            }
+            reproducirAudioSeleccionado(rutaSeleccionada);
         });
     }
 
-    // -------------------------
-    // AUDIO helpers
-    // - obtiene URI usable por Media (file:///...)
-    // - si el recurso está dentro del JAR, extrae a temp file
-    // -------------------------
-    private String obtenerUriAudioParaMedia(String ruta) {
-        if (ruta == null) return null;
-        String rutaNorm = ruta.trim().replace("\\", "/");
+    // --------------------------
+    // Reproducir audio seleccionado (manejo de MediaPlayer)
+    // --------------------------
+    private void reproducirAudioSeleccionado(String ruta) {
         try {
-            // classpath
-            URL res = getClass().getClassLoader().getResource(rutaNorm);
-            if (res != null) {
-                String protocol = res.getProtocol();
-                if ("file".equals(protocol)) return res.toExternalForm();
-                // probable jar -> extraer
-                try (InputStream is = getClass().getClassLoader().getResourceAsStream(rutaNorm)) {
-                    if (is == null) return null;
-                    String ext = "";
-                    int dot = rutaNorm.lastIndexOf('.');
-                    if (dot > 0) ext = rutaNorm.substring(dot);
-                    Path tmp = Files.createTempFile("audio_", ext);
-                    Files.copy(is, tmp, StandardCopyOption.REPLACE_EXISTING);
-                    File tmpFile = tmp.toFile();
-                    tmpFile.deleteOnExit();
-                    tempAudioFiles.add(tmpFile);
-                    return tmpFile.toURI().toString();
-                }
+            // parar si ya había algo reproduciéndose
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+                mediaPlayer.dispose();
+                mediaPlayer = null;
             }
 
-            // filesystem
-            File f = new File(rutaNorm);
-            if (!f.exists()) f = new File(System.getProperty("user.dir"), rutaNorm);
-            if (!f.exists()) f = new File("src/main/resources", rutaNorm);
-            if (f.exists()) return f.toURI().toString();
-
-            // última chance: getResource con leading slash y file protocol
-            res = getClass().getResource(rutaNorm.startsWith("/") ? rutaNorm : ("/" + rutaNorm));
-            if (res != null && "file".equals(res.getProtocol())) return res.toExternalForm();
+            String uri = obtenerUriAudioParaMedia(ruta);
+            Media media = new Media(uri);
+            mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.setStartTime(Duration.ZERO);
+            mediaPlayer.setOnError(() -> {
+                Throwable err = mediaPlayer.getError();
+                err.printStackTrace();
+                mostrarAlerta("Error de reproducción", "No se pudo reproducir audio: " + (err != null ? err.getMessage() : "unknown"), Alert.AlertType.ERROR);
+            });
+            mediaPlayer.play();
+        } catch (IllegalArgumentException iae) {
+            iae.printStackTrace();
+            mostrarAlerta("Audio no encontrado", iae.getMessage(), Alert.AlertType.ERROR);
         } catch (Exception ex) {
             ex.printStackTrace();
+            mostrarAlerta("Error", "Fallo al reproducir audio: " + ex.getMessage(), Alert.AlertType.ERROR);
         }
-        return null;
     }
 
-    private void prepararYReproducirMedia(String uri) {
-        // limpiar anterior
-        if (mediaPlayer != null) {
-            try { mediaPlayer.stop(); mediaPlayer.dispose(); } catch (Exception ignored) {}
-            mediaPlayer = null;
-        }
-        Media media = new Media(uri);
-        mediaPlayer = new MediaPlayer(media);
-
-        mediaPlayer.setOnError(() -> {
-            System.err.println("Media error: " + mediaPlayer.getError());
-            mostrarAlerta("Error de reproducción", "No se pudo reproducir el audio: " + mediaPlayer.getError(), Alert.AlertType.ERROR);
-        });
-
-        mediaPlayer.setOnEndOfMedia(() -> {
-            btn_Audios.setText("▶");
-            try { mediaPlayer.stop(); } catch (Exception ignored) {}
-        });
-
-        mediaPlayer.play();
-    }
-
-    // -------------------------
-    // Llenar campos al seleccionar fila
-    // - selecciona la imagen en el combo y la carga
-    // - selecciona el audio en el combo (no lo reproduce automáticamente)
-    // - selecciona sala/tipo/autor (objeto)
-    // -------------------------
+    // --------------------------
+    // Llenar campos cuando seleccionas una fila
+    // - selecciona la ruta de imagen/audio en los combos
+    // - carga la imagen silenciosamente
+    // --------------------------
     private void llenarCampos(ObraCompleta obra) {
         txt_id.setText(String.valueOf(obra.getIdObra()));
         txt_titulo.setText(obra.getTitulo());
         txt_descripcion.setText(obra.getDescripcion());
 
-        if (obra.getFechaCreacion() != null) txt_fechaC.setText(obra.getFechaCreacion().toString()); else txt_fechaC.clear();
-        if (obra.getFechaIngreso() != null) txt_fechaI.setText(obra.getFechaIngreso().toString()); else txt_fechaI.clear();
+        if (obra.getFechaCreacion() != null) {
+            txt_fechaC.setText(obra.getFechaCreacion().toString());
+        } else {
+            txt_fechaC.clear();
+        }
+        if (obra.getFechaIngreso() != null) {
+            txt_fechaI.setText(obra.getFechaIngreso().toString());
+        } else {
+            txt_fechaI.clear();
+        }
 
-        // imagen: seleccionar por ruta normalizada y forzar carga
+        // Seleccionar imagen en combo comparando rutas normalizadas
         if (obra.getRutaImagen() != null) {
             String rutaObra = obra.getRutaImagen().trim().replace("\\", "/");
             cmb_imagen.getItems().stream()
                 .filter(img -> img != null && img.trim().replace("\\", "/").equals(rutaObra))
-                .findFirst().ifPresent(img -> cmb_imagen.getSelectionModel().select(img));
+                .findFirst()
+                .ifPresent(img -> cmb_imagen.getSelectionModel().select(img));
             cargarImagenDesdeRuta(rutaObra);
         } else {
             cmb_imagen.getSelectionModel().clearSelection();
             imgV_ImagenObra.setImage(null);
         }
 
-        // audio: seleccionar en combo, no reproducir
+        // Seleccionar audio: buscamos la ruta en el combo de audios
         if (obra.getRutaAudio() != null) {
             String rutaAud = obra.getRutaAudio().trim().replace("\\", "/");
             cmb_audio.getItems().stream()
                 .filter(a -> a != null && a.trim().replace("\\", "/").equals(rutaAud))
-                .findFirst().ifPresent(a -> cmb_audio.getSelectionModel().select(a));
-            // detener reproductor si estaba en uso
-            if (mediaPlayer != null) { try { mediaPlayer.stop(); mediaPlayer.dispose(); } catch (Exception ignored) {} mediaPlayer = null; btn_Audios.setText("▶"); }
+                .findFirst()
+                .ifPresent(a -> cmb_audio.getSelectionModel().select(a));
+            // NO reproducimos automáticamente; el usuario usa btn_Audios
         } else {
             cmb_audio.getSelectionModel().clearSelection();
         }
 
-        // sala
+        // Sala
         if (obra.getNombreSala() != null) {
             String nombreSala = obra.getNombreSala();
             cmb_sala.getItems().stream()
                 .filter(s -> s.getNombreSala() != null && s.getNombreSala().equals(nombreSala))
-                .findFirst().ifPresent(s -> cmb_sala.getSelectionModel().select(s));
-        } else cmb_sala.getSelectionModel().clearSelection();
+                .findFirst()
+                .ifPresent(s -> cmb_sala.getSelectionModel().select(s));
+        } else {
+            cmb_sala.getSelectionModel().clearSelection();
+        }
 
-        // tipo obra
+        // TipoObra
         if (obra.getNombreTipoObra() != null) {
             String nombreTipo = obra.getNombreTipoObra();
             cmb_tipoObra.getItems().stream()
                 .filter(t -> t.getNombreTipoObra() != null && t.getNombreTipoObra().equals(nombreTipo))
-                .findFirst().ifPresent(t -> cmb_tipoObra.getSelectionModel().select(t));
-        } else cmb_tipoObra.getSelectionModel().clearSelection();
+                .findFirst()
+                .ifPresent(t -> cmb_tipoObra.getSelectionModel().select(t));
+        } else {
+            cmb_tipoObra.getSelectionModel().clearSelection();
+        }
 
-        // autor (por "Nombre Apellido")
+        // Autor
         if (obra.getNombreAutor() != null) {
             String nombreAutor = obra.getNombreAutor();
             cmb_autor.getItems().stream()
                 .filter(a -> (a.getNombre() + " " + a.getApellido()).equals(nombreAutor))
-                .findFirst().ifPresent(a -> cmb_autor.getSelectionModel().select(a));
-        } else cmb_autor.getSelectionModel().clearSelection();
+                .findFirst()
+                .ifPresent(a -> cmb_autor.getSelectionModel().select(a));
+        } else {
+            cmb_autor.getSelectionModel().clearSelection();
+        }
     }
 
-    // -------------------------
-    // Helpers para parseo de fechas
-    // -------------------------
+    // --------------------------
+    // parseo seguro de fecha (devuelve null si no es válido)
+    // --------------------------
     private java.sql.Date parseDateOrNull(String texto) {
         if (texto == null || texto.trim().isEmpty()) return null;
         try {
@@ -444,16 +511,19 @@ public class AdmiObrasController implements Initializable {
         }
     }
 
-    // -------------------------
-    // CRUD: crear / actualizar / eliminar
-    // -------------------------
+    // --------------------------
+    // Crear obra
+    // --------------------------
     private void crearObra() {
         try {
             Obra nueva = new Obra();
             nueva.setTitulo(txt_titulo.getText());
             nueva.setDescripcion(txt_descripcion.getText());
-            nueva.setFechaCreacion(parseDateOrNull(txt_fechaC.getText()));
-            nueva.setFechaIngreso(parseDateOrNull(txt_fechaI.getText()));
+
+            java.sql.Date fechaC = parseDateOrNull(txt_fechaC.getText());
+            java.sql.Date fechaI = parseDateOrNull(txt_fechaI.getText());
+            nueva.setFechaCreacion(fechaC);
+            nueva.setFechaIngreso(fechaI);
 
             String rutaImg = cmb_imagen.getValue();
             if (rutaImg != null) rutaImg = rutaImg.trim().replace("\\", "/");
@@ -465,7 +535,10 @@ public class AdmiObrasController implements Initializable {
 
             Sala salaSeleccionada = cmb_sala.getSelectionModel().getSelectedItem();
             TipoObra tipoSeleccionado = cmb_tipoObra.getSelectionModel().getSelectedItem();
-            if (salaSeleccionada == null || tipoSeleccionado == null) { mostrarAlerta("Campos requeridos", "Seleccione sala y tipo de obra", Alert.AlertType.WARNING); return; }
+            if (salaSeleccionada == null || tipoSeleccionado == null) {
+                mostrarAlerta("Campos requeridos", "Seleccione sala y tipo de obra", Alert.AlertType.WARNING);
+                return;
+            }
 
             nueva.setSalaId(salaSeleccionada.getIdSala());
             nueva.setTipoObraId(tipoSeleccionado.getIdTipoObra());
@@ -473,7 +546,9 @@ public class AdmiObrasController implements Initializable {
             int idGenerado = obraDAO.insertarObra(nueva);
 
             Autor autorSeleccionado = cmb_autor.getSelectionModel().getSelectedItem();
-            if (autorSeleccionado != null) obraAutorDAO.asociarAutorObra(idGenerado, autorSeleccionado.getId(), 1);
+            if (autorSeleccionado != null) {
+                obraAutorDAO.asociarAutorObra(idGenerado, autorSeleccionado.getId(), 1);
+            }
 
             mostrarAlerta("Éxito", "Obra creada con ID: " + idGenerado, Alert.AlertType.INFORMATION);
             cargarObras();
@@ -483,13 +558,20 @@ public class AdmiObrasController implements Initializable {
         }
     }
 
+    // --------------------------
+    // Actualizar obra
+    // --------------------------
     private void actualizarObra() {
-        if (txt_id.getText().isEmpty()) { mostrarAlerta("Selección requerida", "Seleccione una obra", Alert.AlertType.WARNING); return; }
+        if (txt_id.getText().isEmpty()) {
+            mostrarAlerta("Selección requerida", "Seleccione una obra", Alert.AlertType.WARNING);
+            return;
+        }
         try {
             Obra obra = new Obra();
             obra.setId(Integer.parseInt(txt_id.getText()));
             obra.setTitulo(txt_titulo.getText());
             obra.setDescripcion(txt_descripcion.getText());
+
             obra.setFechaCreacion(parseDateOrNull(txt_fechaC.getText()));
             obra.setFechaIngreso(parseDateOrNull(txt_fechaI.getText()));
 
@@ -503,16 +585,22 @@ public class AdmiObrasController implements Initializable {
 
             Sala salaSeleccionada = cmb_sala.getSelectionModel().getSelectedItem();
             TipoObra tipoSeleccionado = cmb_tipoObra.getSelectionModel().getSelectedItem();
-            if (salaSeleccionada == null || tipoSeleccionado == null) { mostrarAlerta("Campos requeridos", "Seleccione sala y tipo de obra", Alert.AlertType.WARNING); return; }
+            if (salaSeleccionada == null || tipoSeleccionado == null) {
+                mostrarAlerta("Campos requeridos", "Seleccione sala y tipo de obra", Alert.AlertType.WARNING);
+                return;
+            }
 
             obra.setSalaId(salaSeleccionada.getIdSala());
             obra.setTipoObraId(tipoSeleccionado.getIdTipoObra());
 
             obraDAO.actualizarObra(obra);
 
+            // actualizar asociación autor
             obraAutorDAO.desasociarTodosAutoresObra(obra.getId());
             Autor autorSeleccionado = cmb_autor.getSelectionModel().getSelectedItem();
-            if (autorSeleccionado != null) obraAutorDAO.asociarAutorObra(obra.getId(), autorSeleccionado.getId(), 1);
+            if (autorSeleccionado != null) {
+                obraAutorDAO.asociarAutorObra(obra.getId(), autorSeleccionado.getId(), 1);
+            }
 
             mostrarAlerta("Éxito", "Obra actualizada correctamente", Alert.AlertType.INFORMATION);
             cargarObras();
@@ -523,8 +611,14 @@ public class AdmiObrasController implements Initializable {
         }
     }
 
+    // --------------------------
+    // Eliminar obra
+    // --------------------------
     private void eliminarObra() {
-        if (txt_id.getText().isEmpty()) { mostrarAlerta("Selección requerida", "Seleccione una obra", Alert.AlertType.WARNING); return; }
+        if (txt_id.getText().isEmpty()) {
+            mostrarAlerta("Selección requerida", "Seleccione una obra", Alert.AlertType.WARNING);
+            return;
+        }
         try {
             obraDAO.eliminarObra(Integer.parseInt(txt_id.getText()));
             mostrarAlerta("Éxito", "Obra eliminada correctamente", Alert.AlertType.INFORMATION);
@@ -537,9 +631,9 @@ public class AdmiObrasController implements Initializable {
         }
     }
 
-    // -------------------------
-    // limpiar campos UI
-    // -------------------------
+    // --------------------------
+    // Limpiar campos
+    // --------------------------
     private void limpiarCampos() {
         txt_id.clear();
         txt_titulo.clear();
@@ -554,17 +648,17 @@ public class AdmiObrasController implements Initializable {
         imgV_ImagenObra.setImage(null);
         tblObras.getSelectionModel().clearSelection();
 
-        // detener audio si está sonando y limpiar mediaPlayer
+        // parar audio si estaba sonando
         if (mediaPlayer != null) {
-            try { mediaPlayer.stop(); mediaPlayer.dispose(); } catch (Exception ignored) {}
+            mediaPlayer.stop();
+            mediaPlayer.dispose();
             mediaPlayer = null;
-            btn_Audios.setText("▶");
         }
     }
 
-    // -------------------------
-    // util UI: show alert
-    // -------------------------
+    // --------------------------
+    // 
+    // --------------------------
     private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);

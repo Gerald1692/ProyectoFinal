@@ -15,7 +15,7 @@
       <AnchorPane fx:id="col_idObra" prefHeight="700.0" prefWidth="700.0">
          <children>
             <!-- Tabla de Obras (fx:id y columnas sincronizadas con el controlador) -->
-            <TableView fx:id="tblObras" layoutX="179.0" layoutY="88.0" prefHeight="200.0" prefWidth="707.0">
+            <TableView fx:id="tblObras" layoutX="179.0" layoutY="88.0" prefHeight="258.0" prefWidth="707.0">
               <columns>
                 <TableColumn fx:id="col_id" prefWidth="30.0" text="ID" />
                 <TableColumn fx:id="col_titulo" prefWidth="75.0" text="Título" />
