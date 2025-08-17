@@ -56,7 +56,7 @@ public class Sala {
     }
      @Override
     public String toString() {
-        return nombreSala; // 👈 Esto hace que se muestre bonito en el ComboBox
+        return nombreSala; // 
     }
     
 }

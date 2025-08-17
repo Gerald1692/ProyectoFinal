@@ -14,9 +14,8 @@ public class Obra {
     private int tipoObraId;
     private int salaId;
     
-    // Constructores
     public Obra() {}
-    
+
     public Obra(String titulo, String descripcion, Date fechaCreacion, 
                 Date fechaIngreso, String rutaImagen, String rutaAudio, 
                 int autorId, int tipoObraId, int salaId) {
@@ -31,7 +30,6 @@ public class Obra {
         this.salaId = salaId;
     }
     
-    // Getters y Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     
@@ -61,4 +59,21 @@ public class Obra {
     
     public int getSalaId() { return salaId; }
     public void setSalaId(int salaId) { this.salaId = salaId; }
+
+    @Override
+    public String toString() {
+        // útil si usas Obra en ComboBox; por ahora no se usa, así que devolvemos título
+        return titulo != null ? titulo : super.toString()+ rutaImagen + rutaAudio;
+    }
 }
+
+    
+    
+    
+  
+      
+      
+    
+    
+      
+   
