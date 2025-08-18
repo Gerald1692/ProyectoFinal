@@ -246,7 +246,7 @@ public List<Obra> obtenerTodasObrasSimple() throws SQLException {
         try (Connection conn = DatabaseConnection.connect();
              CallableStatement cstmt = conn.prepareCall(sql)) {
 
-            cstmt.registerOutParameter(1, Types.REF_CURSOR);
+            cstmt.registerOutParameter(1, OracleTypes.CURSOR);
             cstmt.setInt(2, idSala);
             cstmt.execute();
 
@@ -262,7 +262,6 @@ public List<Obra> obtenerTodasObrasSimple() throws SQLException {
         }
         return obras;
     }
-    
  
  public Obra obtenerObraPorId(int idObra) throws SQLException {
     Obra obra = null;

@@ -4,6 +4,7 @@ import com.mycompany.proyectofinal.AccesoDatos.DAOs.ObraDAO;
 import com.mycompany.proyectofinal.App;
 import com.mycompany.proyectofinal.App;
 import com.mycompany.proyectofinal.ModelosPOJOs.Obra;
+import com.mycompany.proyectofinal.util.SesionSala;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -35,68 +36,46 @@ public class SalaSimple1Controller {
     }
 
     public void initialize() {
+        int idSala = SesionSala.getIdSala(); // ← Recupera el idSala que seteó PrimaryController
+        cargarObrasDeSala(idSala);
+    }
+
+   
+
+    private void cargarObrasDeSala(int idSala) {
         try {
-            cargarObrasDeSala(idSala);
+            ObraDAO dao = new ObraDAO();
+            List<Obra> obras = dao.obtenerObrasPorSala(idSala);
+
+            int col = 0, row = 0;
+            for (Obra obra : obras) {
+                VBox contenedor = new VBox(5);
+
+                ImageView imageView = new ImageView();
+                imageView.setFitWidth(150);
+                imageView.setFitHeight(150);
+
+                if (obra.getRutaImagen() != null) {
+                    try {
+                        imageView.setImage(new Image("file:" + obra.getRutaImagen()));
+                    } catch (Exception e) {
+                        System.out.println("Error cargando imagen: " + obra.getRutaImagen());
+                    }
+                }
+
+                Label titulo = new Label(obra.getTitulo());
+                contenedor.getChildren().addAll(imageView, titulo);
+
+                gridObras.add(contenedor, col, row);
+
+                col++;
+                if (col == 3) { col = 0; row++; }
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-   public void cargarObrasDeSala(int idSala) throws SQLException {
-    gridObras.getChildren().clear();
-
-    List<Obra> obras = obraDAO.obtenerObrasPorSala(idSala);
-    int col = 0, row = 0;
-
-    for (Obra obra : obras) {
-        VBox contenedor = new VBox(5);
-        contenedor.setPadding(new Insets(5));
-
-        ImageView imageView = new ImageView();
-        String rutaImagen = obra.getRutaImagen();
-        
-        // Cargar imagen como recurso interno
-        if (rutaImagen != null && !rutaImagen.isBlank()) {
-            try {
-                // Normalizar ruta: quitar prefijo "RECURSOS/" si existe
-                String rutaNormalizada = rutaImagen.replace("RECURSOS/", "");
-                
-                // Cargar imagen desde recursos
-                InputStream imgStream = getClass().getResourceAsStream("/" + rutaNormalizada);
-                if (imgStream != null) {
-                    Image img = new Image(imgStream);
-                    imageView.setImage(img);
-                } else {
-                    System.err.println("No se encontró la imagen: " + rutaNormalizada);
-                    // Cargar placeholder si la imagen no existe
-                    imgStream = getClass().getResourceAsStream("/imagenes/placeholder.png");
-                    if (imgStream != null) {
-                        imageView.setImage(new Image(imgStream));
-                    }
-                }
-            } catch (Exception e) {
-                System.err.println("Error cargando imagen: " + e.getMessage());
-                e.printStackTrace();
-            }
-        }
-        
-        imageView.setFitWidth(150);
-        imageView.setFitHeight(150);
-        imageView.setPreserveRatio(true);
-        
-        Label titulo = new Label(obra.getTitulo());
-        contenedor.getChildren().addAll(imageView, titulo);
-        contenedor.setUserData(obra.getId());
-        contenedor.setOnMouseClicked(this::abrirObra);
-        gridObras.add(contenedor, col, row);
-
-        col++;
-        if (col == 3) {
-            col = 0;
-            row++;
-        }
-    }
-   }
     private void abrirObra(MouseEvent event) {
         Node source = (Node) event.getSource();
         Integer idObra = (Integer) source.getUserData();

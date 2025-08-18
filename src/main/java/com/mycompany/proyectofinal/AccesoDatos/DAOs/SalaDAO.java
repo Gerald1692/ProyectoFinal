@@ -67,7 +67,27 @@ public class SalaDAO {
             cstmt.execute();
         }
     }
+public Sala obtenerSalaPorId(int idSala) throws SQLException {
+    String sql = "SELECT id_sala, nombre_sala, tematica, numero_puerta FROM MARCE.SALA WHERE id_sala = ?";
+    try (Connection conn = DatabaseConnection.connect();
+         java.sql.PreparedStatement ps = conn.prepareStatement(sql)) {
 
+        ps.setInt(1, idSala);
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                Sala sala = new Sala();
+                sala.setIdSala(rs.getInt("id_sala"));
+                sala.setNombreSala(rs.getString("nombre_sala"));
+                sala.setTematica(rs.getString("tematica"));
+                sala.setNumeroPuerta(rs.getInt("numero_puerta"));
+                return sala;
+            } else {
+                return null; // no encontrada
+            }
+        }
+    }
+    
+}
     
     public List<Sala> listarSalas() throws SQLException {
     List<Sala> salas = new ArrayList<>();
@@ -87,6 +107,7 @@ public class SalaDAO {
     }
     return salas;
 }
+    
     
     
 }

@@ -17,6 +17,7 @@ com\mycompany\proyectofinal\Controllers\Sala1Controller.class
 com\mycompany\proyectofinal\Controllers\SalaSimple3Controller.class
 module-info.class
 com\mycompany\proyectofinal\ModelosPOJOs\Sala.class
+com\mycompany\proyectofinal\util\SesionSala.class
 com\mycompany\proyectofinal\AdmiUsuariosController.class
 com\mycompany\proyectofinal\App.class
 com\mycompany\proyectofinal\Controllers\RecuperarController.class
