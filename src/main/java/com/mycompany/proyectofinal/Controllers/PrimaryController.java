@@ -71,14 +71,14 @@ private void irSalaSimple1() throws IOException {
 private void irSalaSimple2() throws IOException {
     SesionSala.setIdSala(4); // Sala Renacentista
     System.out.println("se paso el id"+ SesionSala.getIdSala());
-    App.setRoot("SalaSimple2");
+    App.setRoot("SalaSimple1");
 }
 
 @FXML
 private void irSalaSimple3() throws IOException {
     SesionSala.setIdSala(5); // Sala Egipto
     System.out.println("se paso el id"+ SesionSala.getIdSala());
-    App.setRoot("SalaSimple3");
+    App.setRoot("SalaSimple1");
 }
 
 
