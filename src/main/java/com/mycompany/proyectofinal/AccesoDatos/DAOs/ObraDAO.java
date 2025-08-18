@@ -262,5 +262,41 @@ public List<Obra> obtenerTodasObrasSimple() throws SQLException {
         }
         return obras;
     }
+    
+ 
+ public Obra obtenerObraPorId(int idObra) throws SQLException {
+    Obra obra = null;
+    String sql = "{ ? = call MARCE.OBTENER_OBRA_POR_ID(?) }";
+
+    try (Connection conn = DatabaseConnection.connect();
+         CallableStatement cstmt = conn.prepareCall(sql)) {
+
+        cstmt.registerOutParameter(1, OracleTypes.CURSOR);
+        cstmt.setInt(2, idObra);
+        cstmt.execute();
+
+        try (ResultSet rs = (ResultSet) cstmt.getObject(1)) {
+            if (rs.next()) {
+                obra = new Obra();
+                obra.setId(rs.getInt("ID_OBRA"));
+                obra.setTitulo(rs.getString("TITULO"));
+                obra.setDescripcion(rs.getString("DESCRIPCION"));
+                obra.setFechaCreacion(rs.getDate("FECHA_CREACION"));
+                obra.setFechaIngreso(rs.getDate("FECHA_INGRESO"));
+                obra.setRutaImagen(normalizeRuta(rs.getString("RUTA_IMAGEN")));
+                obra.setRutaAudio(normalizeRuta(rs.getString("RUTA_AUDIO")));
+                obra.setAutorId(rs.getInt("ID_AUTOR"));
+                obra.setTipoObraId(rs.getInt("ID_TIPO_OBRA"));
+                obra.setSalaId(rs.getInt("ID_SALA"));
+
+                // datos adicionales del join
+                obra.setNombreTipoObra(rs.getString("NOMBRE_TIPO_OBRA"));
+                obra.setTecnica(rs.getString("TECNICA"));
+                obra.setNombreSala(rs.getString("NOMBRE_SALA"));
+            }
+        }
+    }
+    return obra;
+}
 
 }
