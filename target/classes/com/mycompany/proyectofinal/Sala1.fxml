@@ -1,24 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.mycompany.proyectofinal.Controllers.Sala1Controller"
-      spacing="15" alignment="TOP_CENTER">
-
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
-
-    <ImageView fx:id="imagenObra" fitHeight="300" preserveRatio="true"/>
-    <Label fx:id="tituloLabel" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
-    <Label fx:id="salaLabel"/>
-    <Label fx:id="tipoLabel"/>
-    <Label fx:id="tecnicaLabel"/>
-    <TextArea fx:id="descripcionArea" prefRowCount="6" wrapText="true" editable="false"/>
-    <Label fx:id="fechaLabel"/>
-</VBox>
+<BorderPane fx:id="rootPane" prefHeight="600" prefWidth="800.0" stylesheets="@Sala1.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.Controllers.Sala1Controller">
+    
+    <!-- Encabezado minimalista CORREGIDO -->
+    <top>
+        <HBox alignment="CENTER" styleClass="header">
+            <Label prefHeight="60.0" prefWidth="178.0" styleClass="headerTitle" text="Sala #1">
+                <font>
+                    <Font name="Bodoni MT Bold" size="48.0" />
+                </font>
+            </Label>
+        </HBox>
+    </top>
+    
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER">
+            <HBox alignment="TOP_CENTER" spacing="40" style="-fx-padding: 30;">
+                <!-- Imagen a la izquierda -->
+                <VBox alignment="CENTER" prefHeight="465.0" prefWidth="262.0" styleClass="imageContainer">
+                    <ImageView fitHeight="292.0" fitWidth="280.0" preserveRatio="true" styleClass="objectImage">
+                        <image>
+                            <Image url="@../../../RECURSOS/sala1Dino.png" />
+                        </image>
+                    </ImageView>
+                </VBox>
+                
+                <!-- Información a la derecha -->
+                <VBox alignment="TOP_LEFT" prefWidth="400" spacing="20" styleClass="infoContainer">
+                    <Label prefHeight="18.0" prefWidth="191.0" styleClass="sectionTitle" text="GIGANTES DEL JURASICO" />
+                    
+                    <Text styleClass="descriptionText" text="Los dinosaurios dominaron la Tierra durante más de 180 millones de años, desde el período Triásico hasta el final del Cretácico. Estas criaturas extraordinarias, como el imponente Tyrannosaurus rex y el colosal Argentinosaurus, desarrollaron adaptaciones únicas que les permitieron conquistar todos los ecosistemas terrestres. Sus fósiles, encontrados en sedimentos de todos los continentes, revelan una sorprendente diversidad morfológica y de comportamiento que sigue fascinando a los paleontólogos." wrappingWidth="437.0" />
+                    
+                    <Text styleClass="descriptionText" text="La extinción masiva del Cretácico-Paleógeno, hace 66 millones de años, marcó el fin de su reinado, aunque su legado perdura en las aves modernas. Estudios recientes de icnitas (huellas fosilizadas) y huesos con marcas de tejidos blandos confirman que muchas especies poseían plumas, sugiriendo complejas interacciones ecológicas. Hoy, más de 1,200 géneros identificados nos ayudan a reconstruir este capítulo fundamental de la historia natural." wrappingWidth="435.0" />
+                    
+                    <Separator styleClass="separator" />
+                 <Button onAction="#reproducirSonido" prefHeight="25.0" prefWidth="441.0" styleClass="navButton" text="Reproducir Sonido " />
+                    
+                    <VBox spacing="10" style="-fx-padding: 10 0;">
+                        <Label styleClass="infoValue" text="Sala 2 - Obras Maestras del Renacimiento" />
+                        
+                        <Label styleClass="infoLabel" text="Estado:" />
+                        <Label prefHeight="17.0" prefWidth="79.0" styleClass="infoStatus" text="En exhibición" textFill="#0027e3fc" />
+                        <Label styleClass="infoValue" />
+                    </VBox>
+                </VBox>
+            </HBox>
+        </ScrollPane>
+    </center>
+    
+    <!-- Pie de página minimalista -->
+    <bottom>
+        <HBox alignment="CENTER" spacing="20" styleClass="footer">
+            <Button accessibleRoleDescription="sasa" onAction="#volverLogin" prefHeight="37.0" prefWidth="149.0" styleClass="navButton" text="Volver al Incio de Sesion " />
+            <Button onAction="#irSalaPrincipal" prefHeight="40.0" prefWidth="104.0" styleClass="navButton" text="Volver a Sala" />
+        </HBox>
+    </bottom>
+</BorderPane>

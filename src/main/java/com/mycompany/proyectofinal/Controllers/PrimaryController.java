@@ -61,12 +61,12 @@ private void irSalaSimple1() throws IOException {
 
 @FXML
 private void irSalaSimple2() throws IOException {
-    App.setRoot("SalaSimple1");
+    App.setRoot("SalaSimple2");
 }
 
 @FXML
 private void irSalaSimple3() throws IOException {
-    App.setRoot("SalaSimple1");
+    App.setRoot("SalaSimple3");
 }
 
 }
