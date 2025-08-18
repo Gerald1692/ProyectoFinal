@@ -45,49 +45,66 @@ public class Sala1Controller {
         }
     }
 
-    public void cargarObra(int idObra) {
-        ObraDAO dao = new ObraDAO();
-        try {
-            Obra obra = dao.obtenerObraPorId(idObra);
-            if (obra == null) {
-                tituloLabel.setText("Obra no encontrada");
-                descripcionArea.setText("");
-                playButton.setDisable(true);
-                return;
-            }
-
-            // Texto
-            tituloLabel.setText(obra.getTitulo() != null ? obra.getTitulo() : "");
-            subtituloLabel.setText(obra.getNombreTipoObra() != null ? obra.getNombreTipoObra() : "");
-            descripcionArea.setText(obra.getDescripcion() != null ? obra.getDescripcion() : "");
-            infoSalaLabel.setText(obra.getNombreSala() != null ? obra.getNombreSala() : "Sala " + obra.getSalaId());
-            estadoLabel.setText("En exhibición");
-
-            // Imagen segura
-            String rutaImg = obra.getRutaImagen();
-            Image img = null;
-            if (rutaImg != null && !rutaImg.isBlank()) {
-                try {
-                    String source = rutaImg.startsWith("file:") || rutaImg.startsWith("http") ? rutaImg : "file:" + rutaImg;
-                    img = new Image(source, false);
-                } catch (Exception ex) { img = null; }
-            }
-            if (img == null || img.isError()) {
-                try (InputStream is = getClass().getResourceAsStream("/imagenes/placeholder.png")) {
-                    if (is != null) img = new Image(is);
-                } catch (Exception e) { }
-            }
-            imagenObra.setImage(img);
-
-            // Audio
-            rutaAudioActual = obra.getRutaAudio();
-            playButton.setDisable(rutaAudioActual == null || rutaAudioActual.isBlank());
-            stopAndDisposePlayer();
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+   public void cargarObra(int idObra) {
+    ObraDAO dao = new ObraDAO();
+    try {
+        Obra obra = dao.obtenerObraPorId(idObra);
+        if (obra == null) {
+            tituloLabel.setText("Obra no encontrada");
+            descripcionArea.setText("");
+            playButton.setDisable(true);
+            return;
         }
+
+        // Cargar texto
+        tituloLabel.setText(obra.getTitulo() != null ? obra.getTitulo() : "");
+        subtituloLabel.setText(obra.getNombreTipoObra() != null ? obra.getNombreTipoObra() : "");
+        descripcionArea.setText(obra.getDescripcion() != null ? obra.getDescripcion() : "");
+        infoSalaLabel.setText(obra.getNombreSala() != null ? obra.getNombreSala() : "Sala " + obra.getSalaId());
+        estadoLabel.setText("En exhibición");
+
+        // Cargar imagen segura
+        String rutaImg = obra.getRutaImagen();
+        Image img = null;
+        if (rutaImg != null && !rutaImg.isBlank()) {
+            try {
+                // Normalizar ruta
+                String rutaNormalizada = rutaImg.replace("RECURSOS/", "");
+                
+                // Cargar desde recursos
+                InputStream is = getClass().getResourceAsStream("/" + rutaNormalizada);
+                if (is != null) {
+                    img = new Image(is);
+                } else {
+                    System.err.println("Imagen no encontrada: " + rutaNormalizada);
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        
+        // Cargar placeholder si no se encontró la imagen
+        if (img == null || img.isError()) {
+            try (InputStream placeholder = getClass().getResourceAsStream("/imagenes/placeholder.png")) {
+                if (placeholder != null) {
+                    img = new Image(placeholder);
+                }
+            } catch (Exception e) {
+                System.err.println("Error cargando placeholder");
+            }
+        }
+        imagenObra.setImage(img);
+
+        // Configurar audio
+        rutaAudioActual = obra.getRutaAudio();
+        playButton.setDisable(rutaAudioActual == null || rutaAudioActual.isBlank());
+        stopAndDisposePlayer();
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
     }
+   }
+   
 
     @FXML
     private void reproducirSonido() {

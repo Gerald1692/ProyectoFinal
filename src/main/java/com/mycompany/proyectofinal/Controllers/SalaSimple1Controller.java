@@ -5,6 +5,7 @@ import com.mycompany.proyectofinal.App;
 import com.mycompany.proyectofinal.App;
 import com.mycompany.proyectofinal.ModelosPOJOs.Obra;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -42,38 +43,60 @@ public class SalaSimple1Controller {
     }
 
    public void cargarObrasDeSala(int idSala) throws SQLException {
-        gridObras.getChildren().clear();
+    gridObras.getChildren().clear();
 
-        List<Obra> obras = obraDAO.obtenerObrasPorSala(idSala);
-        int col = 0, row = 0;
+    List<Obra> obras = obraDAO.obtenerObrasPorSala(idSala);
+    int col = 0, row = 0;
 
-        for (Obra obra : obras) {
-            VBox contenedor = new VBox(5);
-            contenedor.setPadding(new Insets(5));
+    for (Obra obra : obras) {
+        VBox contenedor = new VBox(5);
+        contenedor.setPadding(new Insets(5));
 
-            ImageView imageView = new ImageView();
-            if (obra.getRutaImagen() != null) {
-                imageView.setImage(new Image("file:" + obra.getRutaImagen()));
-            }
-            imageView.setFitWidth(150);
-            imageView.setFitHeight(150);
-
-            Label titulo = new Label(obra.getTitulo());
-            contenedor.getChildren().addAll(imageView, titulo);
-
-            contenedor.setUserData(obra.getId());
-            contenedor.setOnMouseClicked(this::abrirObra);
-
-            gridObras.add(contenedor, col, row);
-
-            col++;
-            if (col == 3) {
-                col = 0;
-                row++;
+        ImageView imageView = new ImageView();
+        String rutaImagen = obra.getRutaImagen();
+        
+        // Cargar imagen como recurso interno
+        if (rutaImagen != null && !rutaImagen.isBlank()) {
+            try {
+                // Normalizar ruta: quitar prefijo "RECURSOS/" si existe
+                String rutaNormalizada = rutaImagen.replace("RECURSOS/", "");
+                
+                // Cargar imagen desde recursos
+                InputStream imgStream = getClass().getResourceAsStream("/" + rutaNormalizada);
+                if (imgStream != null) {
+                    Image img = new Image(imgStream);
+                    imageView.setImage(img);
+                } else {
+                    System.err.println("No se encontró la imagen: " + rutaNormalizada);
+                    // Cargar placeholder si la imagen no existe
+                    imgStream = getClass().getResourceAsStream("/imagenes/placeholder.png");
+                    if (imgStream != null) {
+                        imageView.setImage(new Image(imgStream));
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("Error cargando imagen: " + e.getMessage());
+                e.printStackTrace();
             }
         }
-    }
+        
+        imageView.setFitWidth(150);
+        imageView.setFitHeight(150);
+        imageView.setPreserveRatio(true);
+        
+        Label titulo = new Label(obra.getTitulo());
+        contenedor.getChildren().addAll(imageView, titulo);
+        contenedor.setUserData(obra.getId());
+        contenedor.setOnMouseClicked(this::abrirObra);
+        gridObras.add(contenedor, col, row);
 
+        col++;
+        if (col == 3) {
+            col = 0;
+            row++;
+        }
+    }
+   }
     private void abrirObra(MouseEvent event) {
         Node source = (Node) event.getSource();
         Integer idObra = (Integer) source.getUserData();
