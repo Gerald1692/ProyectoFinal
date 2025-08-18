@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="rootPane" prefHeight="600" prefWidth="800.0" stylesheets="@Sala1.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.Controllers.Sala1Controller">
+<BorderPane fx:id="rootPane" prefHeight="600" prefWidth="800.0" stylesheets="@../../../com/mycompany/proyectofinal/Sala1.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.proyectofinal.Controllers.Sala1Controller">
     
     <!-- Encabezado minimalista CORREGIDO -->
     <top>

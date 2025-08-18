@@ -15,6 +15,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -59,37 +60,35 @@ public class Sala1Controller {
             infoSalaLabel.setText(obra.getNombreSala() != null ? obra.getNombreSala() : "Sala " + obra.getSalaId());
             estadoLabel.setText("En exhibición");
 
-            // Cargar imagen - SOLUCIÓN ACTUALIZADA
+            // Cargar imagen - SOLUCIÓN MEJORADA
             String rutaImg = obra.getRutaImagen();
             if (rutaImg != null && !rutaImg.isBlank()) {
                 try {
                     // Normalizar ruta
                     rutaImg = rutaImg.replace("\\", "/");
-                    if (rutaImg.startsWith("RECURSOS/")) {
-                        rutaImg = rutaImg.substring(9);
-                    }
                     
-                    // Cargar imagen usando URL
+                    // Intentar cargar como recurso
                     URL imgUrl = getClass().getResource("/" + rutaImg);
                     if (imgUrl != null) {
                         Image img = new Image(imgUrl.toExternalForm());
                         imagenObra.setImage(img);
-                    } else {
-                        throw new Exception("Imagen no encontrada: " + rutaImg);
+                    } 
+                    // Intentar cargar como archivo externo
+                    else {
+                        File imgFile = new File(rutaImg);
+                        if (imgFile.exists()) {
+                            Image img = new Image(imgFile.toURI().toString());
+                            imagenObra.setImage(img);
+                        } else {
+                            throw new Exception("Imagen no encontrada: " + rutaImg);
+                        }
                     }
                 } catch (Exception ex) {
                     System.err.println("Error cargando imagen: " + ex.getMessage());
-                    // Cargar placeholder
-                    try {
-                        URL placeholderUrl = getClass().getResource("/imagenes/placeholder.png");
-                        if (placeholderUrl != null) {
-                            Image placeholder = new Image(placeholderUrl.toExternalForm());
-                            imagenObra.setImage(placeholder);
-                        }
-                    } catch (Exception e) {
-                        System.err.println("Error cargando placeholder");
-                    }
+                    cargarPlaceholder();
                 }
+            } else {
+                cargarPlaceholder();
             }
 
             // Configurar audio
@@ -102,14 +101,44 @@ public class Sala1Controller {
         }
     }
 
+    private void cargarPlaceholder() {
+        try {
+            URL placeholderUrl = getClass().getResource("/imagenes/placeholder.png");
+            if (placeholderUrl != null) {
+                Image placeholder = new Image(placeholderUrl.toExternalForm());
+                imagenObra.setImage(placeholder);
+            }
+        } catch (Exception e) {
+            System.err.println("Error cargando placeholder");
+        }
+    }
+
     @FXML
     private void reproducirSonido() {
         if (rutaAudioActual == null || rutaAudioActual.isBlank()) return;
         try {
             if (mediaPlayer == null) {
-                String src = rutaAudioActual.startsWith("file:") || rutaAudioActual.startsWith("http")
-                        ? rutaAudioActual : "file:" + rutaAudioActual;
-                Media media = new Media(src);
+                String rutaAudio = rutaAudioActual.replace("\\", "/");
+                String mediaSource;
+                
+                // Intentar cargar como recurso interno
+                URL audioUrl = getClass().getResource("/" + rutaAudio);
+                if (audioUrl != null) {
+                    mediaSource = audioUrl.toExternalForm();
+                } 
+                // Intentar cargar como archivo externo
+                else {
+                    File audioFile = new File(rutaAudio);
+                    if (audioFile.exists()) {
+                        mediaSource = audioFile.toURI().toString();
+                    } else {
+                        System.err.println("Archivo de audio no encontrado: " + rutaAudio);
+                        playButton.setDisable(true);
+                        return;
+                    }
+                }
+                
+                Media media = new Media(mediaSource);
                 mediaPlayer = new MediaPlayer(media);
                 mediaPlayer.setOnEndOfMedia(() -> {
                     mediaPlayer.stop();
@@ -118,10 +147,11 @@ public class Sala1Controller {
                     playButton.setText("Reproducir Sonido");
                 });
             }
-            if ("Reproducir Sonido".equals(playButton.getText()) || mediaPlayer.getStatus().toString().equals("PAUSED")) {
+            if ("Reproducir Sonido".equals(playButton.getText()) || 
+                (mediaPlayer != null && mediaPlayer.getStatus().toString().equals("PAUSED"))) {
                 mediaPlayer.play();
                 playButton.setText("Pausar Sonido");
-            } else {
+            } else if (mediaPlayer != null) {
                 mediaPlayer.pause();
                 playButton.setText("Reproducir Sonido");
             }
