@@ -1,4 +1,5 @@
 package com.mycompany.proyectofinal.AccesoDatos.DAOs;
+import com.mycompany.proyectofinal.ModelosPOJOs.Sala;
 
 import com.mycompany.proyectofinal.ModelosPOJOs.*;
 import com.mycompany.proyectofinal.util.DatabaseConnection;
@@ -18,7 +19,10 @@ import oracle.jdbc.OracleTypes;
 
 public class ObraDAO {
     private Connection conn;
+    
 
+   
+    
     public ObraDAO() {
         try {
             this.conn = DatabaseConnection.connect();
@@ -202,4 +206,60 @@ public class ObraDAO {
         }
         return audios;
     }
+    
+    public List<Obra> obtenerObrasPorSala(int idSala) throws SQLException {
+    List<Obra> obras = new ArrayList<>();
+    String sql = "{ ? = call MARCE.OBTENER_OBRAS_SALA(?) }";
+    try (Connection conn = DatabaseConnection.connect();
+         CallableStatement cstmt = conn.prepareCall(sql)) {
+        
+        cstmt.registerOutParameter(1, OracleTypes.CURSOR);
+        cstmt.setInt(2, idSala);
+        cstmt.execute();
+        
+        try (ResultSet rs = (ResultSet) cstmt.getObject(1)) {
+            while (rs.next()) {
+                Obra obra = new Obra();
+                obra.setId(rs.getInt("id_obra"));
+                obra.setTitulo(rs.getString("titulo"));
+                obra.setRutaImagen(rs.getString("ruta_imagen"));
+                obras.add(obra);
+            }
+        }
+    }
+    return obras;
+}
+public List<Obra> obtenerTodasObrasSimple() throws SQLException {
+    List<Obra> obras = new ArrayList<>();
+    String sql = "{ ? = call MARCE.OBTENER_TODAS_OBRAS_SIMPLE() }";
+
+    try (Connection conn = DatabaseConnection.connect();
+         CallableStatement cstmt = conn.prepareCall(sql)) {
+
+        cstmt.registerOutParameter(1, OracleTypes.CURSOR);
+        cstmt.execute();
+
+        try (ResultSet rs = (ResultSet) cstmt.getObject(1)) {
+            while (rs.next()) {
+                Obra obra = new Obra();
+                obra.setId(rs.getInt("id_obra"));
+                obra.setTitulo(rs.getString("titulo"));
+                obra.setRutaImagen(rs.getString("ruta_imagen"));
+
+                // 👉 construimos Sala y la asociamos a la Obra
+                Sala sala = new Sala();
+                sala.setIdSala(rs.getInt("id_sala"));
+                sala.setNombreSala(rs.getString("nombre_sala"));
+                obra.setSala(sala);
+
+
+                obras.add(obra);
+            }
+        }
+    }
+    return obras;
+}
+
+
+
 }

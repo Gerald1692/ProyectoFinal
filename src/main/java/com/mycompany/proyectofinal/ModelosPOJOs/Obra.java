@@ -13,6 +13,7 @@ public class Obra {
     private int autorId;
     private int tipoObraId;
     private int salaId;
+    public Sala sala;
     
     public Obra() {}
 
@@ -29,6 +30,20 @@ public class Obra {
         this.tipoObraId = tipoObraId;
         this.salaId = salaId;
     }
+
+    public Obra(Sala sala) {
+        this.sala = sala;
+    }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
+    
+    
     
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
