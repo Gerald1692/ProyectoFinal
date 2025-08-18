@@ -17,7 +17,7 @@
     <!-- Encabezado minimalista CORREGIDO -->
     <top>
         <HBox alignment="CENTER" styleClass="header">
-            <Label prefHeight="60.0" prefWidth="178.0" styleClass="headerTitle" text="Sala #1">
+            <Label prefHeight="60.0" prefWidth="178.0" styleClass="headerTitle" text="Obra">
                 <font>
                     <Font name="Bodoni MT Bold" size="48.0" />
                 </font>

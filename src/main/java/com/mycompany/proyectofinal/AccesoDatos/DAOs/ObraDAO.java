@@ -278,18 +278,21 @@ public List<Obra> obtenerTodasObrasSimple() throws SQLException {
         try (ResultSet rs = (ResultSet) cstmt.getObject(1)) {
             if (rs.next()) {
                 obra = new Obra();
+                // columnas devueltas por O.* (asegúrate de los nombres tal cual en BD)
                 obra.setId(rs.getInt("ID_OBRA"));
                 obra.setTitulo(rs.getString("TITULO"));
                 obra.setDescripcion(rs.getString("DESCRIPCION"));
                 obra.setFechaCreacion(rs.getDate("FECHA_CREACION"));
                 obra.setFechaIngreso(rs.getDate("FECHA_INGRESO"));
+
+                // Rutas -> normalizamos para usar con Image/Media
                 obra.setRutaImagen(normalizeRuta(rs.getString("RUTA_IMAGEN")));
                 obra.setRutaAudio(normalizeRuta(rs.getString("RUTA_AUDIO")));
-                obra.setAutorId(rs.getInt("ID_AUTOR"));
+
                 obra.setTipoObraId(rs.getInt("ID_TIPO_OBRA"));
                 obra.setSalaId(rs.getInt("ID_SALA"));
 
-                // datos adicionales del join
+                // columnas añadidas por joins
                 obra.setNombreTipoObra(rs.getString("NOMBRE_TIPO_OBRA"));
                 obra.setTecnica(rs.getString("TECNICA"));
                 obra.setNombreSala(rs.getString("NOMBRE_SALA"));
@@ -298,5 +301,4 @@ public List<Obra> obtenerTodasObrasSimple() throws SQLException {
     }
     return obra;
 }
-
 }

@@ -1,176 +1,142 @@
 package com.mycompany.proyectofinal.Controllers;
 
+import com.mycompany.proyectofinal.AccesoDatos.DAOs.ObraDAO;
+import com.mycompany.proyectofinal.ModelosPOJOs.Obra;
 import com.mycompany.proyectofinal.App;
-import com.mycompany.proyectofinal.MusicManager;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.application.Platform;
+
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-public class Sala1Controller implements Initializable {
-    @FXML
-    private BorderPane rootPane; // Referencia al nodo raíz
-    
+import java.io.InputStream;
+import java.sql.SQLException;
+
+public class Sala1Controller {
+
+    @FXML private ImageView imagenObra;
+    @FXML private Label tituloLabel;
+    @FXML private Label subtituloLabel;
+    @FXML private TextArea descripcionArea;
+    @FXML private Button playButton;
+    @FXML private Label infoSalaLabel;
+    @FXML private Label estadoLabel;
+
     private MediaPlayer mediaPlayer;
-    
-    private String dinosaurioActual;
+    private String rutaAudioActual;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        dinosaurioActual = App.getDinosaurioSeleccionado();
-        // Configurar manejador para cuando se cierre la ventana
-        Platform.runLater(() -> {
-            Stage stage = (Stage) rootPane.getScene().getWindow();
-            stage.setOnCloseRequest(event -> {
-                detenerSonido();
-            });
-        });
+    /**
+     * Se dispara cuando el usuario hace click en una obra dentro del Grid de SalaSimple1.
+     * El idObra debe estar seteado en el userData del nodo.
+     */
+    @FXML
+    private void abrirObra(MouseEvent event) {
+        Node source = (Node) event.getSource();
+        Integer idObra = (Integer) source.getUserData(); // viene del GridPane
+        if (idObra != null) {
+            cargarObra(idObra);
+        }
     }
-    
-    // Método para detener el sonido
-    private void detenerSonido() {
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer.dispose(); // Libera recursos
-            mediaPlayer = null;
+
+    public void cargarObra(int idObra) {
+        ObraDAO dao = new ObraDAO();
+        try {
+            Obra obra = dao.obtenerObraPorId(idObra);
+            if (obra == null) {
+                tituloLabel.setText("Obra no encontrada");
+                descripcionArea.setText("");
+                playButton.setDisable(true);
+                return;
+            }
+
+            // Texto
+            tituloLabel.setText(obra.getTitulo() != null ? obra.getTitulo() : "");
+            subtituloLabel.setText(obra.getNombreTipoObra() != null ? obra.getNombreTipoObra() : "");
+            descripcionArea.setText(obra.getDescripcion() != null ? obra.getDescripcion() : "");
+            infoSalaLabel.setText(obra.getNombreSala() != null ? obra.getNombreSala() : "Sala " + obra.getSalaId());
+            estadoLabel.setText("En exhibición");
+
+            // Imagen segura
+            String rutaImg = obra.getRutaImagen();
+            Image img = null;
+            if (rutaImg != null && !rutaImg.isBlank()) {
+                try {
+                    String source = rutaImg.startsWith("file:") || rutaImg.startsWith("http") ? rutaImg : "file:" + rutaImg;
+                    img = new Image(source, false);
+                } catch (Exception ex) { img = null; }
+            }
+            if (img == null || img.isError()) {
+                try (InputStream is = getClass().getResourceAsStream("/imagenes/placeholder.png")) {
+                    if (is != null) img = new Image(is);
+                } catch (Exception e) { }
+            }
+            imagenObra.setImage(img);
+
+            // Audio
+            rutaAudioActual = obra.getRutaAudio();
+            playButton.setDisable(rutaAudioActual == null || rutaAudioActual.isBlank());
+            stopAndDisposePlayer();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 
     @FXML
-    private void volverLogin() throws IOException {
-        detenerSonido(); // Detiene el sonido antes de cambiar de vista
-        App.setRoot("Login");
-    }
-    
-    @FXML
-    private void manejarSalir() {
-        detenerSonido(); // Detiene el sonido antes de salir
-        System.exit(0);
-    }
-    
-    @FXML
-    private void irSalaPrincipal() throws IOException {
-        detenerSonido(); // Detiene el sonido antes de cambiar de vista
-        App.setRoot("SalaSimple1");
-    }
-    
-    
-   @FXML
     private void reproducirSonido() {
-        if (dinosaurioActual == null) return;
-        
-        String archivoSonido;
-        switch (dinosaurioActual) {
-            case "Tyrannosaurus":
-                archivoSonido = "/musica/t_rex.mp3";
-                break;
-            case "Triceratops":
-                archivoSonido = "/musica/3cuernos.m4a";
-                break;
-            case "Velociraptor":
-                archivoSonido = "/musica/velociraptor.mp3";
-                break;
-            default:
-                archivoSonido = "/musica/velociraptor.mp3";
-        }
-        
+        if (rutaAudioActual == null || rutaAudioActual.isBlank()) return;
         try {
-            MusicManager.pauseMusic();
-            URL resource = getClass().getResource(archivoSonido);
-            
-            if (resource == null) {
-                throw new RuntimeException("Archivo de audio no encontrado");
+            if (mediaPlayer == null) {
+                String src = rutaAudioActual.startsWith("file:") || rutaAudioActual.startsWith("http")
+                        ? rutaAudioActual : "file:" + rutaAudioActual;
+                Media media = new Media(src);
+                mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.setOnEndOfMedia(() -> {
+                    mediaPlayer.stop();
+                    mediaPlayer.dispose();
+                    mediaPlayer = null;
+                    playButton.setText("Reproducir Sonido");
+                });
             }
-            
-            String audioPath = resource.toExternalForm();
-            Media media = new Media(audioPath);
-            mediaPlayer = new MediaPlayer(media);
-            
-            mediaPlayer.setOnEndOfMedia(() -> detenerSonido());
-            mediaPlayer.play();
-            
-        } catch (Exception e) {
-            System.err.println("Error al reproducir sonido: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    private void reproducirSonidoT_REX() {
-        try {
-            MusicManager.pauseMusic();
-            
-            URL resource = getClass().getResource("/musica/3cuernos.m4a");
-            
-            MusicManager.playBackgroundMusic();
-            if (resource == null) {
-                throw new RuntimeException("Archivo de audio no encontrado");
+            if ("Reproducir Sonido".equals(playButton.getText()) || mediaPlayer.getStatus().toString().equals("PAUSED")) {
+                mediaPlayer.play();
+                playButton.setText("Pausar Sonido");
+            } else {
+                mediaPlayer.pause();
+                playButton.setText("Reproducir Sonido");
             }
-            
-            String audioPath = resource.toExternalForm();
-            Media media = new Media(audioPath);
-            mediaPlayer = new MediaPlayer(media);
-            
-            // Configurar para detener el sonido cuando termine
-            mediaPlayer.setOnEndOfMedia(() -> detenerSonido());
-            
-            mediaPlayer.play();
-            
-        } catch (Exception e) {
-            System.err.println("Error al reproducir sonido: " + e.getMessage());
-            e.printStackTrace();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            playButton.setDisable(true);
         }
-    }
-    
-    
-    @FXML
-    private void irATyrannosaurus() throws IOException {
-        App.setRoot("Sala1", "Tyrannosaurus");
     }
 
     @FXML
-    private void irATriceratops() throws IOException {
-        App.setRoot("Sala1", "Triceratops");
+    private void volverSala() {
+        stopAndDisposePlayer();
+        try {
+            App.setRoot("SalaSimple1"); // vuelve a la lista de obras
+        } catch (Exception e) {
+            Stage s = (Stage) tituloLabel.getScene().getWindow();
+            s.close();
+        }
     }
 
-    @FXML
-    private void irAVelociraptor() throws IOException {
-        App.setRoot("Sala1", "Velociraptor");
-    }
-    @FXML
-    private void reproducirSonidoVELOCI() {
+    private void stopAndDisposePlayer() {
         try {
-            MusicManager.pauseMusic();
-            
-            URL resource = getClass().getResource("/musica/3cuernos.m4a");
-            
-            MusicManager.playBackgroundMusic();
-            if (resource == null) {
-                throw new RuntimeException("Archivo de audio no encontrado");
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+                mediaPlayer.dispose();
+                mediaPlayer = null;
+                playButton.setText("Reproducir Sonido");
             }
-            
-            String audioPath = resource.toExternalForm();
-            Media media = new Media(audioPath);
-            mediaPlayer = new MediaPlayer(media);
-            
-            // Configurar para detener el sonido cuando termine
-            mediaPlayer.setOnEndOfMedia(() -> detenerSonido());
-            
-            mediaPlayer.play();
-            
-        } catch (Exception e) {
-            System.err.println("Error al reproducir sonido: " + e.getMessage());
-            e.printStackTrace();
-        }
-        
-        
-        
-        
-        
+        } catch (Exception ignored) {}
     }
 }
