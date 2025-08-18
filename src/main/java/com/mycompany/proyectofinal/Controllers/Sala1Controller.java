@@ -3,20 +3,20 @@ package com.mycompany.proyectofinal.Controllers;
 import com.mycompany.proyectofinal.AccesoDatos.DAOs.ObraDAO;
 import com.mycompany.proyectofinal.ModelosPOJOs.Obra;
 import com.mycompany.proyectofinal.App;
+import com.mycompany.proyectofinal.Controllers.SesionSala;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-import java.io.InputStream;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 
 public class Sala1Controller {
@@ -32,79 +32,75 @@ public class Sala1Controller {
     private MediaPlayer mediaPlayer;
     private String rutaAudioActual;
 
-    /**
-     * Se dispara cuando el usuario hace click en una obra dentro del Grid de SalaSimple1.
-     * El idObra debe estar seteado en el userData del nodo.
-     */
     @FXML
-    private void abrirObra(MouseEvent event) {
-        Node source = (Node) event.getSource();
-        Integer idObra = (Integer) source.getUserData(); // viene del GridPane
-        if (idObra != null) {
+    public void initialize() {
+        // Cargar obra desde sesión
+        int idObra = SesionSala.getIdObra();
+        if(idObra > 0) {
             cargarObra(idObra);
         }
     }
 
-   public void cargarObra(int idObra) {
-    ObraDAO dao = new ObraDAO();
-    try {
-        Obra obra = dao.obtenerObraPorId(idObra);
-        if (obra == null) {
-            tituloLabel.setText("Obra no encontrada");
-            descripcionArea.setText("");
-            playButton.setDisable(true);
-            return;
-        }
-
-        // Cargar texto
-        tituloLabel.setText(obra.getTitulo() != null ? obra.getTitulo() : "");
-        subtituloLabel.setText(obra.getNombreTipoObra() != null ? obra.getNombreTipoObra() : "");
-        descripcionArea.setText(obra.getDescripcion() != null ? obra.getDescripcion() : "");
-        infoSalaLabel.setText(obra.getNombreSala() != null ? obra.getNombreSala() : "Sala " + obra.getSalaId());
-        estadoLabel.setText("En exhibición");
-
-        // Cargar imagen segura
-        String rutaImg = obra.getRutaImagen();
-        Image img = null;
-        if (rutaImg != null && !rutaImg.isBlank()) {
-            try {
-                // Normalizar ruta
-                String rutaNormalizada = rutaImg.replace("RECURSOS/", "");
-                
-                // Cargar desde recursos
-                InputStream is = getClass().getResourceAsStream("/" + rutaNormalizada);
-                if (is != null) {
-                    img = new Image(is);
-                } else {
-                    System.err.println("Imagen no encontrada: " + rutaNormalizada);
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
+    public void cargarObra(int idObra) {
+        ObraDAO dao = new ObraDAO();
+        try {
+            Obra obra = dao.obtenerObraPorId(idObra);
+            if (obra == null) {
+                tituloLabel.setText("Obra no encontrada");
+                descripcionArea.setText("");
+                playButton.setDisable(true);
+                return;
             }
-        }
-        
-        // Cargar placeholder si no se encontró la imagen
-        if (img == null || img.isError()) {
-            try (InputStream placeholder = getClass().getResourceAsStream("/imagenes/placeholder.png")) {
-                if (placeholder != null) {
-                    img = new Image(placeholder);
+
+            // Cargar texto
+            tituloLabel.setText(obra.getTitulo() != null ? obra.getTitulo() : "");
+            subtituloLabel.setText(obra.getNombreTipoObra() != null ? obra.getNombreTipoObra() : "");
+            descripcionArea.setText(obra.getDescripcion() != null ? obra.getDescripcion() : "");
+            infoSalaLabel.setText(obra.getNombreSala() != null ? obra.getNombreSala() : "Sala " + obra.getSalaId());
+            estadoLabel.setText("En exhibición");
+
+            // Cargar imagen - SOLUCIÓN ACTUALIZADA
+            String rutaImg = obra.getRutaImagen();
+            if (rutaImg != null && !rutaImg.isBlank()) {
+                try {
+                    // Normalizar ruta
+                    rutaImg = rutaImg.replace("\\", "/");
+                    if (rutaImg.startsWith("RECURSOS/")) {
+                        rutaImg = rutaImg.substring(9);
+                    }
+                    
+                    // Cargar imagen usando URL
+                    URL imgUrl = getClass().getResource("/" + rutaImg);
+                    if (imgUrl != null) {
+                        Image img = new Image(imgUrl.toExternalForm());
+                        imagenObra.setImage(img);
+                    } else {
+                        throw new Exception("Imagen no encontrada: " + rutaImg);
+                    }
+                } catch (Exception ex) {
+                    System.err.println("Error cargando imagen: " + ex.getMessage());
+                    // Cargar placeholder
+                    try {
+                        URL placeholderUrl = getClass().getResource("/imagenes/placeholder.png");
+                        if (placeholderUrl != null) {
+                            Image placeholder = new Image(placeholderUrl.toExternalForm());
+                            imagenObra.setImage(placeholder);
+                        }
+                    } catch (Exception e) {
+                        System.err.println("Error cargando placeholder");
+                    }
                 }
-            } catch (Exception e) {
-                System.err.println("Error cargando placeholder");
             }
+
+            // Configurar audio
+            rutaAudioActual = obra.getRutaAudio();
+            playButton.setDisable(rutaAudioActual == null || rutaAudioActual.isBlank());
+            stopAndDisposePlayer();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        imagenObra.setImage(img);
-
-        // Configurar audio
-        rutaAudioActual = obra.getRutaAudio();
-        playButton.setDisable(rutaAudioActual == null || rutaAudioActual.isBlank());
-        stopAndDisposePlayer();
-
-    } catch (SQLException ex) {
-        ex.printStackTrace();
     }
-   }
-   
 
     @FXML
     private void reproducirSonido() {
@@ -140,6 +136,17 @@ public class Sala1Controller {
         stopAndDisposePlayer();
         try {
             App.setRoot("SalaSimple1"); // vuelve a la lista de obras
+        } catch (Exception e) {
+            Stage s = (Stage) tituloLabel.getScene().getWindow();
+            s.close();
+        }
+    }
+    
+    @FXML
+    private void volverAInicio() {
+        stopAndDisposePlayer();
+        try {
+            App.setRoot("primary"); // vuelve al inicio de sesión
         } catch (Exception e) {
             Stage s = (Stage) tituloLabel.getScene().getWindow();
             s.close();

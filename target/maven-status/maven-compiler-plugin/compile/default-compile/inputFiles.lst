@@ -3,6 +3,7 @@ C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoF
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SecondaryController.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Usuario.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\TipoObraDAO.java
+C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SesionSala.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\SalaDAO.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\LoginController.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\Sala2Controller.java
@@ -14,7 +15,6 @@ C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoF
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AdmiObrasController.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\util\DatabaseConnection.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\AdministradorController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\util\SesionSala.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\TipoObra.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\RecuperarController.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\AutorDAO.java

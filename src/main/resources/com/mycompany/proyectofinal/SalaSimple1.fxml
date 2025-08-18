@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" 
-            fx:controller="com.mycompany.proyectofinal.Controllers.SalaSimple1Controller"
-            prefWidth="800" prefHeight="600">
+<AnchorPane prefHeight="600" prefWidth="800" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.mycompany.proyectofinal.Controllers.SalaSimple1Controller">
+   <Button fx:id="btn_Salir" onAction="#volverAInicio" layoutX="10" layoutY="10" mnemonicParsing="false" text="Volver" />
 
-    <ScrollPane fitToWidth="true" fitToHeight="true" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
-        <GridPane fx:id="gridObras" hgap="15" vgap="15" style="-fx-padding:20;">
-            <!-- Aquí Java agregará dinámicamente las obras -->
-        </GridPane>
+    <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="40">
+        <GridPane fx:id="gridObras" hgap="15" style="-fx-padding:20;" vgap="15">
+         <columnConstraints>
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints></GridPane>
     </ScrollPane>
 </AnchorPane>

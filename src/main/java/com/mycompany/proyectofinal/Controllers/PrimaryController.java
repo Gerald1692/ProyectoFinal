@@ -4,7 +4,7 @@ import com.mycompany.proyectofinal.AccesoDatos.DAOs.SalaDAO;
 import com.mycompany.proyectofinal.App;
 import com.mycompany.proyectofinal.App;
 import com.mycompany.proyectofinal.ModelosPOJOs.Sala;
-import com.mycompany.proyectofinal.util.SesionSala;
+import com.mycompany.proyectofinal.Controllers.SesionSala;
 import java.io.IOException;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
@@ -97,6 +97,7 @@ private void irSalaSimple3() throws IOException {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
  }
            
 

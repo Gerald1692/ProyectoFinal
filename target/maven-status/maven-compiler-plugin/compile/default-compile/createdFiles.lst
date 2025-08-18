@@ -3,6 +3,7 @@ com\mycompany\proyectofinal\AdmiObrasController.class
 com\mycompany\proyectofinal\Controllers\LoginController.class
 com\mycompany\proyectofinal\ModelosPOJOs\Autor.class
 com\mycompany\proyectofinal\Controllers\PrimaryController.class
+com\mycompany\proyectofinal\Controllers\SesionSala.class
 com\mycompany\proyectofinal\Controllers\SalaViewController.class
 com\mycompany\proyectofinal\AccesoDatos\DAOs\AutorDAO.class
 com\mycompany\proyectofinal\AccesoDatos\DAOs\ObraDAO.class
@@ -17,7 +18,6 @@ com\mycompany\proyectofinal\Controllers\Sala1Controller.class
 com\mycompany\proyectofinal\Controllers\SalaSimple3Controller.class
 module-info.class
 com\mycompany\proyectofinal\ModelosPOJOs\Sala.class
-com\mycompany\proyectofinal\util\SesionSala.class
 com\mycompany\proyectofinal\AdmiUsuariosController.class
 com\mycompany\proyectofinal\App.class
 com\mycompany\proyectofinal\Controllers\RecuperarController.class

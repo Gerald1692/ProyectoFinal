@@ -2,26 +2,19 @@ package com.mycompany.proyectofinal.Controllers;
 
 import com.mycompany.proyectofinal.AccesoDatos.DAOs.ObraDAO;
 import com.mycompany.proyectofinal.App;
-import com.mycompany.proyectofinal.App;
 import com.mycompany.proyectofinal.ModelosPOJOs.Obra;
-import com.mycompany.proyectofinal.util.SesionSala;
+import com.mycompany.proyectofinal.Controllers.SesionSala;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
+import java.io.InputStream; // Importación añadida
 import java.sql.SQLException;
 import java.util.List;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-
 
 public class SalaSimple1Controller {
 
@@ -29,18 +22,11 @@ public class SalaSimple1Controller {
     private GridPane gridObras;
 
     private ObraDAO obraDAO = new ObraDAO();
-    private static int idSala;
-
-    public static void setIdSala(int id) {
-        idSala = id;
-    }
 
     public void initialize() {
-        int idSala = SesionSala.getIdSala(); // ← Recupera el idSala que seteó PrimaryController
+        int idSala = SesionSala.getIdSala();
         cargarObrasDeSala(idSala);
     }
-
-   
 
     private void cargarObrasDeSala(int idSala) {
         try {
@@ -50,64 +36,73 @@ public class SalaSimple1Controller {
             int col = 0, row = 0;
             for (Obra obra : obras) {
                 VBox contenedor = new VBox(5);
+                contenedor.setStyle("-fx-padding: 10; -fx-background-color: #f5f5f5; -fx-border-color: #ddd; -fx-border-radius: 5;");
 
                 ImageView imageView = new ImageView();
                 imageView.setFitWidth(150);
                 imageView.setFitHeight(150);
+                imageView.setPreserveRatio(true);
 
-                if (obra.getRutaImagen() != null) {
+                if (obra.getRutaImagen() != null && !obra.getRutaImagen().isEmpty()) {
                     try {
-                        imageView.setImage(new Image("file:" + obra.getRutaImagen()));
+                        // Cargar imagen desde recursos
+                        String rutaNormalizada = obra.getRutaImagen().replace("RECURSOS/", "");
+                        InputStream is = getClass().getResourceAsStream("/" + rutaNormalizada);
+                        if (is != null) {
+                            imageView.setImage(new Image(is));
+                        } else {
+                            // Cargar placeholder si no se encuentra
+                            InputStream placeholder = getClass().getResourceAsStream("/imagenes/placeholder.png");
+                            if (placeholder != null) {
+                                imageView.setImage(new Image(placeholder));
+                            }
+                        }
                     } catch (Exception e) {
                         System.out.println("Error cargando imagen: " + obra.getRutaImagen());
+                        e.printStackTrace();
                     }
                 }
 
                 Label titulo = new Label(obra.getTitulo());
-                contenedor.getChildren().addAll(imageView, titulo);
-
+                titulo.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
+                
+                // Botón para ver detalles
+                Button btnDetalles = new Button("Ver detalles");
+                btnDetalles.setStyle("-fx-background-color: #4a86e8; -fx-text-fill: white;");
+                btnDetalles.setOnAction(e -> mostrarDetalleObra(obra.getId()));
+                
+                contenedor.getChildren().addAll(imageView, titulo, btnDetalles);
                 gridObras.add(contenedor, col, row);
 
                 col++;
-                if (col == 3) { col = 0; row++; }
+                if (col == 3) { 
+                    col = 0; 
+                    row++; 
+                }
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    private void abrirObra(MouseEvent event) {
-        Node source = (Node) event.getSource();
-        Integer idObra = (Integer) source.getUserData();
 
-        if (idObra != null) {
-            mostrarDetalleObra(idObra);
+    private void mostrarDetalleObra(int idObra) {
+        try {
+            // Guardar ID de obra en sesión
+            SesionSala.setIdObra(idObra);
+            
+            // Navegar a vista de detalle
+            App.setRoot("Sala1");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-
-    private void mostrarDetalleObra(int id) {
+    
+    @FXML
+    private void volverAInicio() {
         try {
-            Obra obra = obraDAO.obtenerObraPorId(id);
-            gridObras.getChildren().clear();
-
-            VBox detalle = new VBox(10);
-            Label titulo = new Label(obra.getTitulo());
-            titulo.setStyle("-fx-font-size:18; -fx-font-weight:bold;");
-
-            Label descripcion = new Label(obra.getDescripcion());
-            descripcion.setWrapText(true);
-
-            ImageView imageView = new ImageView();
-            if (obra.getRutaImagen() != null) {
-                imageView.setImage(new Image("file:" + obra.getRutaImagen()));
-            }
-            imageView.setFitWidth(200);
-            imageView.setFitHeight(200);
-
-            detalle.getChildren().addAll(titulo, descripcion, imageView);
-
-            gridObras.add(detalle, 0, 0);
-        } catch (SQLException e) {
+            App.setRoot("primary");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
