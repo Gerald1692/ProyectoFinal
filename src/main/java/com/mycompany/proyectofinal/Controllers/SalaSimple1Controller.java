@@ -4,6 +4,9 @@ import com.mycompany.proyectofinal.AccesoDatos.DAOs.ObraDAO;
 import com.mycompany.proyectofinal.ModelosPOJOs.Obra;
 import com.mycompany.proyectofinal.App;
 import com.mycompany.proyectofinal.Controllers.SesionSala;
+
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -27,30 +30,64 @@ public class SalaSimple1Controller {
 
     @FXML
     public void initialize() {
-        cargarObras();
+        // Lee el id de sala que dejó PrimaryController en SesionSala
+        int idSala = SesionSala.getIdSala();
+        if (idSala <= 0) {
+            idSala = SesionSala.getIdSala(); // fallback por si acaso
+        }
+        cargarObrasEnBackground(idSala);
     }
 
-    private void cargarObras() {
-        try {
-            ObraDAO dao = new ObraDAO();
-            List<Obra> obras = dao.obtenerObrasPorSala(1); // Cambia el ID según tu sala
+    /** Carga obras en un Task (hilo background) para no bloquear la UI */
+    private void cargarObrasEnBackground(int idSala) {
+        Task<List<Obra>> task = new Task<>() {
+            @Override
+            protected List<Obra> call() throws Exception {
+                ObraDAO dao = new ObraDAO();
+                // usa el DAO dinámico por sala
+                return dao.obtenerObrasPorSala(idSala);
+            }
+        };
 
+        task.setOnSucceeded(ev -> {
+            List<Obra> obras = task.getValue();
+            mostrarObrasEnGrid(obras);
+        });
+
+        task.setOnFailed(ev -> {
+            Throwable ex = task.getException();
+            ex.printStackTrace();
+            // opcional: mostrar alerta al usuario
+        });
+
+        Thread t = new Thread(task);
+        t.setDaemon(true);
+        t.start();
+    }
+
+    /** Actualiza la GridPane en el hilo de la UI */
+    private void mostrarObrasEnGrid(List<Obra> obras) {
+        Platform.runLater(() -> {
+            gridObras.getChildren().clear();
             int column = 0;
             int row = 0;
-            
+
+            if (obras == null || obras.isEmpty()) {
+                // opcional: mostrar mensaje de "sin obras"
+                return;
+            }
+
             for (Obra obra : obras) {
                 VBox obraBox = crearObraBox(obra);
                 gridObras.add(obraBox, column, row);
-                
+
                 column++;
                 if (column == 3) { // 3 columnas por fila
                     column = 0;
                     row++;
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        });
     }
 
     private VBox crearObraBox(Obra obra) {
@@ -59,7 +96,7 @@ public class SalaSimple1Controller {
         box.setPadding(new Insets(15));
         box.setSpacing(10);
         box.setOnMouseClicked(e -> abrirDetalleObra(obra.getId()));
-        
+
         // Imagen
         ImageView imageView = new ImageView();
         imageView.getStyleClass().add("section-image");
@@ -67,12 +104,12 @@ public class SalaSimple1Controller {
         imageView.setFitHeight(180);
         imageView.setPreserveRatio(true);
         cargarImagen(imageView, obra.getRutaImagen());
-        
+
         // Título
-        Text titulo = new Text(obra.getTitulo());
+        Text titulo = new Text(obra.getTitulo() != null ? obra.getTitulo() : "");
         titulo.getStyleClass().add("section-text");
         titulo.setWrappingWidth(180);
-        
+
         box.getChildren().addAll(imageView, titulo);
         return box;
     }
@@ -82,18 +119,16 @@ public class SalaSimple1Controller {
             cargarPlaceholder(imageView);
             return;
         }
-        
+
         try {
             rutaImg = rutaImg.replace("\\", "/");
-            
-            // Intentar cargar como recurso interno
+
             URL imgUrl = getClass().getResource("/" + rutaImg);
             if (imgUrl != null) {
                 imageView.setImage(new Image(imgUrl.toExternalForm()));
                 return;
             }
-            
-            // Intentar cargar como archivo externo
+
             File imgFile = new File(rutaImg);
             if (imgFile.exists()) {
                 imageView.setImage(new Image(imgFile.toURI().toString()));

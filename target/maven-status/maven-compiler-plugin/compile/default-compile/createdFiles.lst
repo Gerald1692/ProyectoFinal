@@ -26,6 +26,7 @@ com\mycompany\proyectofinal\Controllers\REGISTRARSEController.class
 com\mycompany\proyectofinal\Controllers\SalaSimple2Controller.class
 com\mycompany\proyectofinal\AccesoDatos\DAOs\TipoObraDAO.class
 com\mycompany\proyectofinal\ModelosPOJOs\Usuario.class
+com\mycompany\proyectofinal\Controllers\SalaSimple1Controller$1.class
 com\mycompany\proyectofinal\ModelosPOJOs\ObraCompleta.class
 com\mycompany\proyectofinal\AccesoDatos\DAOs\SalaDAO.class
 com\mycompany\proyectofinal\MusicManager.class

@@ -36,6 +36,8 @@ private SalaDAO salaDAO = new SalaDAO();
         System.out.println("Mostrar eventos");
     }
 
+    
+    
     @FXML
     private void abrirPerfil() throws IOException {
         // Lógica para abrir perfil
