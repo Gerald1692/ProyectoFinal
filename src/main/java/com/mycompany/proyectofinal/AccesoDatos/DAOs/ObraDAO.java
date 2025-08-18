@@ -207,28 +207,7 @@ public class ObraDAO {
         return audios;
     }
     
-    public List<Obra> obtenerObrasPorSala(int idSala) throws SQLException {
-    List<Obra> obras = new ArrayList<>();
-    String sql = "{ ? = call MARCE.OBTENER_OBRAS_SALA(?) }";
-    try (Connection conn = DatabaseConnection.connect();
-         CallableStatement cstmt = conn.prepareCall(sql)) {
-        
-        cstmt.registerOutParameter(1, OracleTypes.CURSOR);
-        cstmt.setInt(2, idSala);
-        cstmt.execute();
-        
-        try (ResultSet rs = (ResultSet) cstmt.getObject(1)) {
-            while (rs.next()) {
-                Obra obra = new Obra();
-                obra.setId(rs.getInt("id_obra"));
-                obra.setTitulo(rs.getString("titulo"));
-                obra.setRutaImagen(rs.getString("ruta_imagen"));
-                obras.add(obra);
-            }
-        }
-    }
-    return obras;
-}
+   
 public List<Obra> obtenerTodasObrasSimple() throws SQLException {
     List<Obra> obras = new ArrayList<>();
     String sql = "{ ? = call MARCE.OBTENER_TODAS_OBRAS_SIMPLE() }";
@@ -260,6 +239,28 @@ public List<Obra> obtenerTodasObrasSimple() throws SQLException {
     return obras;
 }
 
+ public List<Obra> obtenerObrasPorSala(int idSala) throws SQLException {
+        List<Obra> obras = new ArrayList<>();
+        String sql = "{ ? = call MARCE.OBTENER_OBRAS_POR_SALA(?) }";
 
+        try (Connection conn = DatabaseConnection.connect();
+             CallableStatement cstmt = conn.prepareCall(sql)) {
+
+            cstmt.registerOutParameter(1, Types.REF_CURSOR);
+            cstmt.setInt(2, idSala);
+            cstmt.execute();
+
+            try (ResultSet rs = (ResultSet) cstmt.getObject(1)) {
+                while (rs.next()) {
+                    Obra obra = new Obra();
+                    obra.setId(rs.getInt("ID_OBRA"));
+                    obra.setTitulo(rs.getString("TITULO"));
+                    obra.setRutaImagen(rs.getString("RUTA_IMAGEN"));
+                    obras.add(obra);
+                }
+            }
+        }
+        return obras;
+    }
 
 }
