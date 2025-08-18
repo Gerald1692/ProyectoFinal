@@ -1,25 +1,15 @@
-<<<<<<< Updated upstream
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\Sala3Controller.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaSimple2Controller.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SecondaryController.java
-=======
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\RecuperarController.java
->>>>>>> Stashed changes
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Usuario.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\TipoObraDAO.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\SalaDAO.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\LoginController.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\Sala2Controller.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\module-info.java
-<<<<<<< Updated upstream
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AccesoDatos\DAOs\UsuarioDAO.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AdmiUsuariosController.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaSimple3Controller.java
-=======
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AdministradorController.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Sala1Controller.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Rol.java
->>>>>>> Stashed changes
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Obra.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\AdmiObrasController.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\util\DatabaseConnection.java
@@ -40,9 +30,4 @@ C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoF
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\REGISTRARSEController.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Autor.java
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\Sala.java
-<<<<<<< Updated upstream
 C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\Controllers\SalaViewController.java
-=======
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\util\DatabaseConnection.java
-C:\Users\admar\OneDrive\Documents\UISIL\5°Cuatri\PROGRAMACIÓN IV\Rep\ProyectoFinal\src\main\java\com\mycompany\proyectofinal\ModelosPOJOs\TipoObra.java
->>>>>>> Stashed changes
