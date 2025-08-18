@@ -1,6 +1,6 @@
 /* Fondo responsivo */
 StackPane {
-    -fx-background-image: url("@../../../RECURSOS/Animado.png");
+    -fx-background-image: url("@../../../RECURSOS/");
     -fx-background-size: cover;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;

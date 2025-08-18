@@ -225,7 +225,7 @@ public List<Obra> obtenerTodasObrasSimple() throws SQLException {
                 obra.setTitulo(rs.getString("titulo"));
                 obra.setRutaImagen(rs.getString("ruta_imagen"));
 
-                // 👉 construimos Sala y la asociamos a la Obra
+                //  construimos Sala y la asociamos a la Obra
                 Sala sala = new Sala();
                 sala.setIdSala(rs.getInt("id_sala"));
                 sala.setNombreSala(rs.getString("nombre_sala"));
